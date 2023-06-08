@@ -10,9 +10,8 @@ class Grid():
         self.bonds.append(amino)
 
     def check_grid(self):
-        for i in range(self.width):
-            for j in range(self.width):
-                self.board = ['_']
+        self.board = [['_' for i in range(self.width)] for j in range(self.width)]
 
     def print_grid(self):
+        self.check_grid()
         print(self.board)
