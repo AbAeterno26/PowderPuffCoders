@@ -1,4 +1,4 @@
-from code.classes import grid
+from code.classes import Grid
 
 
 if __name__ == "__main__":
