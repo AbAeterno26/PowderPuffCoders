@@ -1,4 +1,5 @@
 class Grid():
+    # width equals the length of the protein string 
     def __init__(self, width):
         self.bonds = []
         self.width = width
