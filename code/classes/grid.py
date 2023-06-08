@@ -15,5 +15,4 @@ class Grid():
                 self.board = ['_']
 
     def print_grid(self):
-        pass
-        # print(grid)
+        print(self.board)
