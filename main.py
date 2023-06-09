@@ -27,9 +27,10 @@ if __name__ == "__main__":
             grid_obj = grid.Grid(len(protein))
 
             for aminoacid in protein:
+                # Call random algorithm to solve protein fold
                 row, column = randomise.gen_location(len(protein))
 
-                #Create class object from aminoacid
+                # Create class object from aminoacid
                 if aminoacid == 'P':
                     amino = p.Polair(row, column)
                 elif aminoacid == 'H':
@@ -38,10 +39,10 @@ if __name__ == "__main__":
                     #This is reserved for the C class
                     pass
 
-                # Call random algorithm to solve protein fold
                 # Create widget for amino acid visualisation
                 amino_acid_label = tk.Label(grid, text=amino.text, bg=amino.color, width=1, height=1)
                 amino_labels.append(amino_acid_label)
+                
                 # Add amino acid to grid
                 grid_obj.add_bond(amino)
 
