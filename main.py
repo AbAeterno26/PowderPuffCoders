@@ -16,6 +16,7 @@ if __name__ == "__main__":
     protein_file = argv[1]
     with open(protein_file) as f:
         for protein in f:
+            amino_labels = []
             print(f"The loaded protein is: {protein}")
             # Create grid object
             grid_obj = grid.Grid(len(protein))
@@ -35,7 +36,7 @@ if __name__ == "__main__":
                 # Call random algorithm to solve protein fold
                 # Create widget for amino acid visualisation
                 amino_acid_label = tk.Label(grid, text=amino.text, bg=amino.color, width=1, height=1)
-
+                amino_labels.append(amino_acid_label)
                 # Add amino acid to grid
                 grid_obj.add_bond(amino)
                 
