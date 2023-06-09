@@ -8,6 +8,11 @@ import tkinter as tk
 
 def plot_grid():
     """ Loops over the amino acids and plots the protein in a grid """
+    grid = tk.Tk()
+    for amino_acid in amino_labels:
+        amino_acid_label.grid(row=row, column=column)
+
+        grid.mainloop()
     
 
 
@@ -46,6 +51,4 @@ if __name__ == "__main__":
                 grid_obj.add_bond(amino)
 
         # Print the grid of the entire protein
-        amino_acid_label.grid(row=row, column=column)
-
-        grid.mainloop()
+        
