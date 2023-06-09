@@ -6,6 +6,11 @@ from sys import argv
 import tkinter as tk 
 
 
+def plot_grid():
+    """ Loops over the amino acids and plots the protein in a grid """
+    
+
+
 if __name__ == "__main__":
     # Check for the correct command line input
     if len(argv) == 1:
@@ -39,7 +44,7 @@ if __name__ == "__main__":
                 amino_labels.append(amino_acid_label)
                 # Add amino acid to grid
                 grid_obj.add_bond(amino)
-                
+
         # Print the grid of the entire protein
         amino_acid_label.grid(row=row, column=column)
 
