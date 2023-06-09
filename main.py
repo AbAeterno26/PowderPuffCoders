@@ -35,4 +35,7 @@ if __name__ == "__main__":
                 amino_acid_label = tk.Label(grid, text=amino.text, bg=amino.color, width=1, height=1)
                 row, column = randomise.add_bond(amino, len(protein))
 
+                # Add amino acid to grid
+                grid_obj.add_bond(amino)
+                
         # Print the grid of the entire protein
