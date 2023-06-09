@@ -14,8 +14,10 @@ class Grid():
 
     def check_grid(self):
         # self.board = [['_' for i in range(self.width)] for j in range(self.width)]
+        pass
 
     def print_grid(self):
         """ Prints the grid for one protein """
         # self.check_grid()
         # print(self.board)
+        pass

@@ -36,6 +36,9 @@ if __name__ == "__main__":
                 # Create widget for amino acid visualisation
                 amino_acid_label = tk.Label(grid, text=amino.text, bg=amino.color, width=1, height=1)
 
+                # Add amino acid to grid
+                grid_obj.add_bond(amino)
+                
         # Print the grid of the entire protein
         amino_acid_label.grid(row=row, column=column)
 
