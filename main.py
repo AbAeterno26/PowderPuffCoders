@@ -37,3 +37,6 @@ if __name__ == "__main__":
                 amino_acid_label = tk.Label(grid, text=amino.text, bg=amino.color, width=1, height=1)
 
         # Print the grid of the entire protein
+        amino_acid_label.grid(row=row, column=column)
+
+        grid.mainloop()
