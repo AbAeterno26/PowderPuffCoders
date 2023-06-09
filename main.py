@@ -6,6 +6,11 @@ from sys import argv
 import tkinter as tk 
 
 
+def plot_grid():
+    """ Loops over the amino acids and plots the protein in a grid """
+    
+
+
 if __name__ == "__main__":
     # Check for the correct command line input
     if len(argv) == 1:
