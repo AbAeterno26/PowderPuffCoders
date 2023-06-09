@@ -38,5 +38,5 @@ if __name__ == "__main__":
 
                 # Add amino acid to grid
                 grid_obj.add_bond(amino)
-                
+
         # Print the grid of the entire protein
