@@ -53,4 +53,4 @@ if __name__ == "__main__":
                 grid_obj.add_bond(amino)
 
         # Print the grid of the entire protein
-        
+        plot_grid()
