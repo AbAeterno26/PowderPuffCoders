@@ -8,9 +8,7 @@ def gen_location(self, amino, protein: int, protein_length, occupied_pos, last_p
     random.shuffle(amino_move)
 
     for move in amino_move:
-        new_pos = (last_pos[0] + move[0], last_pos[1] + move[1])
-
-        
+        new_pos = (last_pos[0] + move[0], last_pos[1] + move[1])        
 
     # Generate random location for the amino acid to be placed
     row = random.randint([0, protein])

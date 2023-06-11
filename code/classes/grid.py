@@ -1,6 +1,7 @@
 class Grid():
     # width equals the length of the protein string 
     def __init__(self, aminoacids: list):
+        self.aminoacids = aminoacids
         self.bonds = []
 
     def compute_score(self) -> float:

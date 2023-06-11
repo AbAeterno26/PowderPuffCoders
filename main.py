@@ -26,11 +26,12 @@ if __name__ == "__main__":
     protein_file = argv[1]
     with open(protein_file) as f:
         for protein in f:
-            amino_labels = []
             print(f"The loaded protein is: {protein}")
+
             # Create grid object
             grid_obj = grid.Grid(len(protein))
-
+            
+            amino_labels = []
             for aminoacid in protein:
                 # Call random algorithm to solve protein fold
                 row, column = randomise.gen_location(len(protein))
