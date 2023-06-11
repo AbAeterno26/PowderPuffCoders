@@ -24,4 +24,21 @@ Een voorbeeld kan gerund worden door het volgende aan te roepen:
 ```
 python main.py amino1.txt
 ```
+# SCHRIJF COMMENT OVER HET AANROEPEN!
 
+### Structuur
+
+De hierop volgende lijst beschrijft de belangrijkste mappen en files in het project, en waar je ze kan vinden:
+
+- **/code**: bevat alle code van dit project
+  - **/code/algorithms**: bevat de code voor de verscheidende algoritmes
+  - **/code/classes**: bevat de benodigde classes voor deze case
+  - **/code/visualisation**: bevat de code voor visualisatie
+- **/data**: bevat de verschillende databestanden met daarin de eiwitstrings die kunnen worden aangeroepen om een van de 8 voorbeelden te runnen 
+- # VERDUIDELIJK DIT PUNT!!!
+
+
+## Auteurs
+- Sarah Blok
+- Suze Frikkee
+- Marieke Mulder
