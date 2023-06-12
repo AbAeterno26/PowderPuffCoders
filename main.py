@@ -3,7 +3,8 @@ from code.classes import p
 from code.classes import h
 from code.algorithms import randomise
 from sys import argv
-import tkinter as tk 
+import tkinter as tk
+import csv  
 
 
 def plot_grid(amino_acids):
@@ -14,6 +15,14 @@ def plot_grid(amino_acids):
         label.grid(row=amino.row, column=amino.column)
 
     return grid.mainloop()
+
+def output_to_csv(filename):
+    """Creates a csv file with each amino acid with its correspond folding score."""
+    with open(filename, 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(['amino', 'fold'])
+        writer.writerows([['H', '1']])
+
 
 
 if __name__ == "__main__":
@@ -56,5 +65,5 @@ if __name__ == "__main__":
 
         # Print the grid of the entire protein
         plot_grid(amino_acids)
-
+        output_to_csv('amino1_test')
        
