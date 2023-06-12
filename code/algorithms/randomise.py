@@ -1,11 +1,25 @@
 import random
 
+last_pos = [0, 0]
+directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]  # right, left, down, up
+used_pos = [last_pos]
+
 def gen_location(protein_length):
+    global last_pos, used_pos
     max_grid_size = protein_length
 
-    # Generate a random row and column
-    row = random.randint(0, max_grid_size - 1)
-    column = random.randint(0, max_grid_size - 1)
+    while True:
+        direction = random.choice(directions)
+        next_pos = [last_pos[0] + direction[0], last_pos[1] + direction[1]]
+
+        if (0 <= next_pos[0] < max_grid_size) and \
+           (0 <= next_pos[1] < max_grid_size) and \
+           next_pos not in used_pos:
+            break
+
+    used_pos.append(next_pos)
+    last_pos = next_pos
+    row = last_pos[0]
+    column = last_pos[1]
+
     return row, column
-
-
