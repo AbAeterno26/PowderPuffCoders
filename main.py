@@ -1,7 +1,7 @@
 from code.classes import grid
 from code.classes import p
 from code.classes import h
-from code.algorithms import random_2
+from code.algorithms import randomise
 from sys import argv
 import tkinter as tk 
 
