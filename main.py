@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
             for aminoacid in protein:
                 # Call random algorithm to solve protein fold
-                row, column = random_2.gen_location(len(protein))
+                row, column = randomise.gen_location(len(protein))
 
                 # Create class object from aminoacid
                 if aminoacid == 'P':
