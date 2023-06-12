@@ -47,7 +47,6 @@ if __name__ == "__main__":
                     #This is reserved for the C class
                     pass
 
-                
                 # Create widget for amino acid visualisation
                 amino_acid_label = tk.Label(interface, text=amino.text, bg=amino.color, width=3, height=3)
                 amino_acids[amino] = amino_acid_label
