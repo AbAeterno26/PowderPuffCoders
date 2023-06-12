@@ -1,4 +1,5 @@
 import random
+import copy
 
 def gen_location(self, amino, protein: int):
     """ Generates a random location for the amino acid to be placed """
