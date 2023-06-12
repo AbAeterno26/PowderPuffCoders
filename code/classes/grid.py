@@ -1,7 +1,9 @@
 class Grid():
+     
     # width equals the length of the protein string 
     def __init__(self, aminoacids: list):
         self.bonds = []
+
 
     def compute_score(self) -> float:
         """ Computes the total stability score for the entire protein """
