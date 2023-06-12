@@ -6,12 +6,12 @@ from sys import argv
 import tkinter as tk 
 
 
-def plot_grid(amino_labels, amino_acids):
+def plot_grid(amino_acids):
     """ Loops over the amino acids and plots the protein in a grid """
     grid = tk.Tk()
-    for i in range(len(amino_labels)):
-        for amino in amino_acids:
-            amino_labels[i].grid(row=amino[i].row, column=amino[i].column)
+
+    for amino, label in amino_acids.items():
+        label.grid(row=amino.row, column=amino.column)
 
     return grid.mainloop()
 
@@ -27,8 +27,7 @@ if __name__ == "__main__":
     with open(protein_file) as f:
         for protein in f:
             interface = tk.Tk()
-            amino_labels = []
-            amino_acids = []
+            amino_acids = {}
             print(f"The loaded protein is: {protein}")
 
             # Create grid object
@@ -48,17 +47,15 @@ if __name__ == "__main__":
                     #This is reserved for the C class
                     pass
 
-                amino_acids.append(amino)
                 
                 # Create widget for amino acid visualisation
                 amino_acid_label = tk.Label(interface, text=amino.text, bg=amino.color, width=3, height=3)
-                amino_labels.append(amino_acid_label)
-                
-                
-                # Add amino acid to grid
+                amino_acids[amino] = amino_acid_label
+
+                # Add amino acid to grid ## waar is dit voor?
                 grid_obj.add_bond(amino)
 
         # Print the grid of the entire protein
-        plot_grid(amino_labels, amino_acids)
+        plot_grid(amino_acids)
 
        
