@@ -1,7 +1,7 @@
 from code.classes import grid
 from code.classes import p
 from code.classes import h
-from code.algorithms import randomise 
+from code.algorithms import randomise
 from sys import argv
 import tkinter as tk 
 
@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
             for aminoacid in protein:
                 # Call random algorithm to solve protein fold
-                row, column = randomise.gen_location(len(protein))
+                row, column = random_2.gen_location(len(protein))
 
                 # Create class object from aminoacid
                 if aminoacid == 'P':
