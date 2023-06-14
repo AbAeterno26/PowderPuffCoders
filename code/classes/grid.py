@@ -16,6 +16,29 @@ class Grid():
         by looping over the amino acids their bonds
         """
         
+    
+    def load_input(self, protein_file):
+        """ This function loads in a file with a protein and returns it as a string """
+        with open(protein_file, 'r') as f:
+            for protein in f:
+                # Create interface object to visualize in Tkinter
+                interface = tk.Tk()
+                for aminoacid in protein:
+                    # Create class object from amino acid, which is the key in the dict
+                    if aminoacid == 'P':
+                        amino = amino_cat.Amino("P", "blue")
+                    elif aminoacid == 'H':
+                        amino = amino_cat.Amino("H", "red")
+                    else:
+                        amino = amino_cat.Amino("C", "green")
+                        pass
+
+                    # Create widget for amino acid visualisation as value in dict
+                    amino_acid_label = tk.Label(interface, text=amino.text, bg=amino.color, width=3, height=3)
+                    self.amino_acids[amino] = amino_acid_label
+
+                    # Fill dictionary with amino acid location as key and the amino acid itself as value
+                    self.amino_locations[(amino.row, amino.column)] = amino
 
     def output_to_csv(self, protein_file):
         """Creates a csv file with each amino acid with its corresponding folding score."""
