@@ -6,9 +6,7 @@ class Amino():
     def __init__(self, text, color):
         self.color = color
         self.text = text
-        # self.row = 0
-        # self.column = 0
         self._location = (0, 0)
         
-    def update_loc(self):
-        pass
+    def update_loc(self, location):
+        self._location = location

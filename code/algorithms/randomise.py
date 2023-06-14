@@ -23,7 +23,7 @@ def fold_protein(amino_acids: dict):
         
         # Update the location of the amino acid
         # IN FUNCTIE!!
-        amino.row, amino.column = next_pos
+        amino.update_loc(next_pos)
 
         # Update the last position for the next amino acid and add to in use locations
         last_pos = next_pos
