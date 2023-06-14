@@ -1,25 +1,28 @@
 import random
 
-last_pos = [0, 0]
-directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]  # right, left, down, up
-used_pos = [last_pos]
 
-def gen_location(protein_length):
-    global last_pos, used_pos
-    max_grid_size = protein_length
+def fold_protein(amino_acids: dict):
+    """ Folds an entire protein by generating random directions """
+    # Right, left, down, up
+    directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+    max_grid_size = len(amino_acids)
+    used_pos = set()
+    last_pos = (0, 0)
+    
+    # Keep connecting amino acids until the whole protein is folded
+    for amino in amino_acids:
+        # Check that the location of the amino acid is not already in use
+        while True:
+            direction = random.choice(directions)
+            next_pos = last_pos[0] + direction[0], last_pos[1] + direction[1]
 
-    while True:
-        direction = random.choice(directions)
-        next_pos = [last_pos[0] + direction[0], last_pos[1] + direction[1]]
+            # Check if the location falls outside the grid size (AKA length of the protein)
+            if (0 <= next_pos[0] < max_grid_size) and (0 <= next_pos[1] < max_grid_size) and next_pos not in used_pos:
+                break
+        
+        # Update the location of the amino acid
+        amino.row, amino.column = next_pos
 
-        if (0 <= next_pos[0] < max_grid_size) and \
-           (0 <= next_pos[1] < max_grid_size) and \
-           next_pos not in used_pos:
-            break
-
-    used_pos.append(next_pos)
-    last_pos = next_pos
-    row = last_pos[0]
-    column = last_pos[1]
-
-    return row, column
+        # Update the last position for the next amino acid and add to in use locations
+        last_pos = next_pos
+        used_pos.add(last_pos)

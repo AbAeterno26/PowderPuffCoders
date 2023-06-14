@@ -1,6 +1,6 @@
 class Hydrofoob():
-    def __init__(self, row, column):
+    def __init__(self):
         self.color = "red"
         self.text = "H"
-        self.row = row
-        self.column = column
+        self.row = 0
+        self.column = 0
