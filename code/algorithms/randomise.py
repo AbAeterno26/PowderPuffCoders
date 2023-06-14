@@ -17,10 +17,12 @@ def fold_protein(amino_acids: dict):
             next_pos = last_pos[0] + direction[0], last_pos[1] + direction[1]
 
             # Check if the location falls outside the grid size (AKA length of the protein)
+            # IN FUNCTIE ZETTEN!! check if valid protein fold
             if (0 <= next_pos[0] < max_grid_size) and (0 <= next_pos[1] < max_grid_size) and next_pos not in used_pos:
                 break
         
         # Update the location of the amino acid
+        # IN FUNCTIE!!
         amino.row, amino.column = next_pos
 
         # Update the last position for the next amino acid and add to in use locations

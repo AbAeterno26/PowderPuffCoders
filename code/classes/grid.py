@@ -15,7 +15,48 @@ class Grid():
         Computes the total stability score for the entire protein 
         by looping over the amino acids their bonds
         """
-        
+        self.score = 0
+        aminos_list = list(self.amino_acids.keys())
+        amino_loc_list = list(self.amino_locations.keys()
+                              )
+        for i, (location, amino) in enumerate(self.amino_locations.items()):
+            # Check if the current amino is Hydrofoob
+            if amino.text == "H":
+                location_above = (location[0], location[1] + 1)
+                location_below = (location[0], location[1] - 1)
+                location_right = (location[0] + 1, location[1])
+                location_left = (location[0] - 1, location[1])
+                
+                # Add the bond to history of moves starting from the second amino acid
+                next_amino = aminos_list[i + 1]
+                next_amino_location = amino_loc_list[i + 1]
+                
+                if next_amino != None and i > 0:
+                    location_next_amino = self.amino_locations[i + 1]
+                    if location_next_amino == location_above:
+                        self.history.append("2")
+                    elif location_next_amino == location_below:
+                        self.history.append("-2")
+                    elif location_next_amino == location_right:
+                        self.history.append("1")
+                    elif location_next_amino == location_left:
+                        self.history.append("-1")
+
+                # Check if the amino acid has four neighbours
+                if location_above in self.amino_locations and location_below in self.amino_locations \
+                and location_right in self.amino_locations and location_left in self.amino_locations:
+                    
+                    # Add -1 to the total score if one of the neighbours is also H
+                    if self.amino_locations[location_above].text == "H":
+                        self.score -= 1
+                    elif self.amino_locations[location_below].text == "H":
+                        self.score -= 1
+                    elif self.amino_locations[location_right].text == "H":
+                        self.score -= 1
+                    elif self.amino_locations[location_left].text == "H":
+                        self.score -= 1
+
+        return self.score
     
     def load_input(self, protein_file):
         """ This function loads in a file with a protein and returns it as a string """
