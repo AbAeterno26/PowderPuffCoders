@@ -12,9 +12,7 @@ def gen_location(protein_length):
         direction = random.choice(directions)
         next_pos = [last_pos[0] + direction[0], last_pos[1] + direction[1]]
 
-        if (0 <= next_pos[0] < max_grid_size) and \
-           (0 <= next_pos[1] < max_grid_size) and \
-           next_pos not in used_pos:
+        if (0 <= next_pos[0] < max_grid_size) and (0 <= next_pos[1] < max_grid_size) and next_pos not in used_pos:
             break
 
     used_pos.append(next_pos)
