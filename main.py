@@ -21,7 +21,7 @@ if __name__ == "__main__":
     grid_obj.load_input(protein_file)
 
     # Call an algorithm to solve the protein folding
-    randomise.fold_protein(grid_obj.amino_acids)
+    randomise.fold_protein(grid_obj)
 
     # Print the grid of the entire protein
     visualize.plot_grid(grid_obj.amino_acids)
