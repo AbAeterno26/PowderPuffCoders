@@ -38,19 +38,22 @@ if __name__ == "__main__":
 
 
 def plot_development():
-    """This function creates a histogram to plot all the achieved scores for a specified algorithm that is applied
-    and their occurences."""
+    """This function creates a histogram to plot all the achieved scores (x-axis) for a specified algorithm that is 
+    applied and their occurences."""
 
     scores = []
-    
+
     # Loop over alle csv files in de output map
-    for csv in data/output: 
+    for csv in data/output:
+        # amino_csv = sns.load_dataset(csv)
         amino_csv = pd.read_csv(csv)
         score = amino_csv[amino][-1] 
         scores.append(score)
     
-    occurences = Counter(scores)
+    # occurences = Counter(scores)
+    # df = pd.DataFrame({'counts':occurences})
     # x-axis - all achieved scores
     # y-axis - how many times was this score achieved
 
-    sns.histplot(data=penguins, x="flipper_length_mm", kde=True)
+    sns.histplot(data=scores, x="scores", kde=True)
+    
