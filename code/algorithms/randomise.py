@@ -4,9 +4,11 @@ last_pos = [0, 0]
 directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]  # right, left, down, up
 used_pos = [last_pos]
 
-def gen_location(protein_length):
-    global last_pos, used_pos
-    max_grid_size = protein_length
+def gen_location(amino_acids):
+
+    max_grid_size = len(amino_acids)
+
+    for amino in amino_acids:
 
     while True:
         direction = random.choice(directions)
