@@ -17,6 +17,10 @@ def fold_protein(grid):
 
             # Check if the location falls outside the grid size (AKA length of the protein)
             if grid.is_valid(next_pos, used_pos):
+<<<<<<< HEAD
+=======
+                print("YAY ESCAPING THE INFINITE WHILE LOOOOOOOOOOOOOOOOOO....P!")
+>>>>>>> 8722d4301459d0d55247fff105e92ba9f7d11e70
                 break
         
         # Update the location of the amino acid

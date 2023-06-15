@@ -41,7 +41,7 @@ class Grid():
             return 0
     
     def is_valid(self, position, used_pos):
-        if 0 <= position[0] < self.max_grid_size and 0 <= position[1] < self.max_grid_size and position not in used_pos:
+        if (0 <= position[0] < self.max_grid_size) and (0 <= position[1] < self.max_grid_size) and position not in used_pos:
             return True
 
     def load_input(self, protein_file):
