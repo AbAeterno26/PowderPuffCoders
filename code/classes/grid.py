@@ -16,52 +16,26 @@ class Grid():
         Computes the total stability score for the entire protein 
         by looping over the amino acids their bonds
         """
-    #     self.score = 0
-    #     aminos_list = list(self.amino_acids.keys())
-    #     amino_loc_list = list(self.amino_locations.keys()
-    #                           )
-    #     for i, (location, amino) in enumerate(self.amino_locations.items()):
-    #         # Check if the current amino is Hydrofoob
-    #         if amino.text == "H":
-    #             location_above = (location[0], location[1] + 1)
-    #             location_below = (location[0], location[1] - 1)
-    #             location_right = (location[0] + 1, location[1])
-    #             location_left = (location[0] - 1, location[1])
-                
-    #             # Add the bond to history of moves starting from the second amino acid
-    #             next_amino = aminos_list[i + 1]
-    #             next_amino_location = amino_loc_list[i + 1]
-                
-    #             if next_amino != None and i > 0:
-    #                 location_next_amino = self.amino_locations[i + 1]
-    #                 if location_next_amino == location_above:
-    #                     self.history.append("2")
-    #                 elif location_next_amino == location_below:
-    #                     self.history.append("-2")
-    #                 elif location_next_amino == location_right:
-    #                     self.history.append("1")
-    #                 elif location_next_amino == location_left:
-    #                     self.history.append("-1")
 
-    #             # Check if the amino acid has four neighbours
-    #             if location_above in self.amino_locations and location_below in self.amino_locations \
-    #             and location_right in self.amino_locations and location_left in self.amino_locations:
-                    
-    #                 # Add -1 to the total score if one of the neighbours is also H
-    #                 if self.amino_locations[location_above].text == "H":
-    #                     self.score -= 1
-    #                 elif self.amino_locations[location_below].text == "H":
-    #                     self.score -= 1
-    #                 elif self.amino_locations[location_right].text == "H":
-    #                     self.score -= 1
-    #                 elif self.amino_locations[location_left].text == "H":
-    #                     self.score -= 1
 
-    #     return self.score
+    def calculate_bond_score(self, amino1, amino2) -> int:
+        """
+        Calculates the bond score between two amino acids based on their types.
+        """
+        if amino1.text == "H" and amino2.text == "H":
+            return -1
+        elif amino1.text == "H" and amino2.text == "C":
+            return -1
+        elif amino1.text == "C" and amino2.text == "H":
+            return -1
+        elif amino1.text == "C" and amino2.text == "C":
+            return -5
+        else:
+            return 0
     
-    # def is_valid(self, position):
-    #     if (0 <= position[0] < self.max_grid_size) and (0 <= position[1] < self.max_grid_size) and position not in used_pos:
-    #         return True
+    def is_valid(self, position):
+        if (0 <= position[0] < self.max_grid_size) and (0 <= position[1] < self.max_grid_size) and position not in used_pos:
+            return True
 
     def load_input(self, protein_file):
         """ This function loads in a file with a protein and returns it as a string """
@@ -77,7 +51,6 @@ class Grid():
                         amino = amino_cat.Amino("H", "red")
                     else:
                         amino = amino_cat.Amino("C", "green")
-                        pass
 
                     # Create widget for amino acid visualisation as value in dict
                     amino_acid_label = tk.Label(interface, text=amino.text, bg=amino.color, width=3, height=3)
@@ -85,7 +58,7 @@ class Grid():
 
                     # Fill dictionary with amino acid location as key and the amino acid itself as value
                     self.amino_locations[(amino.row, amino.column)] = amino
-
+        
     def output_to_csv(self, protein_file):
         """Creates a csv file with each amino acid with its corresponding folding score."""
         # data/input/protein.txt
