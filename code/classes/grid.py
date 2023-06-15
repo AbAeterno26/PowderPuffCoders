@@ -22,7 +22,8 @@ class Grid():
             for x_way, y_way in self.directions:
                 location_amino = (location[0] + x_way, location[1] + y_way)
                 next_amino = self.amino_locations.get(location_amino)
-                self.score += self.calculate_bond_score(amino_acid, next_amino)
+                if next_amino:
+                    self.score += self.calculate_bond_score(amino_acid, next_amino)
 
     def calculate_bond_score(self, amino1, amino2) -> int:
         """
@@ -75,10 +76,11 @@ class Grid():
             writer.writerow(['amino', 'fold'])
 
             # Write which amino acid was moved in the left column and the actual move in the right column                
-            for i in range(1, len(self.amino_acids)):
-                amino_text = self.amino_acids[i].text
-                move = self.history[i - 1]
-                writer.writerows([[amino_text, move]])
+            for i, amino in enumerate(self.amino_acids):
+                if i > 0:
+                    amino_text = amino.text
+                    move = self.history[i - 1]
+                    writer.writerows([[amino_text, move]])
 
     def display_rules(self):
         print("1 betekent een positieve stap in de eerste dimensie (X-as richting).")
