@@ -4,6 +4,9 @@ from code.algorithms import randomise
 from code.visualizations import visualize
 from sys import argv
 import tkinter as tk
+import pandas as pd
+import seaborn as sns
+from collections import Counter
 
 
 if __name__ == "__main__":
@@ -32,3 +35,22 @@ if __name__ == "__main__":
     grid_obj.output_to_csv(protein_file)
 
     grid_obj.display_rules()
+
+
+def plot_development():
+    """This function creates a histogram to plot all the achieved scores for a specified algorithm that is applied
+    and their occurences."""
+
+    scores = []
+    
+    # Loop over alle csv files in de output map
+    for csv in data/output: 
+        amino_csv = pd.read_csv(csv)
+        score = amino_csv[amino][-1] 
+        scores.append(score)
+    
+    occurences = Counter(scores)
+    # x-axis - all achieved scores
+    # y-axis - how many times was this score achieved
+
+    sns.histplot(data=penguins, x="flipper_length_mm", kde=True)
