@@ -13,56 +13,10 @@ class Grid():
         self.directions[(0, 1), (0, -1), (1, 0), (-1, 0)]
 
     def compute_score(self) -> int:
-<<<<<<< HEAD
         """ 
         Computes the total stability score for the entire protein 
         by looping over the amino acids their bonds
         """
-=======
-        
-        self.score = 0
-
-        for location, amino_acid in self.amino_locations.items():
-            for x_way, y_way in self.directions:
-                location_amino = (location[0] + x_way, location[1] + y_way)
-                next_amino = self.amino_locations.get(location_amino)
-
-                
-    
-
-
-    # def compute_score(self) -> int:
-    #     """ 
-    #     Computes the total stability score for the entire protein 
-    #     by looping over the amino acids their bonds
-    #     """
-    #     self.score = 0
-    #     aminos_list = list(self.amino_acids.keys())
-    #     amino_loc_list = list(self.amino_locations.keys()
-    #                           )
-    #     for i, (location, amino) in enumerate(self.amino_locations.items()):
-    #         # Check if the current amino is Hydrofoob
-    #         if amino.text == "H":
-    #             location_above = (location[0], location[1] + 1)
-    #             location_below = (location[0], location[1] - 1)
-    #             location_right = (location[0] + 1, location[1])
-    #             location_left = (location[0] - 1, location[1])
-                
-    #             # Add the bond to history of moves starting from the second amino acid
-    #             next_amino = aminos_list[i + 1]
-    #             next_amino_location = amino_loc_list[i + 1]
-                
-    #             if next_amino != None and i > 0:
-    #                 location_next_amino = self.amino_locations[i + 1]
-    #                 if location_next_amino == location_above:
-    #                     self.history.append("2")
-    #                 elif location_next_amino == location_below:
-    #                     self.history.append("-2")
-    #                 elif location_next_amino == location_right:
-    #                     self.history.append("1")
-    #                 elif location_next_amino == location_left:
-    #                     self.history.append("-1")
->>>>>>> f9180e0a27bf2f2f8a516fa61ab00918ae8ac2f9
 
 
     def calculate_bond_score(self, amino1, amino2) -> int:
@@ -81,10 +35,6 @@ class Grid():
             return 0
     
     def is_valid(self, position):
-<<<<<<< HEAD
-=======
-        """This function checks if the position of the amino acid is not already occupied and does not fall outside of the grid."""
->>>>>>> f9180e0a27bf2f2f8a516fa61ab00918ae8ac2f9
         if (0 <= position[0] < self.max_grid_size) and (0 <= position[1] < self.max_grid_size) and position not in used_pos:
             return True
 
