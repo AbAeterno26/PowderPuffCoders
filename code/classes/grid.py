@@ -19,11 +19,18 @@ class Grid():
         self.score = 0
 
         for location, amino_acid in self.amino_locations.items():
+            # Reset the number of neighbours to 0 for each amino acid
+            neighbours = 0
             for x_way, y_way in self.directions:
+                # Check if the current amino acid has four neighbours
                 location_amino = (location[0] + x_way, location[1] + y_way)
                 next_amino = self.amino_locations.get(location_amino)
-                if next_amino:
-                    self.score += self.calculate_bond_score(amino_acid, next_amino)
+
+                if next_amino != None:
+                    neighbours += 1
+            if neighbours == 4:
+                self.score += self.calculate_bond_score(amino_acid, next_amino)
+                print(f"THE SCORE IS: {self.score}")
 
     def calculate_bond_score(self, amino1, amino2) -> int:
         """
@@ -48,6 +55,9 @@ class Grid():
         """ This function loads in a file with a protein and returns it as a string """
         with open(protein_file, 'r') as f:
             for protein in f:
+                # Save protein name
+                self.protein = protein
+
                 self.max_grid_size = len(protein)
                 # Create interface object to visualize in Tkinter
                 interface = tk.Tk()
@@ -68,10 +78,8 @@ class Grid():
                     # Fill dictionary with amino acid location as key and the amino acid itself as value
                     self.amino_locations[amino._location] = amino
         
-    def output_to_csv(self, protein_file):
+    def output_to_csv(self, filename):
         """Creates a csv file with each amino acid with its corresponding folding score."""
-        # data/input/protein.txt
-        filename = (protein_file.split('/')[2] + "_output").strip(".txt")
         with open(filename, 'w', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(['amino', 'fold'])
@@ -82,6 +90,7 @@ class Grid():
                     amino_text = amino.text
                     move = self.history[i - 1]
                     writer.writerows([[amino_text, move]])
+            writer.writerows([["score", self.score]])
 
     def display_rules(self):
         print("1 betekent een positieve stap in de eerste dimensie (X-as richting).")
