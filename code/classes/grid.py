@@ -7,7 +7,6 @@ class Grid():
     # width equals the length of the protein string 
     def __init__(self):
         self.amino_acids = {}
-        self.max_grid_size = len(self.amino_acids)
         self.amino_locations = {}
         self.history = []
         self.directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
@@ -48,6 +47,7 @@ class Grid():
         """ This function loads in a file with a protein and returns it as a string """
         with open(protein_file, 'r') as f:
             for protein in f:
+                self.max_grid_size = len(protein)
                 # Create interface object to visualize in Tkinter
                 interface = tk.Tk()
                 for aminoacid in protein:
