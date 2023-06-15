@@ -21,9 +21,15 @@ def fold_protein(grid):
         
         # Update the location of the amino acid
         amino.update_loc(next_pos)
-        grid.history.append(direction)
-        (0, 0) -> (0, 1)
-        0, 1 - 0, 0 = 0 + 1 = 1
+        
+        # Check what the move was and add it to the history of moves
+        if direction[0] != 0:
+            grid.history.append(direction[0])
+        elif direction[1] == 1:
+            grid.history.append("2")
+        elif direction[1] == -1:
+            grid.history.append("-2")
+
         # Update the last position for the next amino acid and add to in use locations
         last_pos = next_pos
         used_pos.add(last_pos)
