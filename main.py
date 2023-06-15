@@ -30,7 +30,7 @@ if __name__ == "__main__":
     visualize.plot_grid(grid_obj.amino_acids)
 
     # Compute the score for the folding of the protein
-    # grid_obj.compute_score()
+    grid_obj.compute_score()
 
     grid_obj.output_to_csv(protein_file)
 
