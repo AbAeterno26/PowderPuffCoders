@@ -6,8 +6,14 @@ from sys import argv
 import tkinter as tk
 
 
-def run(grid_obj, protein_file, iterations=100, algorithm=randomise, rules=False, show_vis=False):
+def run(protein_file, iterations=100, algorithm=randomise, rules=False, show_vis=False):
     for i in range(iterations):
+        # Create grid object
+        grid_obj = grid.Grid()
+
+        # Load in the nodes (AKA aminoacids)
+        grid_obj.load_input(protein_file)
+    
         # Call an algorithm to solve the protein folding
         algorithm.fold_protein(grid_obj)
 
@@ -35,10 +41,4 @@ if __name__ == "__main__":
     
     protein_file = argv[1]
 
-    # Create grid object
-    grid_obj = grid.Grid()
-
-    # Load in the nodes (AKA aminoacids)
-    grid_obj.load_input(protein_file)
-
-    run(grid_obj, protein_file, iterations=10)
+    run(protein_file, iterations=10)

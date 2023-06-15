@@ -19,13 +19,23 @@ class Grid():
         self.score = 0
 
         for location, amino_acid in self.amino_locations.items():
+            # Reset the number of neighbours to 0 for each amino acid
+            neighbours = 0
             for x_way, y_way in self.directions:
+<<<<<<< HEAD
                 # print(x_way, y_way)
+=======
+                # Check if the current amino acid has four neighbours
+>>>>>>> 49d7703ead0c0a7e15cf178ae99a82242f542f8a
                 location_amino = (location[0] + x_way, location[1] + y_way)
                 # print(location_amino)
                 next_amino = self.amino_locations.get(location_amino)
-                if next_amino:
-                    self.score += self.calculate_bond_score(amino_acid, next_amino)
+
+                if next_amino != None:
+                    neighbours += 1
+            if neighbours == 4:
+                self.score += self.calculate_bond_score(amino_acid, next_amino)
+                print(f"THE SCORE IS: {self.score}")
 
     def calculate_bond_score(self, amino1, amino2) -> int:
         """
@@ -85,6 +95,7 @@ class Grid():
                     amino_text = amino.text
                     move = self.history[i - 1]
                     writer.writerows([[amino_text, move]])
+            writer.writerows([["score", self.score]])
 
     def display_rules(self):
         print("1 betekent een positieve stap in de eerste dimensie (X-as richting).")
