@@ -20,7 +20,9 @@ class Grid():
 
         for location, amino_acid in self.amino_locations.items():
             for x_way, y_way in self.directions:
+                # print(x_way, y_way)
                 location_amino = (location[0] + x_way, location[1] + y_way)
+                # print(location_amino)
                 next_amino = self.amino_locations.get(location_amino)
                 if next_amino:
                     self.score += self.calculate_bond_score(amino_acid, next_amino)
