@@ -5,6 +5,6 @@ def plot_grid(amino_acids: dict):
     grid = tk.Tk()
 
     for amino, label in amino_acids.items():
-        label.grid(row=amino.row, column=amino.column)
+        label.grid(row=amino._location[0], column=amino._location[1])
 
     return grid.mainloop()

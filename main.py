@@ -29,6 +29,6 @@ if __name__ == "__main__":
     # Compute the score for the folding of the protein
     # grid_obj.compute_score()
 
-    grid_obj.output_to_csv(protein_file)
+    # grid_obj.output_to_csv(protein_file)
 
     grid_obj.display_rules()
