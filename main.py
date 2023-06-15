@@ -31,4 +31,4 @@ if __name__ == "__main__":
 
     grid_obj.output_to_csv(protein_file)
 
-    grid_obj.display_rules()
+    # grid_obj.display_rules()

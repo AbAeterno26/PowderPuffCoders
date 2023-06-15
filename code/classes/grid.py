@@ -72,6 +72,7 @@ class Grid():
         """Creates a csv file with each amino acid with its corresponding folding score."""
         # data/input/protein.txt
         filename = (protein_file.split('/')[2] + "_output").strip(".txt")
+        print(filename)
         with open(filename, 'w', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(['amino', 'fold'])

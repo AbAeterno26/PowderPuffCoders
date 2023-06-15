@@ -17,13 +17,13 @@ def fold_protein(grid):
 
             # Check if the location falls outside the grid size (AKA length of the protein)
             if grid.is_valid(next_pos, used_pos):
-                print("YAY ESCAPING THE INFINITE WHILE LOOOOOOOOOOOOOOOOOO....P!")
                 break
         
         # Update the location of the amino acid
         amino.update_loc(next_pos)
-        grid.history.append()
-
+        grid.history.append(direction)
+        (0, 0) -> (0, 1)
+        0, 1 - 0, 0 = 0 + 1 = 1
         # Update the last position for the next amino acid and add to in use locations
         last_pos = next_pos
         used_pos.add(last_pos)
