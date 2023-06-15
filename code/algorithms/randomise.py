@@ -22,6 +22,7 @@ def fold_protein(grid):
         
         # Update the location of the amino acid
         amino.update_loc(next_pos)
+        grid.history.append()
 
         # Update the last position for the next amino acid and add to in use locations
         last_pos = next_pos
