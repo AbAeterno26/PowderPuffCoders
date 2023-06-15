@@ -10,7 +10,7 @@ class Grid():
         self.max_grid_size = len(self.amino_acids)
         self.amino_locations = {}
         self.history = []
-        self.directions[(0, 1), (0, -1), (1, 0), (-1, 0)]
+        self.directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
     def compute_score(self) -> int:
         """ 
@@ -23,7 +23,7 @@ class Grid():
             for x_way, y_way in self.directions:
                 location_amino = (location[0] + x_way, location[1] + y_way)
                 next_amino = self.amino_locations.get(location_amino)
-
+                self.score += self.calculate_bond_score(amino_acid, next_amino)
 
     def calculate_bond_score(self, amino1, amino2) -> int:
         """
@@ -64,7 +64,7 @@ class Grid():
                     self.amino_acids[amino] = amino_acid_label
 
                     # Fill dictionary with amino acid location as key and the amino acid itself as value
-                    self.amino_locations[(amino.row, amino.column)] = amino
+                    self.amino_locations[amino._location] = amino
         
     def output_to_csv(self, protein_file):
         """Creates a csv file with each amino acid with its corresponding folding score."""

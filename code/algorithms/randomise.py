@@ -16,8 +16,7 @@ def fold_protein(grid):
             next_pos = last_pos[0] + direction[0], last_pos[1] + direction[1]
 
             # Check if the location falls outside the grid size (AKA length of the protein)
-            # IN FUNCTIE ZETTEN!! check if valid protein fold
-            if grid.is_valid(amino, next_pos):
+            if grid.is_valid(next_pos):
                 break
         
         # Update the location of the amino acid
