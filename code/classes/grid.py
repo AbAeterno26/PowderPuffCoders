@@ -16,7 +16,13 @@ class Grid():
         """ 
         Computes the total stability score for the entire protein 
         by looping over the amino acids their bonds
-        """
+        """        
+        self.score = 0
+
+        for location, amino_acid in self.amino_locations.items():
+            for x_way, y_way in self.directions:
+                location_amino = (location[0] + x_way, location[1] + y_way)
+                next_amino = self.amino_locations.get(location_amino)
 
 
     def calculate_bond_score(self, amino1, amino2) -> int:
