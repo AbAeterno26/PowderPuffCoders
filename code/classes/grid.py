@@ -48,6 +48,9 @@ class Grid():
         """ This function loads in a file with a protein and returns it as a string """
         with open(protein_file, 'r') as f:
             for protein in f:
+                # Save protein name
+                self.protein = protein
+
                 self.max_grid_size = len(protein)
                 # Create interface object to visualize in Tkinter
                 interface = tk.Tk()
@@ -68,11 +71,8 @@ class Grid():
                     # Fill dictionary with amino acid location as key and the amino acid itself as value
                     self.amino_locations[amino._location] = amino
         
-    def output_to_csv(self, protein_file):
+    def output_to_csv(self, filename):
         """Creates a csv file with each amino acid with its corresponding folding score."""
-        # data/input/protein.txt
-        filename = (protein_file.split('/')[2] + "_output").strip(".txt")
-        print(filename)
         with open(filename, 'w', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(['amino', 'fold'])
