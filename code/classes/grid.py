@@ -48,6 +48,7 @@ class Grid():
         """ This function loads in a file with a protein and returns it as a string """
         with open(protein_file, 'r') as f:
             for protein in f:
+                self.max_grid_size = len(protein)
                 # Create interface object to visualize in Tkinter
                 interface = tk.Tk()
                 for aminoacid in protein:
