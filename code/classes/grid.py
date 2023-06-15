@@ -13,12 +13,6 @@ class Grid():
         self.directions[(0, 1), (0, -1), (1, 0), (-1, 0)]
 
     def compute_score(self) -> int:
-<<<<<<< HEAD
-        """ 
-        Computes the total stability score for the entire protein 
-        by looping over the amino acids their bonds
-        """
-=======
         
         self.score = 0
 
@@ -62,7 +56,6 @@ class Grid():
     #                     self.history.append("1")
     #                 elif location_next_amino == location_left:
     #                     self.history.append("-1")
->>>>>>> f9180e0a27bf2f2f8a516fa61ab00918ae8ac2f9
 
 
     def calculate_bond_score(self, amino1, amino2) -> int:
@@ -81,10 +74,7 @@ class Grid():
             return 0
     
     def is_valid(self, position):
-<<<<<<< HEAD
-=======
         """This function checks if the position of the amino acid is not already occupied and does not fall outside of the grid."""
->>>>>>> f9180e0a27bf2f2f8a516fa61ab00918ae8ac2f9
         if (0 <= position[0] < self.max_grid_size) and (0 <= position[1] < self.max_grid_size) and position not in used_pos:
             return True
 
