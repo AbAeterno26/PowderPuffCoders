@@ -40,7 +40,7 @@ def run(protein_file, iterations=100, algorithm=randomise, rules=False, show_vis
 if __name__ == "__main__":
     # Check for the correct command line input
     if len(argv) == 1:
-        print("Usage: python main.py [data/input/protein.txt]")
+        print("Usage: python main.py [protein]")
         exit(1)
     
     filename = argv[1]
