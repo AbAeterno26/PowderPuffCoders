@@ -20,7 +20,6 @@ def run(protein_file, iterations=100, algorithm=randomise, rules=False, show_vis
         # Print the grid of the entire protein
         if show_vis:
             visualize.plot_grid(grid_obj.amino_acids)
-
         # Compute the score for the folding of the protein
         grid_obj.compute_score()
 

@@ -17,25 +17,23 @@ class Grid():
         by looping over the amino acids their bonds
         """        
         self.score = 0
+        directions_to_consider = [(0, 1), (1, 0)]
 
         for location, amino_acid in self.amino_locations.items():
-            # Reset the number of neighbours to 0 for each amino acid
-            neighbours = 0
-            for x_way, y_way in self.directions:
-<<<<<<< HEAD
-                # print(x_way, y_way)
-=======
-                # Check if the current amino acid has four neighbours
->>>>>>> 49d7703ead0c0a7e15cf178ae99a82242f542f8a
-                location_amino = (location[0] + x_way, location[1] + y_way)
-                # print(location_amino)
-                next_amino = self.amino_locations.get(location_amino)
+            print(f"Checking amino acid at {location} with type {amino_acid.text}")
+            for dx, dy in directions_to_consider:
+                neighbour_location = (location[0] + dx, location[1] + dy)
+                neighbour_amino = self.amino_locations.get(neighbour_location)
+                if neighbour_amino and neighbour_amino.text != "P" and amino_acid.text != "P":
+                    bond_score = self.calculate_bond_score(amino_acid, neighbour_amino)
+                    print(f"Bond score with neighbour at {neighbour_location} is {bond_score}")
+                    self.score += bond_score
 
-                if next_amino != None:
-                    neighbours += 1
-            if neighbours == 4:
-                self.score += self.calculate_bond_score(amino_acid, next_amino)
-                print(f"THE SCORE IS: {self.score}")
+        print(f"THE SCORE IS: {self.score}")
+        return self.score
+
+
+
 
     def calculate_bond_score(self, amino1, amino2) -> int:
         """
@@ -82,7 +80,6 @@ class Grid():
 
                     # Fill dictionary with amino acid location as key and the amino acid itself as value
                     self.amino_locations[amino._location] = amino
-        
     def output_to_csv(self, filename):
         """Creates a csv file with each amino acid with its corresponding folding score."""
         with open(filename, 'w', newline='') as file:
