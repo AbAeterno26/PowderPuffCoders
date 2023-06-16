@@ -43,7 +43,8 @@ if __name__ == "__main__":
         print("Usage: python main.py [data/input/protein.txt]")
         exit(1)
     
-    protein_file = argv[1]
+    filename = argv[1]
+    protein_file = f"data/input/{filename}.txt"
 
     # Create grid object
     grid_obj = grid.Grid()
