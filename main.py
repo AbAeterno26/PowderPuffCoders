@@ -56,7 +56,7 @@ if __name__ == "__main__":
     randomise.fold_protein(grid_obj)
 
     # Print the grid of the entire protein
-    visualize.plot_grid(grid_obj.amino_acids)
+    # visualize.plot_grid(grid_obj.amino_acids)
 
     # Compute the score for the folding of the protein
     grid_obj.compute_score()
@@ -66,25 +66,24 @@ if __name__ == "__main__":
     grid_obj.display_rules()
 
 
-def plot_development():
-    """This function creates a histogram to plot all the achieved scores (x-axis) for a specified algorithm that is 
-    applied and their occurences."""
+# def plot_development():
+#     """This function creates a histogram to plot all the achieved scores (x-axis) for a specified algorithm that is 
+#     applied and their occurences."""
 
-    scores = []
+#     scores = []
 
-    # Loop over alle csv files in de output map
-    for csv in data/output:
-        # amino_csv = sns.load_dataset(csv)
-        amino_csv = pd.read_csv(csv)
-        score = amino_csv[amino][-1] 
-        scores.append(score)
+#     # Loop over alle csv files in de output map
+#     for csv in data/output:
+#         # amino_csv = sns.load_dataset(csv)
+#         amino_csv = pd.read_csv(csv)
+#         score = amino_csv[amino][-1] 
+#         scores.append(score)
     
-    # occurences = Counter(scores)
-    # df = pd.DataFrame({'counts':occurences})
-    # x-axis - all achieved scores
-    # y-axis - how many times was this score achieved
+#     # occurences = Counter(scores)
+#     # df = pd.DataFrame({'counts':occurences})
+#     # x-axis - all achieved scores
+#     # y-axis - how many times was this score achieved
 
-    sns.histplot(data=scores, x="scores", kde=True)
+#     sns.histplot(data=scores, x="scores", kde=True)
     
-run(protein_file, iterations=10)
->>>>>>> 8d8d1013e25d75f0da66bc352362d09be7c29083
+# run(protein_file, iterations=10)
