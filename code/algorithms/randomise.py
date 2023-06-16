@@ -9,15 +9,12 @@ def fold_protein(grid):
     
     # Keep connecting amino acids until the whole protein is folded
     for amino in grid.amino_acids.values():
-        # print(f"step 1: looping over the amino acids: {amino}")
         location = amino._location
 
         # Check that the location of the amino acid is not already in use
         while True:
             direction = random.choice(directions)
             next_pos = location[0] + direction[0], location[1] + direction[1]
-            
-            # print(f"The direction is: {direction}")
             
             # Check if the location falls outside the grid size (AKA length of the protein)
             if grid.is_valid(next_pos, used_pos):
@@ -26,11 +23,8 @@ def fold_protein(grid):
 
                 # Add position to used locations
                 used_pos.add(next_pos)
-                
-                # print(f"next position if valid is TRUE: {next_pos}")
                 break
             
-            # print(f"The next pos on line 33: {next_pos}")
             location = next_pos
 
         # Check what the move was and add it to the history of moves
