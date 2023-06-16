@@ -86,4 +86,8 @@ def plot_development():
 
     sns.histplot(data=scores, x="scores", kde=True)
     
+<<<<<<< HEAD
+    run(protein_file, iterations=10)
+=======
 run(protein_file, iterations=10)
+>>>>>>> 8d8d1013e25d75f0da66bc352362d09be7c29083

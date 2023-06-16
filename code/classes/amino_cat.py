@@ -11,3 +11,4 @@ class Amino():
         
     def update_loc(self, location):
         self._location = location
+        
