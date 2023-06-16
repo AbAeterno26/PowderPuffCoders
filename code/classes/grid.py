@@ -87,7 +87,7 @@ class Grid():
             writer.writerow(['amino', 'fold'])
 
             # Write which amino acid was moved in the left column and the actual move in the right column                
-            for i, amino in enumerate(self.amino_acids):
+            for i, amino in enumerate(self.amino_acids.values()):
                 if i > 0:
                     amino_text = amino.text
                     move = self.history[i - 1]
