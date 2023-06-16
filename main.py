@@ -11,6 +11,7 @@ from collections import Counter
 
 def run(protein_file, iterations=100, algorithm=randomise, rules=False, show_vis=False):
     for i in range(iterations):
+
         # Create grid object
         grid_obj = grid.Grid()
 
@@ -23,6 +24,7 @@ def run(protein_file, iterations=100, algorithm=randomise, rules=False, show_vis
         # Print the grid of the entire protein
         if show_vis:
             visualize.plot_grid(grid_obj.amino_acids)
+
         # Compute the score for the folding of the protein
         grid_obj.compute_score()
 
@@ -83,4 +85,8 @@ def plot_development():
 
     sns.histplot(data=scores, x="scores", kde=True)
     
+<<<<<<< HEAD
     run(protein_file, iterations=10)
+=======
+run(protein_file, iterations=10)
+>>>>>>> 8d8d1013e25d75f0da66bc352362d09be7c29083

@@ -6,23 +6,25 @@ def fold_protein(grid):
     # Right, left, down, up
     directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
     used_pos = set()
-    last_pos = (0, 0)
+    # last_pos = (0, 0)
     
     # Keep connecting amino acids until the whole protein is folded
-    for amino in grid.amino_acids:
+    for amino_id, amino in grid.amino_acids.items():
+        
+        location = amino._location
         # Check that the location of the amino acid is not already in use
         while True:
             direction = random.choice(directions)
-            next_pos = last_pos[0] + direction[0], last_pos[1] + direction[1]
+            next_pos = location[0] + direction[0], location[1] + direction[1]
 
             # Check if the location falls outside the grid size (AKA length of the protein)
             if grid.is_valid(next_pos, used_pos):
                 break
         
-        # Update the location of the amino acid
-        amino.update_loc(next_pos)
-        
-        # Check what the move was and add it to the history of moves
+            # Update the location of the amino acid
+            amino.update_loc(next_pos)
+
+         # Check what the move was and add it to the history of moves
         if direction[0] != 0:
             grid.history.append(direction[0])
         elif direction[1] == 1:
@@ -31,5 +33,4 @@ def fold_protein(grid):
             grid.history.append("-2")
 
         # Update the last position for the next amino acid and add to in use locations
-        last_pos = next_pos
-        used_pos.add(last_pos)
+        used_pos.add(next_pos)
