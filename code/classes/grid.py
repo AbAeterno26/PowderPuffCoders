@@ -7,7 +7,6 @@ class Grid():
     # width equals the length of the protein string 
     def __init__(self):
         self.amino_acids = {}
-        self.amino_locations = {}
         self.history = []
         self.directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
@@ -19,6 +18,7 @@ class Grid():
         self.score = 0
 
         for location, amino_acid in self.amino_locations.items():
+<<<<<<< HEAD
             # Reset the number of neighbours to 0 for each amino acid
             neighbours = 0
             for x_way, y_way in self.directions:
@@ -32,6 +32,20 @@ class Grid():
             if neighbours == 4:
                 self.score += self.calculate_bond_score(amino_acid, next_amino)
                 print(f"THE SCORE IS: {self.score}")
+=======
+            print(f"Checking amino acid at {location} with type {amino_acid.text}")
+            for dx, dy in self.directions:
+                neighbour_location = (location[0] + dx, location[1] + dy)
+                neighbour_amino = self.amino_locations.get(neighbour_location)
+                if neighbour_amino and neighbour_amino.text != "P" and amino_acid.text != "P":
+                    bond_score = self.calculate_bond_score(amino_acid, neighbour_amino)
+                    print(f"Bond score with neighbour at {neighbour_location} is {bond_score}")
+                    self.score += bond_score
+
+        print(f"THE SCORE IS: {self.score}")
+        return self.score
+
+>>>>>>> 1ed280de29ad3552600aac69e0a2a995eed5c809
 
     def calculate_bond_score(self, amino1, amino2) -> int:
         """
@@ -48,6 +62,16 @@ class Grid():
         else:
             return 0
     
+<<<<<<< HEAD
+=======
+    def check_neighbours(self, neighbours):
+        """ This function returns true if the number of neighbours is 4. """
+        if len(neighbours) == 4:
+            return True
+        return False
+        
+
+>>>>>>> 1ed280de29ad3552600aac69e0a2a995eed5c809
     def is_valid(self, position, used_pos):
         if (0 <= position[0] < self.max_grid_size) and (0 <= position[1] < self.max_grid_size) and position not in used_pos:
             return True
@@ -61,6 +85,7 @@ class Grid():
                 
                 self.max_grid_size = len(protein)
                 # Create interface object to visualize in Tkinter
+<<<<<<< HEAD
                 interface = tk.Tk()
                 for aminoacid in protein:
                     # Create class object from amino acid, which is the key in the dict
@@ -79,6 +104,22 @@ class Grid():
                     # Fill dictionary with amino acid location as key and the amino acid itself as value
                     self.amino_locations[amino._location] = amino
         
+=======
+                # interface = tk.Tk()
+                for i, aminoacid in enumerate(protein):
+                    # Create class object from amino acid, which is the key in the dict
+                    if aminoacid == 'P':
+                        amino = amino_cat.Amino("P", "blue", i)
+                    elif aminoacid == 'H':
+                        amino = amino_cat.Amino("H", "red", i)
+                    else:
+                        amino = amino_cat.Amino("C", "green", i)
+
+                    # Create widget for amino acid visualisation as value in dict
+                    # amino_acid_label = tk.Label(interface, text=amino.text, bg=amino.color, width=3, height=3)
+                    self.amino_acids[amino.amino_id] = amino
+
+>>>>>>> 1ed280de29ad3552600aac69e0a2a995eed5c809
     def output_to_csv(self, filename):
         """Creates a csv file with each amino acid with its corresponding folding score."""
         with open(filename, 'w', newline='') as file:

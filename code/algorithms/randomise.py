@@ -6,7 +6,6 @@ def fold_protein(grid):
     # Right, left, down, up
     directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
     used_pos = set()
-    # last_pos = (0, 0)
     
     # Keep connecting amino acids until the whole protein is folded
     for amino_id, amino in grid.amino_acids.items():
