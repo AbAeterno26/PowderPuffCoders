@@ -33,8 +33,6 @@ class Grid():
         return self.score
 
 
-
-
     def calculate_bond_score(self, amino1, amino2) -> int:
         """
         Calculates the bond score between two amino acids based on their types.
@@ -66,23 +64,23 @@ class Grid():
 
                 self.max_grid_size = len(protein)
                 # Create interface object to visualize in Tkinter
-                interface = tk.Tk()
-                for aminoacid in protein:
+                # interface = tk.Tk()
+                for i, aminoacid in enumerate(protein):
                     # Create class object from amino acid, which is the key in the dict
                     if aminoacid == 'P':
-                        amino = amino_cat.Amino("P", "blue")
+                        amino = amino_cat.Amino("P", "blue", i)
                     elif aminoacid == 'H':
-                        amino = amino_cat.Amino("H", "red")
+                        amino = amino_cat.Amino("H", "red", i)
                     else:
-                        amino = amino_cat.Amino("C", "green")
+                        amino = amino_cat.Amino("C", "green", i)
 
                     # Create widget for amino acid visualisation as value in dict
-                    amino_acid_label = tk.Label(interface, text=amino.text, bg=amino.color, width=3, height=3)
-                    self.amino_acids[amino] = amino_acid_label
-                    self.max_grid_size = len(protein)
+                    # amino_acid_label = tk.Label(interface, text=amino.text, bg=amino.color, width=3, height=3)
+                    self.amino_acids[amino.amino_id] = amino
 
                     # Fill dictionary with amino acid location as key and the amino acid itself as value
                     self.amino_locations[amino._location] = amino
+
     def output_to_csv(self, filename):
         """Creates a csv file with each amino acid with its corresponding folding score."""
         with open(filename, 'w', newline='') as file:
