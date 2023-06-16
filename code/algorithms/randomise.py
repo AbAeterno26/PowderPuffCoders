@@ -1,6 +1,5 @@
 import random
 
-
 def fold_protein(grid):
     """ Folds an entire protein by generating random directions """
     # Right, left, down, up
@@ -16,10 +15,8 @@ def fold_protein(grid):
             direction = random.choice(directions)
             next_pos = location[0] + direction[0], location[1] + direction[1]
             location = next_pos
-            
             # Check if the location falls outside the grid size (AKA length of the protein)
             if grid.is_valid(next_pos, used_pos):
-                print(f"next position: {next_pos}")
                 break
         
             # Update the location of the amino acid

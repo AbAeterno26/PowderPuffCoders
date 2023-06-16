@@ -51,7 +51,6 @@ class Grid():
         if len(neighbours) == 4:
             return True
         return False
-        
 
     def is_valid(self, position, used_pos):
         if (0 <= position[0] < self.max_grid_size) and (0 <= position[1] < self.max_grid_size) and position not in used_pos:
@@ -89,7 +88,7 @@ class Grid():
             writer.writerow(['amino', 'fold'])
 
             # Write which amino acid was moved in the left column and the actual move in the right column                
-            for i, amino in enumerate(self.amino_acids):
+            for i, amino in enumerate(self.amino_acids.values()):
                 if i > 0:
                     amino_text = amino.text
                     move = self.history[i - 1]
