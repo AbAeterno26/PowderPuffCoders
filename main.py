@@ -26,7 +26,7 @@ def run(protein_file, iterations=100, algorithm=randomise, rules=False, show_vis
             visualize.plot_grid(grid_obj.amino_acids)
 
         # Compute the score for the folding of the protein
-        grid_obj.compute_score()
+        # grid_obj.compute_score()
 
         # Save output to a CSV file
         input_file = protein_file.split('/')[2].strip('.txt')
@@ -40,11 +40,12 @@ def run(protein_file, iterations=100, algorithm=randomise, rules=False, show_vis
 if __name__ == "__main__":
     # Check for the correct command line input
     if len(argv) == 1:
-        print("Usage: python main.py [data/input/protein.txt]")
+        print("Usage: python main.py [protein]")
         exit(1)
     
     filename = argv[1]
     protein_file = f"data/input/{filename}.txt"
+
 
     # Create grid object
     grid_obj = grid.Grid()
@@ -66,9 +67,11 @@ if __name__ == "__main__":
     grid_obj.display_rules()
 
 
+
 # def plot_development():
-#     """This function creates a histogram to plot all the achieved scores (x-axis) for a specified algorithm that is 
-#     applied and their occurences."""
+    """This function creates a histogram to plot all the achieved scores (x-axis) for a specified algorithm that is 
+    applied and their occurences."""
+
 
 #     scores = []
 
