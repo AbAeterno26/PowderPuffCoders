@@ -1,4 +1,4 @@
-data/output/
+data/output/*.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
