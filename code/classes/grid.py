@@ -53,7 +53,7 @@ class Grid():
         return False
 
     def is_valid(self, position, used_pos):
-        if (0 <= position[0] < self.max_grid_size) and (0 <= position[1] < self.max_grid_size) and position not in used_pos:
+        if position not in used_pos:
             return True
         return False
 
@@ -92,7 +92,7 @@ class Grid():
                     amino_text = amino.text
                     move = self.history[i - 1]
                     writer.writerows([[amino_text, move]])
-            writer.writerows([["score", self.score]])
+            # writer.writerows([["score", self.score]])
 
     def display_rules(self):
         print("1 betekent een positieve stap in de eerste dimensie (X-as richting).")

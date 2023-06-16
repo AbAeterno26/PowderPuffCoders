@@ -26,7 +26,7 @@ def run(protein_file, iterations=100, algorithm=randomise, rules=False, show_vis
             visualize.plot_grid(grid_obj.amino_acids)
 
         # Compute the score for the folding of the protein
-        # grid_obj.compute_score()
+        grid_obj.compute_score()
 
         # Save output to a CSV file
         input_file = protein_file.split('/')[2].strip('.txt')

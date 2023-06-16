@@ -1,2 +1,1 @@
-amino,fold
-C,1
+HHPHHHPH
