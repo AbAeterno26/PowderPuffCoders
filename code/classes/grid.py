@@ -49,6 +49,7 @@ class Grid():
             return 0
     
     def check_neighbours():
+        pass
         
 
     def is_valid(self, position, used_pos):
@@ -77,9 +78,8 @@ class Grid():
                     # Create widget for amino acid visualisation as value in dict
                     # amino_acid_label = tk.Label(interface, text=amino.text, bg=amino.color, width=3, height=3)
                     self.amino_acids[amino.amino_id] = amino
-
                     # Fill dictionary with amino acid location as key and the amino acid itself as value
-                    self.amino_locations[amino._location] = amino
+                    # self.amino_locations[amino._location] = amino
 
     def output_to_csv(self, filename):
         """Creates a csv file with each amino acid with its corresponding folding score."""
