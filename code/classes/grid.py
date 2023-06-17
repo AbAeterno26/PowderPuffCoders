@@ -56,9 +56,7 @@ class Grid():
         
     
     def calculate_bond_score(self, amino1, amino2) -> int:
-        """
-        Calculates the bond score between two amino acids based on their types.
-        """
+        """ Calculates the bond score between two amino acids based on their types. """
         if amino1.text == "H" and amino2.text == "H":
             return -1
         elif amino1.text == "H" and amino2.text == "C":
@@ -100,7 +98,7 @@ class Grid():
                     self.amino_acids[amino.amino_id] = amino
 
     def output_to_csv(self, filename):
-        """Creates a csv file with each amino acid with its corresponding folding score."""
+        """ Creates a csv file with each amino acid with its corresponding folding score. """
         with open(filename, 'w', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(['amino', 'fold'])
