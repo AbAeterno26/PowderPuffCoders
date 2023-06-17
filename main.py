@@ -46,40 +46,17 @@ if __name__ == "__main__":
     filename = argv[1]
     protein_file = f"data/input/{filename}.txt"
 
-
-    # Create grid object
-    grid_obj = grid.Grid()
-
-    # Load in the nodes (AKA aminoacids)
-    grid_obj.load_input(protein_file)
-
-    # Call an algorithm to solve the protein folding
-    randomise.fold_protein(grid_obj)
-
-    # Print the grid of the entire protein
-    # visualize.plot_grid(grid_obj.amino_acids)
-
-    # Compute the score for the folding of the protein
-    grid_obj.compute_score()
-
-    grid_obj.output_to_csv(protein_file)
-
-    grid_obj.display_rules()
-
-
-
-# def plot_development():
+def plot_development():
     """This function creates a histogram to plot all the achieved scores (x-axis) for a specified algorithm that is 
     applied and their occurences."""
 
+    scores = []
 
-#     scores = []
-
-#     # Loop over alle csv files in de output map
-#     for csv in data/output:
-#         # amino_csv = sns.load_dataset(csv)
-#         amino_csv = pd.read_csv(csv)
-#         score = amino_csv[amino][-1] 
-#         scores.append(score)
+    # Loop over alle csv files in de output map
+    for csv in data/output:
+        # amino_csv = sns.load_dataset(csv)
+        amino_csv = pd.read_csv(csv)
+        score = amino_csv[amino][-1] 
+        scores.append(score)
     
 run(protein_file, iterations=1)
