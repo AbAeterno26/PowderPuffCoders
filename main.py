@@ -6,10 +6,15 @@ from sys import argv
 import tkinter as tk
 import pandas as pd
 import seaborn as sns
+import matplotlib.pyplot as plt
 from collections import Counter
+import csv
 
 
 def run(protein_file, iterations=100, algorithm=randomise, rules=False, show_vis=False):
+    # The output CSV files
+    output = []
+
     for i in range(iterations):
 
         # Create grid object
@@ -29,9 +34,13 @@ def run(protein_file, iterations=100, algorithm=randomise, rules=False, show_vis
         grid_obj.compute_score()
 
         # Save output to a CSV file
-        # input_file = protein_file.split('/')[2].strip('.txt')
-        # filename = f"data/output/{input_file}_{i}.csv"
-        # grid_obj.output_to_csv(filename)
+        input_file = protein_file.split('/')[2].strip('.txt')
+        filename = f"data/output/{input_file}_{i}.csv"
+        grid_obj.output_to_csv(filename)
+        output.append(filename)
+
+    # Plot histogram of the output
+    plot_development(output)
 
     # Display rules if requested
     if rules:
@@ -46,17 +55,21 @@ if __name__ == "__main__":
     filename = argv[1]
     protein_file = f"data/input/{filename}.txt"
 
-def plot_development():
-    """This function creates a histogram to plot all the achieved scores (x-axis) for a specified algorithm that is 
-    applied and their occurences."""
-
+def plot_development(output):
+    """
+    This function plots a histogram of all all the achieved scores (x-axis)
+    for a specified algorithm that is applied and their occurences (y-axis).
+    """
+    # Open each output file and extract the score
     scores = []
+    for csv_file in output:
+        with open(csv_file, "r", encoding="utf-8", errors="ignore") as f:
+            final_line = f.readlines()[-1]
+            score = float(final_line.split(',')[1].strip())
+            scores.append(score)
 
-    # Loop over alle csv files in de output map
-    for csv in data/output:
-        # amino_csv = sns.load_dataset(csv)
-        amino_csv = pd.read_csv(csv)
-        score = amino_csv[amino][-1] 
-        scores.append(score)
+    # Plot histogram
+    sns.histplot(scores)
+    plt.show()
     
 run(protein_file, iterations=100)

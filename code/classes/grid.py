@@ -16,13 +16,6 @@ class Grid():
         Computes the total stability score for the entire protein 
         by looping over the amino acids their bonds
         """
-        # Step 1: Loopen over alle locaties
-        # Step 2: zoek de locatie
-        # Step 3: check of er geen H al vast aanzit
-        # Step 4: deel stabiliteit door 2
-
-        # Optional: Linked list next and previous onthouden
-
         # Set score to 0 to start count properly
         self.score = 0
 
@@ -53,7 +46,7 @@ class Grid():
                         self.score += self.calculate_bond_score(current_amino, amino)
 
         self.score /= 2
-        print(f"THE SCORE IS: {self.score}")
+        # print(f"THE SCORE IS: {self.score}")
 
     def check_location(self, amino1: tuple, amino2: tuple) -> bool:
         """ This function returns true if the amino acids are adjacent """
