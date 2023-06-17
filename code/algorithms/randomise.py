@@ -8,10 +8,7 @@ def fold_protein(grid):
     used_pos = set()
     
     # Keep connecting amino acids until the whole protein is folded
-
     for amino_id, amino in grid.amino_acids.items():
-        # print(f"step 1: looping over the amino acids: {amino}")
-
         location = amino._location
 
         # Check that the location of the amino acid is not already in use
@@ -23,6 +20,7 @@ def fold_protein(grid):
             if grid.is_valid(next_pos, used_pos):
                 # Update the location of the amino acid
                 amino.update_loc(next_pos)
+                
                 # Add position to used locations
                 used_pos.add(next_pos)
                 break
