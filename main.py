@@ -12,8 +12,8 @@ import csv
 
 
 def run(protein_file, iterations=100, algorithm=randomise, rules=False, show_vis=False):
-    # The output CSV files
-    output = []
+    # The score of each folding of a protein
+    scores = []
 
     for i in range(iterations):
 
@@ -32,15 +32,15 @@ def run(protein_file, iterations=100, algorithm=randomise, rules=False, show_vis
 
         # Compute the score for the folding of the protein
         grid_obj.compute_score()
+        scores.append(grid_obj.score)
 
         # Save output to a CSV file
         input_file = protein_file.split('/')[2].strip('.txt')
         filename = f"data/output/{input_file}_{i}.csv"
         grid_obj.output_to_csv(filename)
-        output.append(filename)
 
-    # Plot histogram of the output
-    plot_development(output)
+    # Plot histogram of the scores for a specified protein
+    plot_hist(scores)
 
     # Display rules if requested
     if rules:
@@ -72,4 +72,12 @@ def plot_development(output):
     sns.histplot(scores)
     plt.show()
     
+def plot_hist(scores):
+    """
+    This function plots a histogram of all all the achieved scores (x-axis)
+    for a specified algorithm that is applied and their occurences (y-axis).
+    """
+    sns.histplot(scores)
+    plt.show()
+
 run(protein_file, iterations=100)
