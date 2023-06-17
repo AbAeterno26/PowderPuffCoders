@@ -24,22 +24,26 @@ class Grid():
         # Set score to 0 to start count properly
         self.score = 0
 
+        for i in range(len(self.protein)):
+            amino = self.protein[i]
+            print(i, amino)
+
+            print(f"object: {self.amino_acids[i].text}")
+            
+        
+
         # Loop over dictionary with id as key and amino object as value
-        for amino_id, amino in self.amino_acids.items():
-            print(f"id: {amino_id}")
-            print(f"object: {amino}")
+        # for amino_id, amino in self.amino_acids.items():
+        #     print(f"id: {amino_id}")
+        #     print(f"object: {amino}")
 
-            # Get location of the current amino acid
-            location = amino._location
-            print(f"location: {location}")
+        #     # Get location of the current amino acid
+        #     location = amino._location
+        #     print(f"location: {location}")
 
-            # Check if the current amino acid is an H or C
-            if amino.text == 'H' or amino.text == 'C':
-                
-
-
-
-
+        #     # Check if the current amino acid is an H or C
+        #     if amino.text == 'H' or amino.text == 'C':
+        #         # Check 
 
         # for location, amino_acid in self.amino_locations.items():
         #     print(f"Checking amino acid at {location} with type {amino_acid.text}")
@@ -108,7 +112,7 @@ class Grid():
                     amino_text = amino.text
                     move = self.history[i - 1]
                     writer.writerows([[amino_text, move]])
-            # writer.writerows([["score", self.score]])
+            writer.writerows([["score", self.score]])
 
     def display_rules(self):
         print("1 betekent een positieve stap in de eerste dimensie (X-as richting).")
