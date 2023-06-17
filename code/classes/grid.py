@@ -17,11 +17,15 @@ class Grid():
         """        
         self.score = 0
 
-        for location, amino_acid in self.amino_locations.items():
-            print(f"Checking amino acid at {location} with type {amino_acid.text}")
+        for amino_id, amino in self.amino_acids.items():
+            print(f"Checking amino acid at {amino._location} with type {amino.text}")
             for dx, dy in self.directions:
-                neighbour_location = (location[0] + dx, location[1] + dy)
-                neighbour_amino = self.amino_locations.get(neighbour_location)
+                neighbour_location = (amino._location[0] + dx, amino._location[1] + dy)
+                # Check for the possibility of the neighbouring location not containing an amino_acid
+                if neighbour_location in self.amino_acids.values()._location:
+                    neighbour_amino = self.amino_acids.get(amino_id)
+                    print(neighbour_amino)
+                
                 if neighbour_amino and neighbour_amino.text != "P" and amino_acid.text != "P":
                     bond_score = self.calculate_bond_score(amino_acid, neighbour_amino)
                     print(f"Bond score with neighbour at {neighbour_location} is {bond_score}")
