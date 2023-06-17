@@ -3,12 +3,8 @@ from code.classes import grid
 from code.algorithms import randomise
 from code.visualizations import visualize
 from sys import argv
-import tkinter as tk
-import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-from collections import Counter
-import csv
 
 
 def run(protein_file, iterations=100, algorithm=randomise, rules=False, show_vis=False):
@@ -54,23 +50,6 @@ if __name__ == "__main__":
     
     filename = argv[1]
     protein_file = f"data/input/{filename}.txt"
-
-def plot_development(output):
-    """
-    This function plots a histogram of all all the achieved scores (x-axis)
-    for a specified algorithm that is applied and their occurences (y-axis).
-    """
-    # Open each output file and extract the score
-    scores = []
-    for csv_file in output:
-        with open(csv_file, "r", encoding="utf-8", errors="ignore") as f:
-            final_line = f.readlines()[-1]
-            score = float(final_line.split(',')[1].strip())
-            scores.append(score)
-
-    # Plot histogram
-    sns.histplot(scores)
-    plt.show()
     
 def plot_hist(scores):
     """
