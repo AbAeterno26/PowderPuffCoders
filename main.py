@@ -12,7 +12,6 @@ def run(protein_file, iterations=100, algorithm=randomise, rules=False, show_vis
     scores = []
 
     for i in range(iterations):
-
         # Create grid object
         grid_obj = grid.Grid()
 
