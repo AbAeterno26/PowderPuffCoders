@@ -14,23 +14,45 @@ class Grid():
         """ 
         Computes the total stability score for the entire protein 
         by looping over the amino acids their bonds
-        """        
+        """
+
+        # Check 1: zoek de locatie
+        # Check 2: check of er geen H al vast aanzit
+        # Check 3: deel stabiliteit door 2
+        # Linked list next and previous onthouden
+
+        # Set score to 0 to start count properly
         self.score = 0
 
-        for location, amino_acid in self.amino_locations.items():
-            print(f"Checking amino acid at {location} with type {amino_acid.text}")
-            for dx, dy in self.directions:
-                neighbour_location = (location[0] + dx, location[1] + dy)
-                neighbour_amino = self.amino_locations.get(neighbour_location)
-                if neighbour_amino and neighbour_amino.text != "P" and amino_acid.text != "P":
-                    bond_score = self.calculate_bond_score(amino_acid, neighbour_amino)
-                    print(f"Bond score with neighbour at {neighbour_location} is {bond_score}")
-                    self.score += bond_score
+        # Loop over dictionary with id as key and amino object as value
+        for amino_id, amino in self.amino_acids.items():
+            print(f"id: {amino_id}")
+            print(f"object: {amino}")
 
-        print(f"THE SCORE IS: {self.score}")
-        return self.score
+            # Get location of the current amino acid
+            location = amino._location
+            print(f"location: {location}")
+
+            # Check if the current amino acid is an H or C
+            if amino.text == 'H' or amino.text == 'C':
+                
 
 
+
+
+
+        # for location, amino_acid in self.amino_locations.items():
+        #     print(f"Checking amino acid at {location} with type {amino_acid.text}")
+        #     for dx, dy in self.directions:
+        #         neighbour_location = (location[0] + dx, location[1] + dy)
+        #         neighbour_amino = self.amino_locations.get(neighbour_location)
+        #         if neighbour_amino and neighbour_amino.text != "P" and amino_acid.text != "P":
+        #             bond_score = self.calculate_bond_score(amino_acid, neighbour_amino)
+        #             print(f"Bond score with neighbour at {neighbour_location} is {bond_score}")
+        #             self.score += bond_score
+
+        # print(f"THE SCORE IS: {self.score}")
+    
     def calculate_bond_score(self, amino1, amino2) -> int:
         """
         Calculates the bond score between two amino acids based on their types.
@@ -45,12 +67,6 @@ class Grid():
             return -5
         else:
             return 0
-    
-    def check_neighbours(self, neighbours):
-        """ This function returns true if the number of neighbours is 4. """
-        if len(neighbours) == 4:
-            return True
-        return False
 
     def is_valid(self, position, used_pos):
         if position not in used_pos:

@@ -26,12 +26,12 @@ def run(protein_file, iterations=100, algorithm=randomise, rules=False, show_vis
             visualize.plot_grid(grid_obj.amino_acids)
 
         # Compute the score for the folding of the protein
-        # grid_obj.compute_score()
+        grid_obj.compute_score()
 
         # Save output to a CSV file
-        input_file = protein_file.split('/')[2].strip('.txt')
-        filename = f"data/output/{input_file}_{i}.csv"
-        grid_obj.output_to_csv(filename)
+        # input_file = protein_file.split('/')[2].strip('.txt')
+        # filename = f"data/output/{input_file}_{i}.csv"
+        # grid_obj.output_to_csv(filename)
 
     # Display rules if requested
     if rules:
@@ -66,4 +66,4 @@ def plot_development():
 
     sns.histplot(data=scores, x="scores", kde=True)
     
-run(protein_file, iterations=10)
+run(protein_file, iterations=1)
