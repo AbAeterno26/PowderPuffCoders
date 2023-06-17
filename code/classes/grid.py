@@ -7,55 +7,60 @@ class Grid():
     # width equals the length of the protein string 
     def __init__(self):
         self.amino_acids = {}
+        self.locations = []
         self.history = []
         self.directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
-    def compute_score(self) -> int:
+    def compute_score(self) -> float:
         """ 
         Computes the total stability score for the entire protein 
         by looping over the amino acids their bonds
         """
+        # Step 1: Loopen over alle locaties
+        # Step 2: zoek de locatie
+        # Step 3: check of er geen H al vast aanzit
+        # Step 4: deel stabiliteit door 2
 
-        # Check 1: zoek de locatie
-        # Check 2: check of er geen H al vast aanzit
-        # Check 3: deel stabiliteit door 2
-        # Linked list next and previous onthouden
+        # Optional: Linked list next and previous onthouden
 
         # Set score to 0 to start count properly
         self.score = 0
 
-        for i in range(len(self.protein)):
-            amino = self.protein[i]
-            print(i, amino)
+        # Loop over each amino acid
+        for i in range(len(self.amino_acids)):
+            # The index of this location is the key in the dictionary with amino acids
+            current_amino = self.amino_acids[i]
+            # print(f"object: {current_amino}")
 
-            print(f"object: {self.amino_acids[i].text}")
-            
+            # Check if there is a chance for a hydrogen bond
+            if current_amino.text == 'H' or current_amino.text == 'C':
+                # Find the next and previous amino acid object
+                if i == len(self.amino_acids) - 1:
+                    # Skip assigning a value to next_amino for the last amino acid
+                    continue
+                next_amino = self.amino_acids[i + 1]
+
+                # Initialize prev_amino as None
+                prev_amino = None
+                if i > 0:
+                    # Skip assiging a value to prev_amino for the first amino acid
+                    prev_amino = self.amino_acids[i - 1]
+
+                # Check if it is not a covalent bond and if the amino acids are apart 1 step
+                for amino in self.amino_acids.values():
+                    # Check if there is a next amino or previous amino
+                    if amino != next_amino and amino != prev_amino and self.check_location(current_amino._location, amino._location):
+                        self.score += self.calculate_bond_score(current_amino, amino)
+
+        self.score /= 2
+        print(f"THE SCORE IS: {self.score}")
+
+    def check_location(self, amino1: tuple, amino2: tuple) -> bool:
+        """ This function returns true if the amino acids are adjacent """
+        distance = abs(amino2[0] - amino1[0]) + abs(amino2[1] - amino1[1])
+
+        return distance == 1
         
-
-        # Loop over dictionary with id as key and amino object as value
-        # for amino_id, amino in self.amino_acids.items():
-        #     print(f"id: {amino_id}")
-        #     print(f"object: {amino}")
-
-        #     # Get location of the current amino acid
-        #     location = amino._location
-        #     print(f"location: {location}")
-
-        #     # Check if the current amino acid is an H or C
-        #     if amino.text == 'H' or amino.text == 'C':
-        #         # Check 
-
-        # for location, amino_acid in self.amino_locations.items():
-        #     print(f"Checking amino acid at {location} with type {amino_acid.text}")
-        #     for dx, dy in self.directions:
-        #         neighbour_location = (location[0] + dx, location[1] + dy)
-        #         neighbour_amino = self.amino_locations.get(neighbour_location)
-        #         if neighbour_amino and neighbour_amino.text != "P" and amino_acid.text != "P":
-        #             bond_score = self.calculate_bond_score(amino_acid, neighbour_amino)
-        #             print(f"Bond score with neighbour at {neighbour_location} is {bond_score}")
-        #             self.score += bond_score
-
-        # print(f"THE SCORE IS: {self.score}")
     
     def calculate_bond_score(self, amino1, amino2) -> int:
         """

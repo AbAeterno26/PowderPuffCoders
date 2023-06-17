@@ -59,4 +59,4 @@ def plot_development():
         score = amino_csv[amino][-1] 
         scores.append(score)
     
-run(protein_file, iterations=1)
+run(protein_file, iterations=100)
