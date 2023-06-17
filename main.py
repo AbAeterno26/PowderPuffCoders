@@ -36,7 +36,8 @@ def run(protein_file, iterations=100, folder='random', algorithm=randomise, rule
 
     # Plot histogram of the scores for a specified protein
     path_to_file = f"data/output/{folder}/graphs/{input_file}"
-    plot_hist(scores, path_to_file)
+    title = f"{folder} - {iterations} iterations"
+    plot_hist(scores, path_to_file, title, grid_obj.protein)
 
     # Display rules if requested
     if rules:
@@ -51,14 +52,16 @@ if __name__ == "__main__":
     filename = argv[1]
     protein_file = f"data/input/{filename}.txt"
     
-def plot_hist(scores, filename):
+def plot_hist(scores, filename, title, protein):
     """
     This function plots a histogram of all all the achieved scores (x-axis)
     for a specified algorithm that is applied and their occurences (y-axis).
     """
     histplot = sns.histplot(scores)
+    plt.title(protein)
     fig = histplot.get_figure()
-    fig.savefig(f"{filename}.png")
+    fig.suptitle(title, fontsize=20, weight='bold')
+    fig.savefig(f"{filename}.png", bbox_inches='tight')
     plt.show()
 
 run(protein_file, iterations=100)

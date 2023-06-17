@@ -1,6 +1,7 @@
 import csv
 import tkinter as tk
 from code.classes import amino_cat
+import matplotlib.pyplot as plt
 
 
 class Grid():
