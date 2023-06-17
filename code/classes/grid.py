@@ -16,7 +16,7 @@ class Grid():
         by looping over the amino acids their bonds
         """        
         self.score = 0
-
+            
         for location, amino_acid in self.amino_locations.items():
             print(f"Checking amino acid at {location} with type {amino_acid.text}")
             for dx, dy in self.directions:
