@@ -20,7 +20,10 @@ def fold_protein(grid):
             if grid.is_valid(next_pos, used_pos):
                 # Update the location of the amino acid
                 amino.update_loc(next_pos)
-                
+
+                # Add the updated location to the list of locations of all amino-acids
+                grid.locations.append(amino._location)
+
                 # Add position to used locations
                 used_pos.add(next_pos)
                 break

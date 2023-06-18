@@ -9,24 +9,30 @@ class Grid():
         self.amino_acids = {}
         self.history = []
         self.directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+        self.locations = []
 
     def compute_score(self) -> int:
         """ 
         Computes the total stability score for the entire protein 
         by looping over the amino acids their bonds
         """
-
-        # Check 1: zoek de locatie
-        # Check 2: check of er geen H al vast aanzit
-        # Check 3: deel stabiliteit door 2
-        # Linked list next and previous onthouden
-
         # Set score to 0 to start count properly
         self.score = 0
 
-        for i in range(len(self.protein)):
-            amino = self.protein[i]
-            print(i, amino)
+        # Looping over each amino_acid
+        for i in range(len(self.locations)):
+            # De indexen van deze lijst komen overeen met de keys van de amino_acids dictionary
+            # Voor elk aminozuur kijken naar alle aminozuren, is het een previous of next
+            for i in range(len(self.locations)):
+                # First check: is this an H
+                if self.amino_acids[i].text == 'H':
+                    if i < (len(self.amino_acids) - 1): 
+                        next_amino = self.amino_acids[i + 1]
+                    if > 0:
+                        previous_amino = next_amino = self.amino_acids[i - 1]
+
+            # Find location of previous amino_acid
+
 
             print(f"object: {self.amino_acids[i].text}")
             
@@ -100,6 +106,7 @@ class Grid():
                     # Create widget for amino acid visualisation as value in dict
                     # amino_acid_label = tk.Label(interface, text=amino.text, bg=amino.color, width=3, height=3)
                     self.amino_acids[amino.amino_id] = amino
+                    
 
     def output_to_csv(self, filename):
         """Creates a csv file with each amino acid with its corresponding folding score."""
