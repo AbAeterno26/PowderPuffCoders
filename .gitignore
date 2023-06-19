@@ -161,4 +161,3 @@ cython_debug/
 
 # Personal Files to be ignored
 .DS_Store/
-data/output/
