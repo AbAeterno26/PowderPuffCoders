@@ -1,9 +1,9 @@
 amino,fold
-H,2
+H,-1
 P,1
+H,-2
 H,1
 H,2
-H,-1
-P,-2
-H,-1
-score,-1.0
+P,-1
+H,-2
+score,-3.5
