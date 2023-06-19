@@ -98,7 +98,7 @@ class Grid():
                     else:
                         amino = amino_cat.Amino("C", "green", i)
 
-                    # Create widget for amino acid visualisation as value in dict
+                    # Add amino acid to dictionary
                     self.amino_acids[amino.amino_id] = amino
 
     def output_to_csv(self, filename):
