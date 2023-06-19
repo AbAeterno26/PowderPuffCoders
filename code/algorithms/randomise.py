@@ -36,10 +36,5 @@ class Random():
                 
                 location = next_pos
 
-            # Check what the move was and add it to the history of moves
-            if direction[0] != 0:
-                self.grid.history.append(direction[0])
-            elif direction[1] == 1:
-                self.grid.history.append("2")
-            elif direction[1] == -1:
-                self.grid.history.append("-2")
+        # Check what the move was and add it to the history of moves
+        grid.add_move(direction)

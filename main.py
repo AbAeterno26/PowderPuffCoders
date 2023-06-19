@@ -1,13 +1,13 @@
 from code.classes import grid
-
 from code.algorithms import randomise
+from code.algorithms import sa
 from code.visualizations import visualize
 from sys import argv
 import seaborn as sns
 import matplotlib.pyplot as plt
 
 
-def run(protein_file, iterations=100, folder='random', algorithm=randomise, rules=False, show_vis=False):
+def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=False):
     # The score of each folding of a protein
     scores = []
     input_file = protein_file.split('/')[2].strip('.txt')
@@ -20,8 +20,15 @@ def run(protein_file, iterations=100, folder='random', algorithm=randomise, rule
         grid_obj.load_input(protein_file)
     
         # Call an algorithm to solve the protein folding
-        algorithm.fold_protein(grid_obj)
+        algorithm_obj = algorithm.Random(grid_obj)
+        
+        algorithm = algorithm.lower()
+        if algorithm == "random":
+            algorithm_obj = randomise.Random(grid_obj)
+        elif algorithm == "sa":
+            algorithm_obj = sa.SA(grid_obj)
 
+        algorithm_obj.fold_protein()
         # Print the grid of the entire protein
         if show_vis:
             visualize.plot_grid(grid_obj.amino_acids)
@@ -31,12 +38,12 @@ def run(protein_file, iterations=100, folder='random', algorithm=randomise, rule
         scores.append(grid_obj.score)
 
         # Save output to a CSV file
-        filename = f"data/output/{folder}/scores/{input_file}_{i}.csv"
+        filename = f"data/output/{algorithm}/scores/{input_file}_{i}.csv"
         grid_obj.output_to_csv(filename)
 
     # Plot histogram of the scores for a specified protein
-    path_to_file = f"data/output/{folder}/graphs/{input_file}"
-    title = f"{folder} - {iterations} iterations"
+    path_to_file = f"data/output/{algorithm}/graphs/{input_file}"
+    title = f"{algorithm} - {iterations} iterations"
     plot_hist(scores, path_to_file, title, grid_obj.protein)
 
     # Display rules if requested
@@ -64,4 +71,4 @@ def plot_hist(scores, filename, title, protein):
     fig.savefig(f"{filename}.png", bbox_inches='tight')
     plt.show()
 
-run(protein_file, iterations=100)
+run(protein_file, iterations=1)
