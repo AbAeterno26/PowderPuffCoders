@@ -32,9 +32,4 @@ def fold_protein(grid):
             location = next_pos
 
         # Check what the move was and add it to the history of moves
-        if direction[0] != 0:
-            grid.history.append(direction[0])
-        elif direction[1] == 1:
-            grid.history.append("2")
-        elif direction[1] == -1:
-            grid.history.append("-2")
+        grid.add_move(direction)

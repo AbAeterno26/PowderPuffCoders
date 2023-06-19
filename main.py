@@ -64,4 +64,4 @@ def plot_hist(scores, filename, title, protein):
     fig.savefig(f"{filename}.png", bbox_inches='tight')
     plt.show()
 
-run(protein_file, iterations=100)
+run(protein_file, iterations=1)

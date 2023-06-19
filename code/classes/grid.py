@@ -67,12 +67,35 @@ class Grid():
             return 0
 
     def is_valid(self, position, used_pos):
+        """ This function checks if the position is blocked by an amino acid """
         if position not in used_pos:
             return True
         return False
+    
+    # def add_move(self, direction):
+    #     """ This function checks what direction an amino acid was folded """
+    #     # Check if it's the last amino acid in the protein
+    #     if len(self.history) == len(self.amino_acids) - 1:
+    #         self.history.append(0)
+    #     elif direction[0] != 0:
+    #         self.history.append(direction[0])
+    #     elif direction[1] == 1:
+    #         self.history.append(2)
+    #     elif direction[1] == -1:
+    #         self.history.append(-2)
+
+    def add_move(self, direction):
+        """ This function checks what direction an amino acid was folded """
+        # Check if it's the last amino acid in the protein
+        if direction[0] != 0:
+            self.history.append(direction[0])
+        elif direction[1] == 1:
+            self.history.append(2)
+        elif direction[1] == -1:
+            self.history.append(-2)
 
     def load_input(self, protein_file):
-        """ This function loads in a file with a protein and returns it as a string """
+        """ This function loads in a file with a protein and saves it as a string """
         with open(protein_file, 'r') as f:
             for protein in f:
                 # Save protein name
@@ -92,17 +115,16 @@ class Grid():
                     self.amino_acids[amino.amino_id] = amino
 
     def output_to_csv(self, filename):
-        """ Creates a csv file with each amino acid with its corresponding folding score. """
+        """ Creates a csv file with the folding score and all the moves made """
         with open(filename, 'w', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(['amino', 'fold'])
 
             # Write which amino acid was moved in the left column and the actual move in the right column                
             for i, amino in enumerate(self.amino_acids.values()):
-                if i > 0:
-                    amino_text = amino.text
-                    move = self.history[i - 1]
-                    writer.writerows([[amino_text, move]])
+                amino_text = amino.text
+                move = self.history[i - 1]
+                writer.writerows([[amino_text, move]])
             writer.writerows([["score", self.score]])
 
     def display_rules(self):
