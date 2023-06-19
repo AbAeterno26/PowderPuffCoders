@@ -37,4 +37,4 @@ class Random():
                 location = next_pos
 
         # Check what the move was and add it to the history of moves
-        grid.add_move(direction)
+        self.grid.add_move(direction)
