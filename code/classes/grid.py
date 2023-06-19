@@ -18,12 +18,25 @@ class Grid():
         """
         # Set score to 0 to start count properly
         self.score = 0
+<<<<<<< HEAD
+            
+        for location, amino_acid in self.amino_locations.items():
+            print(f"Checking amino acid at {location} with type {amino_acid.text}")
+            for dx, dy in self.directions:
+                neighbour_location = (location[0] + dx, location[1] + dy)
+                neighbour_amino = self.amino_locations.get(neighbour_location)
+                if neighbour_amino and neighbour_amino.text != "P" and amino_acid.text != "P":
+                    bond_score = self.calculate_bond_score(amino_acid, neighbour_amino)
+                    print(f"Bond score with neighbour at {neighbour_location} is {bond_score}")
+                    self.score += bond_score
+=======
 
         # Loop over each amino acid
         for i in range(len(self.amino_acids)):
             # The index of this location is the key in the dictionary with amino acids
             current_amino = self.amino_acids[i]
             # print(f"object: {current_amino}")
+>>>>>>> 649d7304140bece8d80bb3a52f93a27aa94757f3
 
             # Check if there is a chance for a hydrogen bond
             if current_amino.text == 'H' or current_amino.text == 'C':
