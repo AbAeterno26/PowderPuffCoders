@@ -56,7 +56,7 @@ def plot_hist(scores, filename):
     This function plots a histogram of all all the achieved scores (x-axis)
     for a specified algorithm that is applied and their occurences (y-axis).
     """
-    histplot = sns.histplot(scores)
+    histplot = sns.histplot(scores, kde=True)
     fig = histplot.get_figure()
     fig.savefig(f"{filename}.png")
     plt.show()
