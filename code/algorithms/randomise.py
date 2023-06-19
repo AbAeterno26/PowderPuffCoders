@@ -21,12 +21,9 @@ def fold_protein(grid):
                 # Update the location of the amino acid
                 amino.update_loc(next_pos)
 
-<<<<<<< HEAD
                 # Add the updated location to the list of locations of all amino-acids
                 grid.locations.append(amino._location)
 
-=======
->>>>>>> d466db00ab0b1a3ebeed7b03baa09c392d7379af
                 # Add position to used locations
                 used_pos.add(next_pos)
                 grid.locations.append(amino._location)

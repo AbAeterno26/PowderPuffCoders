@@ -10,7 +10,6 @@ class Grid():
         self.locations = []
         self.history = []
         self.directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
-        self.locations = []
 
     def compute_score(self) -> float:
         """ 
@@ -19,45 +18,11 @@ class Grid():
         """
         # Set score to 0 to start count properly
         self.score = 0
-<<<<<<< HEAD
-
-        # Looping over each amino_acid
-        for i in range(len(self.locations)):
-            # De indexen van deze lijst komen overeen met de keys van de amino_acids dictionary
-            # Voor elk aminozuur kijken naar alle aminozuren, is het een previous of next
-            for i in range(len(self.locations)):
-                # First check: is this an H
-                if self.amino_acids[i].text == 'H':
-                    if i < (len(self.amino_acids) - 1): 
-                        next_amino = self.amino_acids[i + 1]
-                    if > 0:
-                        previous_amino = next_amino = self.amino_acids[i - 1]
-
-            # Find location of previous amino_acid
-
-
-            print(f"object: {self.amino_acids[i].text}")
-=======
-<<<<<<< HEAD
->>>>>>> d466db00ab0b1a3ebeed7b03baa09c392d7379af
-            
-        for location, amino_acid in self.amino_locations.items():
-            print(f"Checking amino acid at {location} with type {amino_acid.text}")
-            for dx, dy in self.directions:
-                neighbour_location = (location[0] + dx, location[1] + dy)
-                neighbour_amino = self.amino_locations.get(neighbour_location)
-                if neighbour_amino and neighbour_amino.text != "P" and amino_acid.text != "P":
-                    bond_score = self.calculate_bond_score(amino_acid, neighbour_amino)
-                    print(f"Bond score with neighbour at {neighbour_location} is {bond_score}")
-                    self.score += bond_score
-=======
 
         # Loop over each amino acid
         for i in range(len(self.amino_acids)):
             # The index of this location is the key in the dictionary with amino acids
             current_amino = self.amino_acids[i]
-            # print(f"object: {current_amino}")
->>>>>>> 649d7304140bece8d80bb3a52f93a27aa94757f3
 
             # Check if there is a chance for a hydrogen bond
             if current_amino.text == 'H' or current_amino.text == 'C':
@@ -80,7 +45,6 @@ class Grid():
                         self.score += self.calculate_bond_score(current_amino, amino)
 
         self.score /= 2
-        # print(f"THE SCORE IS: {self.score}")
 
     def check_location(self, amino1: tuple, amino2: tuple) -> bool:
         """ This function returns true if the amino acids are adjacent """
@@ -114,9 +78,6 @@ class Grid():
                 # Save protein name
                 self.protein = protein
                 self.max_grid_size = len(protein)
-                
-                # Create interface object to visualize in Tkinter
-                # interface = tk.Tk()
 
                 for i, aminoacid in enumerate(protein):
                     # Create class object from amino acid, which is the key in the dict
@@ -128,9 +89,7 @@ class Grid():
                         amino = amino_cat.Amino("C", "green", i)
 
                     # Create widget for amino acid visualisation as value in dict
-                    # amino_acid_label = tk.Label(interface, text=amino.text, bg=amino.color, width=3, height=3)
                     self.amino_acids[amino.amino_id] = amino
-                    
 
     def output_to_csv(self, filename):
         """ Creates a csv file with each amino acid with its corresponding folding score. """
