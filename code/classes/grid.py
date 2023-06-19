@@ -51,7 +51,6 @@ class Grid():
         distance = abs(amino2[0] - amino1[0]) + abs(amino2[1] - amino1[1])
 
         return distance == 1
-        
     
     def calculate_bond_score(self, amino1, amino2) -> int:
         """ Calculates the bond score between two amino acids based on their types. """
@@ -71,7 +70,6 @@ class Grid():
         if position not in used_pos:
             return True
         return False
-    
 
     def add_move(self, direction):
         """ This function checks what direction an amino acid was folded """
