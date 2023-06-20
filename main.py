@@ -7,7 +7,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 
-def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=False):
+def run(protein_file, iterations=100, algorithm="random", rules=True, show_vis=False):
     # The score of each folding of a protein
     scores = []
     input_file = protein_file.split('/')[2].strip('.txt')
@@ -18,9 +18,6 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
 
         # Load in the nodes (AKA aminoacids)
         grid_obj.load_input(protein_file)
-    
-        # Call an algorithm to solve the protein folding
-        algorithm_obj = algorithm.Random(grid_obj)
         
         algorithm = algorithm.lower()
         if algorithm == "random":
@@ -42,9 +39,9 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
         grid_obj.output_to_csv(filename)
 
     # Plot histogram of the scores for a specified protein
-    path_to_file = f"data/output/{algorithm}/graphs/{input_file}"
-    title = f"{algorithm} - {iterations} iterations"
-    plot_hist(scores, path_to_file, title, grid_obj.protein)
+    # path_to_file = f"data/output/{algorithm}/graphs/{input_file}"
+    # title = f"{algorithm} - {iterations} iterations"
+    # plot_hist(scores, path_to_file, title, grid_obj.protein)
 
     # Display rules if requested
     if rules:

@@ -3,7 +3,6 @@ import random
 class Random():
     def __init__(self, grid):
         self.grid = grid
-        
 
     def fold_protein(self):
         """ Folds an entire protein by generating random directions """
@@ -36,5 +35,6 @@ class Random():
                 
                 location = next_pos
 
-        # Check what the move was and add it to the history of moves
-        self.grid.add_move(direction)
+            # Check what the move was and add it to the history of moves
+            if amino_id != self.grid.max_grid_size - 1:
+                self.grid.add_move(direction, amino_id)

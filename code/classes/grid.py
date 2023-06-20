@@ -71,15 +71,19 @@ class Grid():
             return True
         return False
 
-    def add_move(self, direction):
+    def add_move(self, direction, index):
         """ This function checks what direction an amino acid was folded """
         # Check if it's the last amino acid in the protein
+        key_list = list(self.amino_acids.keys())
         if direction[0] != 0:
-            self.history.append(direction[0])
+            self.history[index] = (direction[0])
         elif direction[1] == 1:
-            self.history.append(2)
+            self.history[index] = 2
         elif direction[1] == -1:
-            self.history.append(-2)
+            self.history[index] = -2
+        
+
+    
 
     def load_input(self, protein_file):
         """ This function loads in a file with a protein and saves it as a string """
@@ -100,6 +104,7 @@ class Grid():
 
                     # Add amino acid to dictionary
                     self.amino_acids[amino.amino_id] = amino
+                    self.history.append(0)
 
     def output_to_csv(self, filename):
         """ Creates a csv file with the folding score and all the moves made """
@@ -110,12 +115,15 @@ class Grid():
             # Write which amino acid was moved in the left column and the actual move in the right column                
             for i, amino in enumerate(self.amino_acids.values()):
                 amino_text = amino.text
-                move = self.history[i - 1]
+                print(i)
+                print(self.history)
+                move = self.history[i]
                 writer.writerows([[amino_text, move]])
             writer.writerows([["score", self.score]])
 
     def display_rules(self):
-        print("1 betekent een positieve stap in de eerste dimensie (X-as richting).")
-        print("-1 betekent een negatieve stap in de eerste dimensie (X-as richting).")
-        print("2 betekent een positieve stap in de tweede dimensie (Y-as richting).")
-        print("-2 betekent een negatieve stap in de tweede dimensie (Y-as richting).")
+        # print("1 betekent een positieve stap in de eerste dimensie (X-as richting).")
+        # print("-1 betekent een negatieve stap in de eerste dimensie (X-as richting).")
+        # print("2 betekent een positieve stap in de tweede dimensie (Y-as richting).")
+        # print("-2 betekent een negatieve stap in de tweede dimensie (Y-as richting).")
+        pass
