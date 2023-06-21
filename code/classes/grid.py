@@ -52,6 +52,7 @@ class Grid():
         distance = abs(amino2[0] - amino1[0]) + abs(amino2[1] - amino1[1])
 
         return distance == 1
+        
     
     def calculate_bond_score(self, amino1, amino2) -> int:
         """ Calculates the bond score between two amino acids based on their types. """
@@ -103,7 +104,7 @@ class Grid():
                     else:
                         amino = amino_cat.Amino("C", "green", i)
 
-                    # Add amino acid to dictionary
+                    # Create widget for amino acid visualisation as value in dict
                     self.amino_acids[amino.amino_id] = amino
                     self.history.append(0)
 
