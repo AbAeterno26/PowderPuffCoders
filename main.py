@@ -1,6 +1,7 @@
 from code.classes import grid
 from code.algorithms import randomise
 from code.algorithms import sa
+from code.algorithms import depth_first
 from sys import argv
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -24,6 +25,8 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
             algorithm_obj = randomise.Random(grid_obj)
         elif algorithm == "sa":
             algorithm_obj = sa.SA(grid_obj)
+        elif algorithm == "depth":
+            algorithm_obj = depth_first.DepthFirstSearch(grid_obj)
 
         algorithm_obj.fold_protein()
 

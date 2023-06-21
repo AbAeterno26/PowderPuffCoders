@@ -1,6 +1,6 @@
 import random
 
-class Random():
+class Random:
     def __init__(self, grid):
         self.grid = grid
 
