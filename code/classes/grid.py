@@ -151,16 +151,16 @@ class Grid():
         trace = go.Scatter(
             x=x_values,
             y=y_values,
-            mode="lines+markers+text",
+            mode="markers",
             text=type_array,
             marker=dict(
                 size=8,
                 color=color_array,
             ),
-            line=dict(
-                color='black',
-                width=1,
-            ),
+            # line=dict(
+            #     color='black',
+            #     width=1,
+            # ),
             textfont=dict(
                 family='sans serif',
                 size=18,
@@ -176,18 +176,12 @@ class Grid():
                 zerolinecolor='rgb(255, 255, 255)',
                 showgrid=True,
                 zeroline=False,
-                ticks="",
-                showticklabels=False,
-                # backgroundcolor='rgb(230, 230,230)'
             ),
             yaxis=dict(
                 gridcolor='rgb(255, 255, 255)',
                 zerolinecolor='rgb(255, 255, 255)',
                 showgrid=True,
                 zeroline=False,
-                ticks="",
-                showticklabels=False,
-                # backgroundcolor='rgb(230, 230,230)'
             ),
             plot_bgcolor='rgb(230, 230,230)',
         )
@@ -195,5 +189,6 @@ class Grid():
         fig = go.Figure(data=trace, layout=layout)
         plot(fig, filename="output.html")
 
-    # Add this method to the Grid class, and call it when you want to visualize your protein
-# grid.visualize_2D = visualize_2D
+
+        # Add this method to the Grid class, and call it when you want to visualize your protein
+    #  grid.visualize_2D = visualize_2D
