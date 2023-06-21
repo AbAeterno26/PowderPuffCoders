@@ -1,7 +1,6 @@
 from code.classes import grid
 from code.algorithms import randomise
 from code.algorithms import sa
-# from code.visualizations import visualize_2D
 from sys import argv
 import seaborn as sns
 import matplotlib.pyplot as plt
