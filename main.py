@@ -1,13 +1,15 @@
 from code.classes import grid
 from code.algorithms import randomise
 from code.algorithms import sa
-from code.visualizations import visualize
+# from code.visualizations import visualize_2D
 from sys import argv
 import seaborn as sns
 import matplotlib.pyplot as plt
+import plotly.graph_objs as go
+from plotly.offline import plot
 
 
-def run(protein_file, iterations=100, algorithm="random", rules=True, show_vis=False):
+def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=True):
     # The score of each folding of a protein
     scores = []
     input_file = protein_file.split('/')[2].strip('.txt')
@@ -18,6 +20,9 @@ def run(protein_file, iterations=100, algorithm="random", rules=True, show_vis=F
 
         # Load in the nodes (AKA aminoacids)
         grid_obj.load_input(protein_file)
+    
+        # Call an algorithm to solve the protein folding
+        # algorithm_obj = algorithm.Random(grid_obj)
         
         algorithm = algorithm.lower()
         if algorithm == "random":
@@ -27,9 +32,15 @@ def run(protein_file, iterations=100, algorithm="random", rules=True, show_vis=F
 
         algorithm_obj.fold_protein()
         # Print the grid of the entire protein
-        if show_vis:
-            visualize.plot_grid(grid_obj.amino_acids)
+        # Fold the protein
+        algorithm_obj.fold_protein()
 
+        # Visualize the protein folding
+        if show_vis:
+            grid_obj.visualize_2D()
+
+        # Compute the score for the folding of the protein
+        grid_obj.compute_score()
         # Compute the score for the folding of the protein
         grid_obj.compute_score()
         scores.append(grid_obj.score)
@@ -39,9 +50,9 @@ def run(protein_file, iterations=100, algorithm="random", rules=True, show_vis=F
         grid_obj.output_to_csv(filename)
 
     # Plot histogram of the scores for a specified protein
-    # path_to_file = f"data/output/{algorithm}/graphs/{input_file}"
-    # title = f"{algorithm} - {iterations} iterations"
-    # plot_hist(scores, path_to_file, title, grid_obj.protein)
+    path_to_file = f"data/output/{algorithm}/graphs/{input_file}"
+    title = f"{algorithm} - {iterations} iterations"
+    plot_hist(scores, path_to_file, title, grid_obj.protein)
 
     # Display rules if requested
     if rules:
