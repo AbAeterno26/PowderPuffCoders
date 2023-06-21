@@ -114,8 +114,6 @@ class Grid():
             # Write which amino acid was moved in the left column and the actual move in the right column                
             for i, amino in enumerate(self.amino_acids.values()):
                 amino_text = amino.text
-                print(i)
-                print(self.history)
                 move = self.history[i]
                 writer.writerows([[amino_text, move]])
             writer.writerows([["score", self.score]])

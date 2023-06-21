@@ -10,11 +10,10 @@ class Random:
         # Right, left, down, up
         directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
         used_pos = set()
-        
+        location = (0, 0)
+
         # Keep connecting amino acids until the whole protein is folded
         for amino_id, amino in self.grid.amino_acids.items():
-            location = amino._location
-
             # Check that the location of the amino acid is not already in use
             while True:
                 direction = random.choice(directions)
@@ -31,9 +30,11 @@ class Random:
                     # Add position to used locations
                     used_pos.add(next_pos)
                     self.grid.locations.append(amino._location)
+                    print(f"Amino Placed at coor {amino._location}")
                     break
                 
-                location = next_pos
+            location = next_pos
+            print(f"Start Location {location}")
 
             # Check what the move was and add it to the history of moves
             if amino_id != self.grid.max_grid_size - 1:
