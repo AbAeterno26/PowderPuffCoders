@@ -4,6 +4,7 @@ from code.classes import amino_cat
 import plotly.graph_objs as go
 from plotly.offline import plot
 
+
 class Grid():
     # width equals the length of the protein string 
     def __init__(self):
@@ -51,8 +52,7 @@ class Grid():
         """ This function returns true if the amino acids are adjacent """
         distance = abs(amino2[0] - amino1[0]) + abs(amino2[1] - amino1[1])
 
-        return distance == 1
-        
+        return distance == 1    
     
     def calculate_bond_score(self, amino1, amino2) -> int:
         """ Calculates the bond score between two amino acids based on their types. """
@@ -84,9 +84,6 @@ class Grid():
         elif direction[1] == -1:
             self.history[index] = -2
         
-
-    
-
     def load_input(self, protein_file):
         """ This function loads in a file with a protein and saves it as a string """
         with open(protein_file, 'r') as f:
@@ -124,11 +121,10 @@ class Grid():
             writer.writerows([["score", self.score]])
 
     def display_rules(self):
-        # print("1 betekent een positieve stap in de eerste dimensie (X-as richting).")
-        # print("-1 betekent een negatieve stap in de eerste dimensie (X-as richting).")
-        # print("2 betekent een positieve stap in de tweede dimensie (Y-as richting).")
-        # print("-2 betekent een negatieve stap in de tweede dimensie (Y-as richting).")
-        pass
+        print("1 betekent een positieve stap in de eerste dimensie (X-as richting).")
+        print("-1 betekent een negatieve stap in de eerste dimensie (X-as richting).")
+        print("2 betekent een positieve stap in de tweede dimensie (Y-as richting).")
+        print("-2 betekent een negatieve stap in de tweede dimensie (Y-as richting).")
 
     def visualize_2D(self):
         x_values = []
