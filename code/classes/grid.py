@@ -151,16 +151,16 @@ class Grid():
         trace = go.Scatter(
             x=x_values,
             y=y_values,
-            mode="markers",
+            mode="lines+markers",
             text=type_array,
             marker=dict(
-                size=8,
+                size=10,
                 color=color_array,
             ),
-            # line=dict(
-            #     color='black',
-            #     width=1,
-            # ),
+            line=dict(
+                color='black',
+                width=1,
+            ),
             textfont=dict(
                 family='sans serif',
                 size=18,
