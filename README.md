@@ -24,7 +24,7 @@ Een voorbeeld kan gerund worden door het volgende aan te roepen:
 ```
 python main.py data/input/amino1.txt
 ```
-Er zijn in totaal 9 amino textfiles die kunnen worden aangeroepen. Een voorbeeld boven is amino1, maar amino7 bijvoorbeeld, zou daarvoor ook in de plaats mogen. 
+Er zijn in totaal 9 amino textfiles die kunnen worden aangeroepen. Een voorbeeld boven is amino1, maar amino7 zou daarvoor ook in de plaats mogen. 
 
 ### Structuur
 
