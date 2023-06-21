@@ -4,8 +4,6 @@ from code.algorithms import sa
 from sys import argv
 import seaborn as sns
 import matplotlib.pyplot as plt
-import plotly.graph_objs as go
-from plotly.offline import plot
 
 
 def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=True):
