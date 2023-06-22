@@ -85,6 +85,7 @@ class Grid():
     def load_input(self, protein_file):
         """ This function loads in a file with a protein and saves it as a string """
         with open(protein_file, 'r') as f:
+            
             for protein in f:
                 # Save protein name
                 self.protein = protein

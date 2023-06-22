@@ -33,15 +33,17 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
 
         # Visualize the protein folding
         if show_vis:
-            visualize.visualize_2D(grid_obj)
+            vis = visualize.Visualize(grid_obj)
+            vis.visualize_2D()
 
+        
         # Compute the score for the folding of the protein
         grid_obj.compute_score()
         scores.append(grid_obj.score)
 
         # Save output to a CSV file
         filename = f"data/output/{algorithm}/scores/{input_file}_{i}.csv"
-        grid_obj.output_to_csv(filename)
+        # grid_obj.output_to_csv(filename)
 
     # Plot histogram of the scores for a specified protein
     path_to_file = f"data/output/{algorithm}/graphs/{input_file}"
@@ -73,4 +75,4 @@ def plot_hist(scores, filename, title, protein):
     fig.savefig(f"{filename}.png", bbox_inches='tight')
     plt.show()
 
-run(protein_file, iterations=10, algorithm='sa')
+run(protein_file, iterations=1)

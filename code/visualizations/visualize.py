@@ -1,5 +1,6 @@
 import plotly.graph_objs as go
 from plotly.offline import plot
+from code.classes import amino_cat
 
 class Visualize():
     def __init__(self, grid):
@@ -11,18 +12,18 @@ class Visualize():
         color_array = []
         type_array = []
 
-        color_dict = {
-            "P": "blue",
-            "H": "red",
-            "C": "green"
-        }
+        # color_dict = {
+        #     "P": "blue",
+        #     "H": "red",
+        #     "C": "green"
+        # }
 
-        for index, amino_acid in self.amino_acids.items():
-            x, y = amino_acid._location
+        for amino in self.grid.amino_acids.values():
+            x, y = amino._location
             x_values.append(x)
             y_values.append(y)
-            type_array.append(amino_acid.text)
-            color_array.append(color_dict[amino_acid.text])
+            type_array.append(amino.text)
+            color_array.append(amino.color)
 
         trace = go.Scatter(
             x=x_values,
@@ -42,7 +43,7 @@ class Visualize():
                 size=18,
                 color='black'
             ),
-            showlegend=False,
+            showlegend=True,
         )
 
         layout = dict(
