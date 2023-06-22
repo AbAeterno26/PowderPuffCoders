@@ -7,7 +7,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 
-def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=True):
+def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=False):
     # The score of each folding of a protein
     scores = []
     input_file = protein_file.split('/')[2].strip('.txt')
