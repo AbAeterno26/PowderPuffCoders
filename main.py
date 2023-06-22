@@ -73,6 +73,6 @@ def plot_hist(scores, filename, title, protein):
     fig = histplot.get_figure()
     fig.suptitle(title, fontsize=20, weight='bold')
     fig.savefig(f"{filename}.png", bbox_inches='tight')
-    plt.show()
+    # plt.show()
 
 run(protein_file, iterations=1)

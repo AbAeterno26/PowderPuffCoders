@@ -30,11 +30,9 @@ class Random:
                     # Add position to used locations
                     used_pos.add(next_pos)
                     self.grid.locations.append(amino._location)
-                    print(f"Amino Placed at coor {amino._location}")
                     break
                 
             location = next_pos
-            print(f"Start Location {location}")
 
             # Check what the move was and add it to the history of moves
             if amino_id != self.grid.max_grid_size - 1:

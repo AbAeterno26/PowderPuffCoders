@@ -1,70 +1,90 @@
+import plotly
 import plotly.graph_objs as go
 from plotly.offline import plot
-from code.classes import amino_cat
+import plotly.express as px
+
 
 class Visualize():
     def __init__(self, grid):
         self.grid = grid
 
+    def fold_amino_scatter(self, x_values_amino, y_values_amino, text, color):
+        fold_text = go.Scatter(
+            x = x_values_amino,
+            y = y_values_amino,
+            name = text,
+            mode = "markers",
+            marker = dict(
+                size=14,
+                color=color,
+            ),
+            showlegend=True,
+        )
+        return fold_text
+
     def visualize_2D(self):
         x_values = []
         y_values = []
-        color_array = []
-        type_array = []
-
-        # color_dict = {
-        #     "P": "blue",
-        #     "H": "red",
-        #     "C": "green"
-        # }
-
+        x_values_H = []
+        y_values_H = []
+        x_values_P = []
+        y_values_P = []
+        x_values_C = []
+        y_values_C = []
+        
         for amino in self.grid.amino_acids.values():
             x, y = amino._location
             x_values.append(x)
             y_values.append(y)
-            type_array.append(amino.text)
-            color_array.append(amino.color)
-
-        trace = go.Scatter(
+            if amino.text == 'H':
+                x_values_H.append(x)
+                y_values_H.append(y)
+            elif amino.text == 'P':
+                x_values_P.append(x)
+                y_values_P.append(y)
+            elif amino.text == 'C':
+                x_values_C.append(x)
+                y_values_C.append(y)
+        
+        fold_line = go.Scatter(
             x=x_values,
             y=y_values,
-            mode="lines+markers",
-            text=type_array,
-            marker=dict(
-                size=10,
-                color=color_array,
-            ),
+            name="protein string line",
+            mode="lines",
             line=dict(
                 color='black',
                 width=1,
             ),
-            textfont=dict(
-                family='sans serif',
-                size=18,
-                color='black'
-            ),
-            showlegend=True,
+            showlegend=False,
         )
+
+        # Separate scatter plots for each type of amino acid
+        fold_H = self.fold_amino_scatter(x_values_H, y_values_H, 'H', 'red')
+        fold_P = self.fold_amino_scatter(x_values_P, y_values_P, 'P', 'blue')
+        fold_C = self.fold_amino_scatter(x_values_C, y_values_C, 'C', 'green')
 
         layout = dict(
-            title='Algorithmic Protein Folding',
+            title='Protein fold - folding a protein with H, P, and C aminoacids',
             xaxis=dict(
-                gridcolor='rgb(255, 255, 255)',
-                zerolinecolor='rgb(255, 255, 255)',
                 showgrid=True,
-                zeroline=False,
+                zeroline=True,
             ),
             yaxis=dict(
-                gridcolor='rgb(255, 255, 255)',
-                zerolinecolor='rgb(255, 255, 255)',
                 showgrid=True,
-                zeroline=False,
+                zeroline=True,
             ),
-            plot_bgcolor='rgb(230, 230,230)',
+            legend=dict(
+                x=1,
+                y=1
+
+            ),
+            plot_bgcolor='rgb(240, 230, 240)',
         )
 
-        fig = go.Figure(data=trace, layout=layout)
-        plot(fig, filename="output.html")
+        fig = go.Figure(data=[fold_line, fold_H, fold_P, fold_C], layout=layout)
+        fig.update_xaxes(dtick=1)
+        fig.update_yaxes(dtick=1)
 
+        fig.show()
+        # plotly.io.write_image(fig, 'data/output/random/graphs/file1.pdf', format='pdf')
 
-    #  grid.visualize_2D = visualize_2D
