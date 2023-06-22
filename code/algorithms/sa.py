@@ -2,6 +2,7 @@ import math
 from code.algorithms import randomise
 import random 
 
+
 class SA(randomise.Random):
     # eventueel alpha ook nog meegeven als parameter
     # ook variabelen initial temp and final temp mogelijk meegeven om meer dynamiek te creeeren 
