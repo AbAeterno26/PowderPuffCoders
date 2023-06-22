@@ -1,85 +1,70 @@
-# # import tkinter as tk
+import plotly.graph_objs as go
+from plotly.offline import plot
+from code.classes import amino_cat
 
-# # def plot_grid(amino_acids: dict):
-# #     """ Loops over the amino acids and plots the protein in a grid """
-# #     grid = tk.Tk()
+class Visualize():
+    def __init__(self, grid):
+        self.grid = grid
 
-# #     for amino, label in amino_acids.items():
-# #         print(f"amino is {amino}")
-# #         print(f"label is {label}")
-# #         label.grid(row=amino._location[0], column=amino._location[1])
+    def visualize_2D(self):
+        x_values = []
+        y_values = []
+        color_array = []
+        type_array = []
 
-# #     return grid.mainloop()
+        # color_dict = {
+        #     "P": "blue",
+        #     "H": "red",
+        #     "C": "green"
+        # }
 
-# import plotly.graph_objs as go
-# from plotly import plot
-# from code.classes import grid
+        for amino in self.grid.amino_acids.values():
+            x, y = amino._location
+            x_values.append(x)
+            y_values.append(y)
+            type_array.append(amino.text)
+            color_array.append(amino.color)
 
-# def visualize_2D(self):
-#     x_values = []
-#     y_values = []
-#     color_array = []
-#     type_array = []
+        trace = go.Scatter(
+            x=x_values,
+            y=y_values,
+            mode="lines+markers",
+            text=type_array,
+            marker=dict(
+                size=10,
+                color=color_array,
+            ),
+            line=dict(
+                color='black',
+                width=1,
+            ),
+            textfont=dict(
+                family='sans serif',
+                size=18,
+                color='black'
+            ),
+            showlegend=True,
+        )
 
-#     color_dict = {
-#         "P": "blue",
-#         "H": "red",
-#         "C": "green"
-#     }
+        layout = dict(
+            title='Algorithmic Protein Folding',
+            xaxis=dict(
+                gridcolor='rgb(255, 255, 255)',
+                zerolinecolor='rgb(255, 255, 255)',
+                showgrid=True,
+                zeroline=False,
+            ),
+            yaxis=dict(
+                gridcolor='rgb(255, 255, 255)',
+                zerolinecolor='rgb(255, 255, 255)',
+                showgrid=True,
+                zeroline=False,
+            ),
+            plot_bgcolor='rgb(230, 230,230)',
+        )
 
-#     for index, amino_acid in self.amino_acids.items():
-#         x, y = amino_acid._location
-#         x_values.append(x)
-#         y_values.append(y)
-#         type_array.append(amino_acid.text)
-#         color_array.append(color_dict[amino_acid.text])
+        fig = go.Figure(data=trace, layout=layout)
+        plot(fig, filename="output.html")
 
-#     trace = go.Scatter(
-#         x=x_values,
-#         y=y_values,
-#         mode="lines+markers+text",
-#         text=type_array,
-#         marker=dict(
-#             size=8,
-#             color=color_array,
-#         ),
-#         line=dict(
-#             color='black',
-#             width=1,
-#         ),
-#         textfont=dict(
-#             family='sans serif',
-#             size=18,
-#             color='black'
-#         ),
-#         showlegend=False,
-#     )
 
-#     layout = dict(
-#         title='Algorithmic Protein Folding',
-#         xaxis=dict(
-#             gridcolor='rgb(255, 255, 255)',
-#             zerolinecolor='rgb(255, 255, 255)',
-#             showbackground=True,
-#             zeroline=False,
-#             ticks="",
-#             showticklabels=False,
-#             backgroundcolor='rgb(230, 230,230)'
-#         ),
-#         yaxis=dict(
-#             gridcolor='rgb(255, 255, 255)',
-#             zerolinecolor='rgb(255, 255, 255)',
-#             showbackground=True,
-#             zeroline=False,
-#             ticks="",
-#             showticklabels=False,
-#             backgroundcolor='rgb(230, 230,230)'
-#         ),
-#         plot_bgcolor='rgb(230, 230,230)',
-#     )
-
-#     fig = go.Figure(data=trace, layout=layout)
-#     plot(fig, filename="output.html")
-
-# # Add this method to the Grid class, and call it when you want to visualize your protein
-# grid.visualize_2D = visualize_2D
+    #  grid.visualize_2D = visualize_2D

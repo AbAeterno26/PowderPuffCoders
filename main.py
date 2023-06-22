@@ -2,12 +2,13 @@ from code.classes import grid
 from code.algorithms import randomise
 from code.algorithms import sa
 from code.algorithms import depth_first
+from code.visualizations import visualize
+import matplotlib.pyplot as plt
 from sys import argv
 import seaborn as sns
-import matplotlib.pyplot as plt
 
 
-def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=False):
+def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=True):
     # The score of each folding of a protein
     scores = []
     input_file = protein_file.split('/')[2].strip('.txt')
@@ -32,15 +33,17 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
 
         # Visualize the protein folding
         if show_vis:
-            grid_obj.visualize_2D()
+            vis = visualize.Visualize(grid_obj)
+            vis.visualize_2D()
 
+        
         # Compute the score for the folding of the protein
         grid_obj.compute_score()
         scores.append(grid_obj.score)
 
         # Save output to a CSV file
         filename = f"data/output/{algorithm}/scores/{input_file}_{i}.csv"
-        grid_obj.output_to_csv(filename)
+        # grid_obj.output_to_csv(filename)
 
     # Plot histogram of the scores for a specified protein
     path_to_file = f"data/output/{algorithm}/graphs/{input_file}"
