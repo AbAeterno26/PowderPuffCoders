@@ -1,5 +1,4 @@
 import csv
-import tkinter as tk
 from code.classes import amino_cat
 
 
@@ -7,7 +6,7 @@ class Grid():
     # width equals the length of the protein string 
     def __init__(self):
         self.amino_acids = {}
-        self.locations = []
+        self.locations = set()
         self.history = []
         self.directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
@@ -65,16 +64,15 @@ class Grid():
         else:
             return 0
 
-    def is_valid(self, position, used_pos):
+    def is_valid(self, position):
         """ This function checks if the position is blocked by an amino acid """
-        if position not in used_pos:
+        if position not in self.locations:
             return True
         return False
 
     def add_move(self, direction, index):
         """ This function checks what direction an amino acid was folded """
         # Check if it's the last amino acid in the protein
-        key_list = list(self.amino_acids.keys())
         if direction[0] != 0:
             self.history[index] = (direction[0])
         elif direction[1] == 1:
