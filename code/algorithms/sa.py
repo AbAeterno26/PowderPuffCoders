@@ -86,8 +86,8 @@ class SA(randomise.Random):
         print(f'best configuration is {best_configuration}')
         print(f'best score is {self.best_score}')
         
-    def get_best_score(self):
-        return self.best_score
+    def get_best_configuration(self):
+        return self.best_configuration
 
 
 # By monitoring the acceptance rate over multiple iterations, you can gain insights into the algorithm's behavior and adjust the temperature accordingly.
