@@ -4,6 +4,7 @@ from code.algorithms import sa
 from code.algorithms import depth_first
 from code.visualizations import visualize
 import matplotlib.pyplot as plt
+from matplotlib.ticker import MaxNLocator
 from sys import argv
 import seaborn as sns
 
@@ -49,9 +50,9 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
         grid_obj.output_to_csv(filename)
 
     # Plot histogram of the scores for a specified protein
-    # path_to_file = f"data/output/{algorithm}/graphs/{input_file}"
-    # title = f"{algorithm} - {iterations} iterations"
-    # plot_hist(scores, path_to_file, title, grid_obj.protein)
+    path_to_file = f"data/output/{algorithm}/graphs/{input_file}"
+    title = f"{algorithm} - {iterations} iterations"
+    plot_hist(scores, path_to_file, title, grid_obj.protein)
 
     # Display rules if requested
     if rules:
@@ -66,16 +67,20 @@ if __name__ == "__main__":
     filename = argv[1]
     protein_file = f"data/input/{filename}.txt"
     
-def plot_hist(scores, filename, title, protein):
+def plot_hist(scores, filename, title, protein, iterations=100):
     """
-    This function plots a histogram of all all the achieved scores (x-axis)
+    This function plots a histogram of all the achieved scores (x-axis)
     for a specified algorithm that is applied and their occurences (y-axis).
     """
-    histplot = sns.histplot(scores, kde=True)
-    plt.title(protein)
-    fig = histplot.get_figure()
-    fig.suptitle(title, fontsize=20, weight='bold')
+    fig, ax = plt.subplots()
+    sns.histplot(scores, kde=True, bins=10, ax=ax)
+    ax.set_title(title, fontsize=20, weight='bold')
+    ax.set_xlabel('Score')
+    ax.set_ylabel('Occurrences')
+    ax.xaxis.set_major_locator(MaxNLocator(integer=True))
     fig.savefig(f"{filename}.png", bbox_inches='tight')
     plt.show()
 
-run(protein_file, iterations=1, algorithm='sa', show_vis=True)
+run(protein_file, iterations=10, algorithm='sa', show_vis=True)
+
+# run(protein_file, iterations=500, algorithm='random', show_vis=False)
