@@ -43,7 +43,9 @@ class Grid():
                     if amino != next_amino and amino != prev_amino and self.check_location(current_amino._location, amino._location):
                         self.score += self.calculate_bond_score(current_amino, amino)
 
-        self.score /= 2
+
+        self.score = round(self.score / 2.0)
+        return self.score
 
     def check_location(self, amino1: tuple, amino2: tuple) -> bool:
         """ This function returns true if the amino acids are adjacent """
@@ -55,14 +57,18 @@ class Grid():
         """ Calculates the bond score between two amino acids based on their types. """
         if amino1.text == "H" and amino2.text == "H":
             return -1
-        elif amino1.text == "H" and amino2.text == "C":
-            return -1
-        elif amino1.text == "C" and amino2.text == "H":
+        elif (amino1.text == "H" and amino2.text == "C") or (amino1.text == "C" and amino2.text == "H"):
             return -1
         elif amino1.text == "C" and amino2.text == "C":
             return -5
         else:
             return 0
+        
+    def is_hydrogen_bond(self, amino1, amino2) -> bool:
+        """ Checks if there is a hydrogen bond between two given amino acids """
+        if self.calculate_bond_score(amino1, amino2) < 0:
+            return True
+        return False
 
     def is_valid(self, position):
         """ This function checks if the position is blocked by an amino acid """
