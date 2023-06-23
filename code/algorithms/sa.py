@@ -30,7 +30,7 @@ class SA(randomise.Random):
         
         # The protein configuration is stored in de amino_acids dictionary in the grid object
         current_configuration = self.grid
-        best_configuration = current_configuration
+        self.best_configuration = current_configuration
         current_score = self.grid.compute_score()
         print(f'CURRENT SCORE IS {current_score}')
         self.best_score = current_score
@@ -67,7 +67,7 @@ class SA(randomise.Random):
                     # If the new configuration has a higher score, update the best configuration
                     if current_score < self.best_score:
                         self.best_score = current_score
-                        best_configuration = current_configuration
+                        self.best_configuration = current_configuration
                         print('ik kom in de update if statement!')
 
             print('IK BEN UIT DE WHILE LOOP!!!!!!!!!!!!!!!!!!!')
@@ -83,7 +83,7 @@ class SA(randomise.Random):
             if self.cooling == 'adaptive':
                 pass 
 
-        print(f'best configuration is {best_configuration}')
+        print(f'best configuration is {self.best_configuration}')
         print(f'best score is {self.best_score}')
         
     def get_best_configuration(self):
