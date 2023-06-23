@@ -29,16 +29,16 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
         elif algorithm == "depth":
             algorithm_obj = depth_first.DepthFirstSearch(grid_obj)
 
-        algorithm_obj.fold_protein()
+        algorithm_obj.execute()
 
+        # Compute the score for the folding of the protein
+        grid_obj.compute_score()
+        scores.append(grid_obj.score)
+        
         # Visualize the protein folding
         if show_vis:
             vis = visualize.Visualize(grid_obj)
             vis.visualize_2D()
-        
-        # Compute the score for the folding of the protein
-        grid_obj.compute_score()
-        scores.append(grid_obj.score)
 
         # Save output to a CSV file
         filename = f"data/output/{algorithm}/scores/{input_file}_{i}.csv"
@@ -72,6 +72,6 @@ def plot_hist(scores, filename, title, protein):
     fig = histplot.get_figure()
     fig.suptitle(title, fontsize=20, weight='bold')
     fig.savefig(f"{filename}.png", bbox_inches='tight')
-    plt.show()
+    # plt.show()
 
 run(protein_file, iterations=1, algorithm='depth', show_vis=True)
