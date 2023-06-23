@@ -22,7 +22,6 @@ class SA(randomise.Random):
         WEET NIET OF DAT NODIG IS, MAAR ANDERS NOG AANPASSEN. OOK NOG CHECKEN OF HET GOED GAAT ZO MET CURRENT
         CONFIGURATION EN HET UPDATEN DAARVAN. The function returns the updated grid object, where the protein folding
         configuration is saved within the amino_acids dictionary."""
-        print('ik kom in de execute functie!')
         current_temperature = self.initial_temperature
         
         # Creating an initial state using the randomise algorithm 
@@ -32,7 +31,6 @@ class SA(randomise.Random):
         current_configuration = self.grid
         self.best_configuration = current_configuration
         current_score = self.grid.compute_score()
-        print(f'CURRENT SCORE IS {current_score}')
         self.best_score = current_score
 
         # Keeping track of iterations
@@ -44,9 +42,17 @@ class SA(randomise.Random):
             print(f'CURRENT SCORE IS {current_score}')
             # Generating a new configuration by swapping two amino_acids
             new_protein_obj = copy.deepcopy(current_configuration)
-            new_protein_dict= new_protein_obj.amino_acids
+            new_protein_dict = new_protein_obj.amino_acids
             i, j = random.sample(range(len(self.grid.amino_acids)), 2)
-            new_protein_dict[i], new_protein_dict[j] = new_protein_dict[j], new_protein_dict[i]
+
+            # LAATSE MAG NIET 
+            
+            # MAG NIET ZOMAAR ELKE WISSELEN, ZE MOETEN NAAST ELKAAR ZITTEN 
+            # ALLEEN WISSELEN ALS HET SYMBOOL NIET GELIJK IS AAN ELKAAR
+            if not new_protein_dict[i].text == new_protein_dict[j].text:
+                new_protein_dict[i], new_protein_dict[j] = new_protein_dict[j], new_protein_dict[i]
+
+            # Update the locations of the remaining amino acids to maintain the validity of the chain
 
             # Calculate the score of the new ordered dictionary (protein)
             new_score = new_protein_obj.compute_score()
@@ -58,7 +64,6 @@ class SA(randomise.Random):
                 # Calculate the acceptance probability based on the difference in score and current temperature
                 acceptance_probability = math.exp(-score_diff / current_temperature)
                 acceptance_probability = round(acceptance_probability, 2)
-                print('ik kom in de score_diff if statement!')
                 # Also giving worse configuration a chance of acceptance 
                 if acceptance_probability > random.random():
                     current_configuration = new_protein_obj
@@ -82,12 +87,40 @@ class SA(randomise.Random):
                 current_temperature *= self.rate_of_decrease
             if self.cooling == 'adaptive':
                 pass 
-
+        dict = self.best_configuration.amino_acids
+        print(f'dictionary of amino acids {dict}')
         print(f'best configuration is {self.best_configuration}')
         print(f'best score is {self.best_score}')
         
     def get_best_configuration(self):
         return self.best_configuration
+    
+    def pivot(self):
+
+        # Selecting a pivot point
+        #MAG NIET DE LAATSTE ZIJN DUS VANDAAR - 2
+        random_key = random.randint(0, len(new_protein_dict) - 2)
+        pivot = new_protein_dict[random_key] #== amino object
+        pivot_point = pivot._location
+
+        # Determining the section to be rotated
+        # section_point = new_protein_dict[(random_key + 1)]
+        # section = new_protein_dict[section_point:]
+        section = list(new_protein_dict.values())[random_key+1:] #== list van amino_objects 
+        k, l = pivot._location
+        print(pivot_point)
+        pivot_point_column = pivot_point[1]
+        
+        for idx, amino_obj in enumerate(section):
+            # Updating these positions based on the pivot point
+            i, j  = amino_obj._location
+            new_location = (k, j+1)
+            amino_id = amino_obj.amino_id
+           #MISSCHIEN NOG NODIG OM OP TE SLAAN IN ORIGINAL DICT???!
+
+
+
+
 
 
 # By monitoring the acceptance rate over multiple iterations, you can gain insights into the algorithm's behavior and adjust the temperature accordingly.
