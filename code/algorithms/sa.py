@@ -91,22 +91,17 @@ class SA(randomise.Random):
         #MAG NIET DE LAATSTE ZIJN DUS VANDAAR - 2
         random_key = random.randint(0, len(self.new_protein_dict) - 2)
         pivot = self.new_protein_dict[random_key] #== amino object
-        pivot_point = pivot._location
 
         # Determining the section to be rotated, by making a list of all the objects 
         section = list(self.new_protein_dict.values())[random_key+1:] 
         k, l = pivot._location
-        print(k, l)
-        pivot_point_column = pivot_point[1]
-        print(f'pivot_point_column{pivot_point_column}')
         
         for amino_obj in section:
             # Updating these positions based on the pivot point
             i, j  = amino_obj._location
-            new_location = (k, j+1)
+            new_location = (i+1, k)
             i, j = new_location
         
-        print(self.new_protein_dict)
            #MISSCHIEN NOG NODIG OM OP TE SLAAN IN ORIGINAL DICT???!
 
 
