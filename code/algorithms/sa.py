@@ -33,7 +33,7 @@ class SA(randomise.Random):
         best_configuration = current_configuration
         current_score = self.grid.compute_score()
         print(f'CURRENT SCORE IS {current_score}')
-        best_score = current_score
+        self.best_score = current_score
 
         # Keeping track of iterations
         k = 0
@@ -65,8 +65,8 @@ class SA(randomise.Random):
                     current_score = new_score
                     print('ik kom in de acceptance probability if statement!')
                     # If the new configuration has a higher score, update the best configuration
-                    if current_score < best_score:
-                        best_score = current_score
+                    if current_score < self.best_score:
+                        self.best_score = current_score
                         best_configuration = current_configuration
                         print('ik kom in de update if statement!')
 
@@ -84,9 +84,10 @@ class SA(randomise.Random):
                 pass 
 
         print(f'best configuration is {best_configuration}')
-        print(f'best score is {best_score}')
+        print(f'best score is {self.best_score}')
         
-
+    def get_best_score(self):
+        return self.best_score
 
 
 # By monitoring the acceptance rate over multiple iterations, you can gain insights into the algorithm's behavior and adjust the temperature accordingly.
