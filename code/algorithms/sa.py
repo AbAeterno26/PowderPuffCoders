@@ -3,6 +3,7 @@ from code.algorithms import randomise
 import random 
 import copy 
 
+
 class SA(randomise.Random):
     # eventueel alpha ook nog meegeven als parameter
     # ook variabelen initial temp and final temp mogelijk meegeven om meer dynamiek te creeeren 
