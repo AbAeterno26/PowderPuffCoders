@@ -8,7 +8,7 @@ from sys import argv
 import seaborn as sns
 
 
-def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=True):
+def run(protein_file, iterations=100, algorithm="sa", rules=False, show_vis=True):
     # The score of each folding of a protein
     scores = []
     input_file = protein_file.split('/')[2].strip('.txt')
@@ -40,7 +40,7 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
             vis.visualize_2D()
         # Save output to a CSV file
         filename = f"data/output/{algorithm}/scores/{input_file}_{i}.csv"
-        # grid_obj.output_to_csv(filename)
+        grid_obj.output_to_csv(filename)
 
     # Plot histogram of the scores for a specified protein
     path_to_file = f"data/output/{algorithm}/graphs/{input_file}"
@@ -70,6 +70,6 @@ def plot_hist(scores, filename, title, protein):
     fig = histplot.get_figure()
     fig.suptitle(title, fontsize=20, weight='bold')
     fig.savefig(f"{filename}.png", bbox_inches='tight')
-    # plt.show()
+    plt.show()
 
-run(protein_file, iterations=1, algorithm='sa')
+run(protein_file, iterations=10, algorithm='sa')
