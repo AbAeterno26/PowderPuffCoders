@@ -22,7 +22,6 @@ class SA(randomise.Random):
         WEET NIET OF DAT NODIG IS, MAAR ANDERS NOG AANPASSEN. OOK NOG CHECKEN OF HET GOED GAAT ZO MET CURRENT
         CONFIGURATION EN HET UPDATEN DAARVAN. The function returns the updated grid object, where the protein folding
         configuration is saved within the amino_acids dictionary."""
-        print('ik kom in de execute functie!')
         current_temperature = self.initial_temperature
         
         # Creating an initial state using the randomise algorithm 
@@ -32,7 +31,6 @@ class SA(randomise.Random):
         current_configuration = self.grid
         self.best_configuration = current_configuration
         current_score = self.grid.compute_score()
-        print(f'CURRENT SCORE IS {current_score}')
         self.best_score = current_score
 
         # Keeping track of iterations
@@ -40,37 +38,40 @@ class SA(randomise.Random):
 
         while current_temperature > self.final_temperature:
             k += 1
-            print('ik kom in de while loop!')
-            print(f'CURRENT SCORE IS {current_score}')
+    
             # Generating a new configuration by swapping two amino_acids
             new_protein_obj = copy.deepcopy(current_configuration)
+<<<<<<< HEAD
             new_protein_dict = new_protein_obj.amino_acids
             i, j = random.sample(range(len(self.grid.amino_acids)), 2)
             new_protein_dict[i], new_protein_dict[j] = new_protein_dict[j], new_protein_dict[i]
+=======
+            self.new_protein_dict = new_protein_obj.amino_acids
+            # i, j = random.sample(range(len(self.grid.amino_acids)), 2)
+            # self.new_protein_dict[i] , self.new_protein_dict[j] = self.new_protein_dict[j], self.new_protein_dict[i]
+           
+            self.pivot()
+>>>>>>> 5a0491ca850d999aab77127b7b6d086f2068a0bd
 
             # Calculate the score of the new ordered dictionary (protein)
             new_score = new_protein_obj.compute_score()
-            print(f'NEW SCORE IS {new_score}')
-            score_diff = abs(current_score - new_score)
-            print(f'SCORE DIFFERENCE IS {score_diff}')
+            # print(f'NEW SCORE IS {new_score}')
+            score_diff = new_score - current_score
+            # print(f'SCORE DIFFERENCE IS {score_diff}')
 
             if score_diff > self.x:
                 # Calculate the acceptance probability based on the difference in score and current temperature
-                acceptance_probability = math.exp(-score_diff / current_temperature)
+                acceptance_probability = math.exp((new_score - current_score) / current_temperature)
                 acceptance_probability = round(acceptance_probability, 2)
-                print('ik kom in de score_diff if statement!')
                 # Also giving worse configuration a chance of acceptance 
                 if acceptance_probability > random.random():
                     current_configuration = new_protein_obj
                     current_score = new_score
-                    print('ik kom in de acceptance probability if statement!')
                     # If the new configuration has a higher score, update the best configuration
                     if current_score < self.best_score:
                         self.best_score = current_score
                         self.best_configuration = current_configuration
-                        print('ik kom in de update if statement!')
 
-            print('IK BEN UIT DE WHILE LOOP!!!!!!!!!!!!!!!!!!!')
             # Updating the temperature according to the cooling schedule 
             if self.cooling == 'exponential':
                 current_temperature = self.initial_temperature * self.alpha**k
@@ -88,6 +89,30 @@ class SA(randomise.Random):
         
     def get_best_configuration(self):
         return self.best_configuration
+    
+    def pivot(self):
+        """Updates the dictionary location values."""
+
+        # Selecting a pivot point
+        #MAG NIET DE LAATSTE ZIJN DUS VANDAAR - 2
+        random_key = random.randint(0, len(self.new_protein_dict) - 2)
+        pivot = self.new_protein_dict[random_key] #== amino object
+
+        # Determining the section to be rotated, by making a list of all the objects 
+        section = list(self.new_protein_dict.values())[random_key+1:] 
+        k, l = pivot._location
+        
+        for amino_obj in section:
+            # Updating these positions based on the pivot point
+            i, j  = amino_obj._location
+            new_location = (i+1, k)
+            i, j = new_location
+        
+           #MISSCHIEN NOG NODIG OM OP TE SLAAN IN ORIGINAL DICT???!
+
+
+
+
 
 
 # By monitoring the acceptance rate over multiple iterations, you can gain insights into the algorithm's behavior and adjust the temperature accordingly.
