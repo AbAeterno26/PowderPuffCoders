@@ -82,5 +82,4 @@ def plot_hist(scores, filename, title, protein, iterations=100):
     plt.show()
 
 
-
 run(protein_file, iterations=500, algorithm='random', show_vis=False)
