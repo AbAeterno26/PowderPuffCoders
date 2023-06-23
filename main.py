@@ -31,6 +31,10 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
 
         algorithm_obj.execute()
 
+        # Get the modified grid object from simulated annealing
+        if algorithm == "sa":
+            grid_obj = algorithm_obj.get_best_configuration()
+
         # Compute the score for the folding of the protein
         grid_obj.compute_score()
         scores.append(grid_obj.score)
