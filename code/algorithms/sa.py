@@ -44,7 +44,7 @@ class SA(randomise.Random):
             print(f'CURRENT SCORE IS {current_score}')
             # Generating a new configuration by swapping two amino_acids
             new_protein_obj = copy.deepcopy(current_configuration)
-            new_protein_dict= new_protein_obj.amino_acids
+            new_protein_dict = new_protein_obj.amino_acids
             i, j = random.sample(range(len(self.grid.amino_acids)), 2)
             new_protein_dict[i], new_protein_dict[j] = new_protein_dict[j], new_protein_dict[i]
 

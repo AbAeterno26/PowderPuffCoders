@@ -78,8 +78,4 @@ def plot_hist(scores, filename, title, protein):
     fig.savefig(f"{filename}.png", bbox_inches='tight')
     plt.show()
 
-<<<<<<< HEAD
 run(protein_file, iterations=1, algorithm='depth')
-=======
-run(protein_file, iterations=10, algorithm='sa', show_vis=True)
->>>>>>> dcb8aaf5cad9f304714be12e2ea729b58273ed4a
