@@ -4,7 +4,7 @@ class Random:
     def __init__(self, grid):
         self.grid = grid
 
-    def fold_protein(self):
+    def execute(self):
         """ Folds an entire protein by generating random directions """
         
         # Right, left, down, up
@@ -19,7 +19,7 @@ class Random:
                 direction = random.choice(directions)
                 next_pos = location[0] + direction[0], location[1] + direction[1]
                 
-                # Check if the location falls outside the grid size (AKA length of the protein)
+                # Check if the location falls outside the grid size 
                 if self.grid.is_valid(next_pos, used_pos):
                     # Update the location of the amino acid
                     amino.update_loc(next_pos)
@@ -30,11 +30,9 @@ class Random:
                     # Add position to used locations
                     used_pos.add(next_pos)
                     self.grid.locations.append(amino._location)
-                    print(f"Amino Placed at coor {amino._location}")
                     break
                 
             location = next_pos
-            print(f"Start Location {location}")
 
             # Check what the move was and add it to the history of moves
             if amino_id != self.grid.max_grid_size - 1:

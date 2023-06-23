@@ -28,7 +28,7 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
         elif algorithm == "depth":
             algorithm_obj = depth_first.DepthFirstSearch(grid_obj)
 
-        algorithm_obj.fold_protein()
+        algorithm_obj.execute()
 
         # Visualize the protein folding
         if show_vis:
@@ -72,4 +72,4 @@ def plot_hist(scores, filename, title, protein):
     fig.savefig(f"{filename}.png", bbox_inches='tight')
     plt.show()
 
-run(protein_file, iterations=10, algorithm='sa')
+run(protein_file, iterations=1, algorithm='sa')
