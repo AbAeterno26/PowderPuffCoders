@@ -106,4 +106,4 @@ class Visualize():
         )
 
         fig.show()
-        # plotly.io.write_image(fig, 'data/output/random/graphs/file1.pdf', format='pdf')
+        # plotly.io.write_image(fig, 'data/output/random/graphs/amino_plotly.pdf', format='pdf')
