@@ -1,5 +1,6 @@
 import csv
 from code.classes import amino_cat
+import random 
 
 
 class Grid():
@@ -129,3 +130,54 @@ class Grid():
         print("-1 betekent een negatieve stap in de eerste dimensie (X-as richting).")
         print("2 betekent een positieve stap in de tweede dimensie (Y-as richting).")
         print("-2 betekent een negatieve stap in de tweede dimensie (Y-as richting).")
+
+
+
+    def getDiagional(self, amino):
+        
+        current_co = amino._location
+        index = amino.amino_id
+
+        # Searching for its neighbouring coordinates
+
+        # Check if amino is the last 
+        if (index + 1) == len(self.amino_acids):
+            prev_amino = self.amino_acids[index - 1]
+            coo_other = prev_amino._location
+        # Check if amino is the first
+        elif index == 0:
+            next_amino = self.amino_acids[index + 1]
+            coo_other = next_amino._location
+        else:
+            # Neither first or last amino
+            next_or_prev = [index + 1, index - 1]
+            # Random shuffle so that later on the pull move can be performed in either direction
+            random.shuffle(next_or_prev)
+
+            # Retrieving the neighbouring amino's
+            next_amino = self.amino_acids[next_or_prev[0]]
+            coo_other = next_amino._location
+
+            prev_amino = self.amino_acids[next_or_prev[1]]
+            coo_prev = prev_amino._location
+
+            # Getting the diagonals if the amino_acid is in the chain
+
+            # for previous amino 
+            
+
+
+
+
+
+
+
+    def is_diagonal(self, coord1, coord2):
+        x1, y1 = coord1
+        x2, y2 = coord2
+
+        dx = abs(x1 - x2)
+        dy = abs(y1 - y2)
+
+        return dx == 1 and dy == 1 
+

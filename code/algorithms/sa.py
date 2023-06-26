@@ -40,7 +40,15 @@ class SA(randomise.Random):
             k += 1
     
             # Generating a new configuration by swapping two amino_acids
-            new_protein_obj = copy.deepcopy(current_configuration)
+            self.new_protein_obj = copy.deepcopy(current_configuration)
+
+            # Extracting the dictionary with all protein information 
+            new_protein_dict = new_protein_obj.amino_acids
+
+
+            # i, j = random.sample(range(len(self.grid.amino_acids)), 2)
+            # new_protein_dict[i], new_protein_dict[j] = new_protein_dict[j], new_protein_dict[i]
+
             self.new_protein_dict = new_protein_obj.amino_acids
             # i, j = random.sample(range(len(self.grid.amino_acids)), 2)
             # self.new_protein_dict[i] , self.new_protein_dict[j] = self.new_protein_dict[j], self.new_protein_dict[i]
@@ -84,28 +92,12 @@ class SA(randomise.Random):
         return self.best_configuration
     
     def pullMove(self, new_protein_dict):
-        """Updates the dictionary location values of the new_protein (grid)object."""
+        """Updates the dictionary location values of the new_protein (grid)object.
+        In protein folding, pull moves involve moving an amino acid to a nearby unoccupied 
+        diagonal position."""
 
-        # Selecting a pivot point
-        #MAG NIET DE LAATSTE ZIJN DUS VANDAAR - 2
-        random_key = random.randint(0, len(new_protein_dict) - 2)
-        pivot = new_protein_dict[random_key] #== amino object
-        pivot_location = pivot._location
-        print(pivot_location)
-
-        # Determining the section to be rotated, by making a list of all the objects 
-        section = list(new_protein_dict.values())[random_key+1:] 
-        k, l = pivot._location
-        
-        for amino_obj in section:
-            # Updating these positions based on the pivot point
-            i, j  = amino_obj._location
-            new_location = (i+1, k)
-            i, j = new_location
-            amino_obj._location = new_location
-        
-           #MISSCHIEN NOG NODIG OM OP TE SLAAN IN ORIGINAL DICT???!
-
+        amino = random.choice(self.new_protein_obj.amino_acids)
+        coordinates = self.new_protein_obj.getDiagonal(amino)
 
 
 

@@ -4,53 +4,54 @@ import copy
 class DepthFirstSearch:
     def __init__(self, grid):
         self.grid = grid
-        self.solutions = set()
+        self.directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
-    def fold_protein(self):
-        """ Executes the depth-first search algorithm to fold the protein. """
-        self.solutions = set()  # Reset the solutions
-        self.execute()
-
+        self.best_score = 0
+        self.best_grid = None
+    
     def execute(self):
-        """
-        Recursive function that performs the depth-first search by exploring
-        possible moves and backtracking when necessary.
-        """
+        """Folds an entire protein using depth-first search"""
 
-        # Right, left, down, up
-        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
-        location = (0, 0)
+        # Initialize the stack with the starting position (0, 0)
+        # stack = [(0, 0)]
+        self.stack = [(1, copy.deepcopy(self.grid))]
 
-        while True:
-            # Check if all amino acids have been placed
-            if len(self.grid.amino_acids) == self.grid.max_grid_size:
-                self.solutions.add(copy.deepcopy(self.grid))
-                break
+        while self.stack:
+            
+            current_amino_id, grid = self.stack.pop()
 
-            # Try out all possible moves for all amino acids
-            for amino_id, amino in self.grid.amino_acids.items():
-                for direction in directions:
-                    next_pos = location[0] + direction[0], location[1] + direction[1]
+            if current_amino_id == len(grid.amino_acids):
+                 score = grid.compute_score()
 
-                    # Check if the location falls outside the grid size (AKA length of the protein)
-                    if self.grid.is_valid(next_pos):
-                        # Create a copy of the grid object
-                        grid_copy = copy.deepcopy(self.grid)
+                 if score < self.best_score:
+                      self.best_score = score
+                      self.best_grid = grid
 
-                        # Update the location of the amino acid in the copied grid
-                        amino_copy = grid_copy.amino_acids[amino_id]
-                        amino_copy.update_loc(next_pos)
+                      print(f'Found a configuration with score: {score}')
+            else:
+                # Iterate over the possible directions
+                self.get_children(grid, current_amino_id)
+            
 
-                        # Add the updated location to the set of locations of all amino acids and history
-                        grid_copy.locations.add(amino_copy._location)
-                        
-                        # Check what the move was and add it to the history of moves
-                        if amino_id != grid_copy.max_grid_size - 1:
-                            grid_copy.add_move(direction, amino_id)
-                        
-                        # Recursively call depth_first_search() with the updated grid copy
-                        self.depth_first_search()
+    def get_children(self, grid, current_amino_id):
 
-                    location = next_pos
-        
-        
+        for direction in self.directions:
+                current_pos = grid.amino_acids[current_amino_id - 1]._location
+                next_pos = current_pos[0] + direction[0], current_pos[1] + direction[1]
+
+                grid_child = copy.deepcopy(grid)
+                current_amino = grid_child.amino_acids[current_amino_id]
+
+                # Check if the next position is valid and not visited
+                if grid_child.is_valid(next_pos):
+                    # Update the location of the amino acid
+                    current_amino.update_loc(next_pos)
+
+                    # Add position to used locations and visited set
+                    grid_child.locations.add(next_pos)
+
+                    # Add the move to the history of moves
+                    grid_child.add_move(direction, current_amino_id)
+
+                    # Add the next position to the stack
+                    self.stack.append((current_amino_id + 1, grid_child))
