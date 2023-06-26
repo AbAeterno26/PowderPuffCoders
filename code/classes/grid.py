@@ -1,6 +1,7 @@
 import csv
 from code.classes import amino_cat
-import random
+import random 
+
 
 class Grid():
     # width equals the length of the protein string 
@@ -55,7 +56,7 @@ class Grid():
         """ This function returns true if the amino acids are adjacent """
         distance = abs(amino2[0] - amino1[0]) + abs(amino2[1] - amino1[1])
 
-        return distance == 1    
+        return distance == 1
     
     def calculate_bond_score(self, amino1, amino2) -> int:
         """ Calculates the bond score between two amino acids based on their types. """
