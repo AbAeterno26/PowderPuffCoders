@@ -12,7 +12,7 @@ class Greedy:
 
         for amino_id, amino in self.grid.amino_acids.items():
             # Initialize variables
-            max_score = float('-inf')
+            min_score = float('inf')
             best_direction = None
 
             # Generating a randomized list of directions
@@ -28,8 +28,8 @@ class Greedy:
                     self.grid.locations.add(next_pos)
                     score = self.grid.compute_score()
 
-                    if score > max_score:
-                        max_score = score
+                    if score < min_score:
+                        min_score = score
                         best_direction = direction
 
                     # Remove the amino acid from the temporary location
