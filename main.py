@@ -1,7 +1,5 @@
 from code.classes import grid
-from code.algorithms import randomise
-from code.algorithms import sa
-from code.algorithms import depth_first
+from code.algorithms import randomise, sa, depth_first, breadth_first, greedy
 from code.visualizations import visualize
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
@@ -29,16 +27,20 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
             algorithm_obj = sa.SA(grid_obj)
         elif algorithm == "depth":
             algorithm_obj = depth_first.DepthFirstSearch(grid_obj)
+        elif algorithm == "breadth":
+            algorithm_obj = breadth_first.BreadthFirstSearch(grid_obj)
+        elif algorithm == "greedy":
+            algorithm_obj = greedy.Greedy(grid_obj)
 
         algorithm_obj.execute()
-
-        # Get the modified grid object from simulated annealing
-        if algorithm == "sa":
+        
+        if algorithm == "random":
+            # Compute the score for the folding of the protein
+            grid_obj.compute_score()
+            scores.append(grid_obj.score)
+        else:
+            # Get the grid with the best score
             grid_obj = algorithm_obj.get_best_configuration()
-
-        # Compute the score for the folding of the protein
-        grid_obj.compute_score()
-        scores.append(grid_obj.score)
         
         # Visualize the protein folding
         if show_vis:
@@ -52,35 +54,36 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
     # Plot histogram of the scores for a specified protein
     path_to_file = f"data/output/{algorithm}/graphs/{input_file}"
     title = f"{algorithm} - {iterations} iterations"
-    plot_hist(scores, path_to_file, title, grid_obj.protein)
+    # plot_hist(scores, path_to_file, title)
 
     # Display rules if requested
     if rules:
         grid_obj.display_rules()
 
-if __name__ == "__main__":
-    # Check for the correct command line input
-    if len(argv) == 1:
-        print("Usage: python main.py [protein]")
-        exit(1)
-    
-    filename = argv[1]
-    protein_file = f"data/input/{filename}.txt"
-    
-def plot_hist(scores, filename, title, protein, iterations=100):
+def plot_hist(scores, filename, title):
     """
     This function plots a histogram of all the achieved scores (x-axis)
     for a specified algorithm that is applied and their occurences (y-axis).
     """
     fig, ax = plt.subplots()
-    sns.histplot(scores, kde=True, bins=10, ax=ax)
+    sns.histplot(scores, ax=ax)
     ax.set_title(title, fontsize=20, weight='bold')
     ax.set_xlabel('Score')
-    ax.set_ylabel('Occurrences')
+    ax.set_ylabel('Iterations')
     ax.xaxis.set_major_locator(MaxNLocator(integer=True))
+    ax.yaxis.set_major_locator(MaxNLocator(integer=True))
     fig.savefig(f"{filename}.png", bbox_inches='tight')
     plt.show()
 
-run(protein_file, iterations=10, algorithm='sa', show_vis=True)
+if __name__ == "__main__":
+    # Check for the correct command line input
+    if len(argv) == 1:
+        print("Usage: python main.py [protein] (algorithm)")
+        exit(1)
+    
+    filename = argv[1]
+    protein_file = f"data/input/{filename}.txt"
+    algorithm = argv[2]
 
-# run(protein_file, iterations=500, algorithm='random', show_vis=False)
+    # Run experiment for specified algorithm
+    run(protein_file, iterations=1, algorithm=algorithm, show_vis=True)

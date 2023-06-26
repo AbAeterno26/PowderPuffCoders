@@ -40,6 +40,7 @@ class SA(randomise.Random):
             k += 1
     
             # Generating a new configuration by swapping two amino_acids
+<<<<<<< HEAD
             self.new_protein_obj = copy.deepcopy(current_configuration)
 
             # Extracting the dictionary with all protein information 
@@ -49,20 +50,35 @@ class SA(randomise.Random):
             # i, j = random.sample(range(len(self.grid.amino_acids)), 2)
             # new_protein_dict[i], new_protein_dict[j] = new_protein_dict[j], new_protein_dict[i]
 
+=======
+            new_protein_obj = copy.deepcopy(current_configuration)
+>>>>>>> 6c6605f7e0de645b1ee6080497d5af1b6286f42d
             self.new_protein_dict = new_protein_obj.amino_acids
             # i, j = random.sample(range(len(self.grid.amino_acids)), 2)
             # self.new_protein_dict[i] , self.new_protein_dict[j] = self.new_protein_dict[j], self.new_protein_dict[i]
            
+<<<<<<< HEAD
             self.pullMove(self.new_protein_dict)
+=======
+            self.pivot()
+>>>>>>> 6c6605f7e0de645b1ee6080497d5af1b6286f42d
 
             # Calculate the score of the new ordered dictionary (protein)
             new_score = new_protein_obj.compute_score()
             # print(f'NEW SCORE IS {new_score}')
             score_diff = abs(new_score - current_score)
+<<<<<<< HEAD
 
             if score_diff > self.x:
                 # Calculate the acceptance probability based on the difference in score and current temperature
                 acceptance_probability = math.exp(-score_diff / current_temperature)
+=======
+            # print(f'SCORE DIFFERENCE IS {score_diff}')
+
+            if score_diff > self.x:
+                # Calculate the acceptance probability based on the difference in score and current temperature
+                acceptance_probability = math.exp((-score_diff) / current_temperature)
+>>>>>>> 6c6605f7e0de645b1ee6080497d5af1b6286f42d
                 acceptance_probability = round(acceptance_probability, 2)
                 # Also giving worse configuration a chance of acceptance 
                 if random.random() > acceptance_probability:
