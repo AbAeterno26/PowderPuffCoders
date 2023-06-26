@@ -13,6 +13,7 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
     input_file = protein_file.split('/')[2].strip('.txt')
 
     for i in range(iterations):
+        print(f"ITERATION\n{i}\n\n")
         # Create grid object
         grid_obj = grid.Grid()
 
@@ -38,9 +39,11 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
             # Compute the score for the folding of the protein
             grid_obj.compute_score()
             scores.append(grid_obj.score)
-        else:
+        elif algorithm_obj.best_grid:
             # Get the grid with the best score
             grid_obj = algorithm_obj.get_best_configuration()
+            print(grid_obj.amino_acids.keys())
+            print(grid_obj.locations)
         
         # Visualize the protein folding
         if show_vis:
