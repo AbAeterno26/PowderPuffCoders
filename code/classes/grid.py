@@ -1,7 +1,5 @@
 import csv
 from code.classes import amino_cat
-
-
 class Grid():
     # width equals the length of the protein string 
     def __init__(self):

@@ -1,7 +1,7 @@
 from code.classes import grid
-from code.algorithms import randomise
-from code.algorithms import sa
-from code.algorithms import depth_first
+from code.algorithms import randomise, sa, depth_first, greedy
+# from code.algorithms import sa
+# from code.algorithms import depth_first
 from code.visualizations import visualize
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
@@ -29,13 +29,15 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
             algorithm_obj = sa.SA(grid_obj)
         elif algorithm == "depth":
             algorithm_obj = depth_first.DepthFirstSearch(grid_obj)
-
+        elif algorithm == "greedy":
+            algorithm_obj = greedy.Greedy(grid_obj)
         algorithm_obj.execute()
 
         # Get the modified grid object from simulated annealing
         if algorithm == "sa":
             grid_obj = algorithm_obj.get_best_configuration()
-
+        if algorithm == "greedy":
+            grid_obj = algorithm_obj.get_best_configuration()
         # Compute the score for the folding of the protein
         grid_obj.compute_score()
         scores.append(grid_obj.score)
