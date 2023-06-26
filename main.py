@@ -13,7 +13,6 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
     input_file = protein_file.split('/')[2].strip('.txt')
 
     for i in range(iterations):
-        print(f"ITERATION\n{i}\n\n")
         # Create grid object
         grid_obj = grid.Grid()
 
