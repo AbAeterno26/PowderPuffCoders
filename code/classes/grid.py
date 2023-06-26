@@ -27,26 +27,28 @@ class Grid():
 
             # Check if there is a chance for a hydrogen bond
             if current_amino.text == 'H' or current_amino.text == 'C':
-              
-                # Find the next and previous amino acid object
-                if i == len(self.amino_acids) - 1:
-                    
-                    # Skip assigning a value to next_amino for the last amino acid
-                    continue
-                next_amino = self.amino_acids[i + 1]
-
-                # Initialize prev_amino as None
-                prev_amino = None
-                if i > 0:
-                    # Skip assiging a value to prev_amino for the first amino acid
+            # Find the next and previous amino acid object
+                if i == 0:
+                    # Skip assigning a value to prev_amino for the first amino acid
+                    prev_amino = None
+                else:
                     prev_amino = self.amino_acids[i - 1]
+
+                if i == len(self.amino_acids) - 1:
+                    # Skip assigning a value to next_amino for the last amino acid
+                    next_amino = None
+                else:
+                    next_amino = self.amino_acids[i + 1]
 
                 # Check if it is not a covalent bond and if the amino acids are apart 1 step
                 for amino in self.amino_acids.values():
 
                     # Check if there is a next amino or previous amino
-                    if prev_amino and next_amino:
-                        if amino.amino_id != next_amino.amino_id and amino.amino_id != prev_amino.amino_id and self.check_location(current_amino._location, amino._location):
+                    if prev_amino and amino.amino_id != prev_amino.amino_id and self.check_location(current_amino._location, amino._location):
+                        if current_amino.amino_id < amino.amino_id:
+                            self.score += self.calculate_bond_score(current_amino, amino)
+                    if next_amino and amino.amino_id != next_amino.amino_id and self.check_location(current_amino._location, amino._location):
+                        if current_amino.amino_id < amino.amino_id:
                             self.score += self.calculate_bond_score(current_amino, amino)
 
         self.score = self.score
