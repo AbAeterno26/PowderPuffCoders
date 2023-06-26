@@ -1,8 +1,5 @@
 from code.classes import grid
-from code.algorithms import randomise
-from code.algorithms import sa
-from code.algorithms import depth_first
-from code.algorithms import breadth_first
+from code.algorithms import randomise, sa, depth_first, breadth_first, greedy
 from code.visualizations import visualize
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
@@ -32,6 +29,8 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
             algorithm_obj = depth_first.DepthFirstSearch(grid_obj)
         elif algorithm == "breadth":
             algorithm_obj = breadth_first.BreadthFirstSearch(grid_obj)
+        elif algorithm == "greedy":
+            algorithm_obj = greedy.Greedy(grid_obj)
 
         algorithm_obj.execute()
         
