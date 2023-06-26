@@ -80,18 +80,9 @@ class Visualize():
         for i in range(len(self.grid.amino_acids) - 1):
             current_amino = self.grid.amino_acids[i]
             next_amino = self.grid.amino_acids[i + 1]
-            x1, y1 = current_amino._location
-            x2, y2 = next_amino._location
-
-        # Loop over each amino acid
-        for i in range(len(self.grid.amino_acids)):
-    
-            # The index of this location is the key in the dictionary with amino acids
-            current_amino = self.grid.amino_acids[i]
 
             # Check if there is a chance for a hydrogen bond
             if current_amino.text == 'H' or current_amino.text == 'C':
-              
                 # Find the next and previous amino acid object
                 if i == len(self.grid.amino_acids) - 1:
                     
@@ -110,11 +101,12 @@ class Visualize():
 
                     # Check if there is a next amino or previous amino
                     if amino != next_amino and amino != prev_amino and self.grid.check_location(current_amino._location, amino._location):
-                        fold_lines.append(go.Scatter(x=[current_amino._location[0], amino._location[0]],
-                                                     y=[current_amino._location[1], amino._location[1]],
-                                                     mode='lines', 
-                                                     line=dict(color='blue', dash='dot', width=2), 
-                                                     showlegend=False))
+                        if self.grid.is_hydrogen_bond(current_amino, amino):
+                            fold_lines.append(go.Scatter(x=[current_amino._location[0], amino._location[0]],
+                                                        y=[current_amino._location[1], amino._location[1]],
+                                                        mode='lines', 
+                                                        line=dict(color='blue', dash='dash', width=2), 
+                                                        showlegend=False))
 
 
         # for i in range(len(amino_acids)):
