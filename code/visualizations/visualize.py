@@ -49,6 +49,7 @@ class Visualize():
         # Appending the different locations to the different lists for aminoacids.
         for amino in self.grid.amino_acids.values():
             x, y = amino._location
+            print(x, y)
             x_values.append(x)
             y_values.append(y)
             if amino.text == 'H':

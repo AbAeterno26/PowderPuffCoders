@@ -1,5 +1,4 @@
 import copy
-import random
 
 
 class DepthFirstSearch:
@@ -14,11 +13,8 @@ class DepthFirstSearch:
         """Folds an entire protein using depth-first search"""
 
         # Initialize the grid with the first amino acid placed
-        direction = random.choice(self.directions)
-        self.grid.add_move(direction, 0)
-        current_pos = self.grid.amino_acids[0]._location
-        next_pos = current_pos[0] + direction[0], current_pos[1] + direction[1]
-        self.grid.locations.add(next_pos)
+        self.grid.add_move((0, 0), 0)
+        self.grid.locations.add((0, 0))
 
         # Initialize the stack with the starting position (0, 0)
         initial_grid = copy.deepcopy(self.grid)
@@ -30,7 +26,7 @@ class DepthFirstSearch:
             current_amino_id, grid = self.stack.pop()
 
             # Check if we are at the end of the protein
-            if current_amino_id == len(grid.amino_acids):
+            if current_amino_id == len(grid.amino_acids) - 1:
                 score = grid.compute_score()
                 
                 # Check if the current score is better than the current best
@@ -50,25 +46,25 @@ class DepthFirstSearch:
         and generates all the possible child states for the current amino acid
         """
         for direction in self.directions:
-                current_pos = grid.amino_acids[current_amino_id - 1]._location
-                next_pos = current_pos[0] + direction[0], current_pos[1] + direction[1]
+            current_pos = grid.amino_acids[current_amino_id - 1]._location
+            next_pos = current_pos[0] + direction[0], current_pos[1] + direction[1]
 
-                grid_child = copy.deepcopy(grid)
-                current_amino = grid_child.amino_acids[current_amino_id]
+            grid_child = copy.deepcopy(grid)
+            current_amino = grid_child.amino_acids[current_amino_id]
 
-                # Check if the next position is valid and not visited
-                if grid_child.is_valid(next_pos):
-                    # Update the location of the amino acid
-                    current_amino.update_loc(next_pos)
+            # Check if the next position is valid and not visited
+            if grid_child.is_valid(next_pos):
+                # Update the location of the amino acid
+                current_amino.update_loc(next_pos)
 
-                    # Add position to used locations and visited set
-                    grid_child.locations.add(next_pos)
+                # Add position to used locations and visited set
+                grid_child.locations.add(next_pos)
 
-                    # Add the move to the history of moves
-                    grid_child.add_move(direction, current_amino_id)
+                # Add the move to the history of moves
+                grid_child.add_move(direction, current_amino_id)
 
-                    # Add the next position to the stack
-                    self.stack.append((current_amino_id + 1, grid_child))
+                # Add the next position to the stack
+                self.stack.append((current_amino_id + 1, grid_child))
 
     def get_best_configuration(self):
         return self.best_grid
