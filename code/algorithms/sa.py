@@ -40,6 +40,7 @@ class SA(randomise.Random):
         while current_temp > self.final_temp:
             # Keeping track of iterations
             k += 1
+<<<<<<< HEAD
 
             # Making a copy of the grid object
             self.new_protein_obj = copy.deepcopy(current_configuration)
@@ -49,10 +50,24 @@ class SA(randomise.Random):
 
             # Executing the pullmove to create a different configuration 
             self.pullMove(new_protein_dict)
+=======
+    
+            # Generating a new configuration by swapping two amino_acids
+            new_protein_obj = copy.deepcopy(current_configuration)
+            self.new_protein_dict = new_protein_obj.amino_acids
+            # i, j = random.sample(range(len(self.grid.amino_acids)), 2)
+            # self.new_protein_dict[i] , self.new_protein_dict[j] = self.new_protein_dict[j], self.new_protein_dict[i]
+           
+            self.pivot()
+>>>>>>> cfe9bb4c1640885dd79f2d7d98af4a6107c281a6
 
             # Calculate the score of the new ordered dictionary (protein)
             new_score = self.new_protein_obj.compute_score()
             score_diff = abs(new_score - current_score)
+<<<<<<< HEAD
+=======
+            # print(f'SCORE DIFFERENCE IS {score_diff}')
+>>>>>>> cfe9bb4c1640885dd79f2d7d98af4a6107c281a6
 
             if score_diff > self.x:
                 # Calculate the acceptance probability based on the difference in score and current temperature
