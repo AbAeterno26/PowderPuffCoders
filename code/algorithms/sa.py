@@ -50,15 +50,15 @@ class SA(randomise.Random):
             # Calculate the score of the new ordered dictionary (protein)
             new_score = new_protein_obj.compute_score()
             # print(f'NEW SCORE IS {new_score}')
-            score_diff = new_score - current_score
+            score_diff = abs(new_score - current_score)
             # print(f'SCORE DIFFERENCE IS {score_diff}')
 
             if score_diff > self.x:
                 # Calculate the acceptance probability based on the difference in score and current temperature
-                acceptance_probability = math.exp((new_score - current_score) / current_temperature)
+                acceptance_probability = math.exp((-score_diff) / current_temperature)
                 acceptance_probability = round(acceptance_probability, 2)
                 # Also giving worse configuration a chance of acceptance 
-                if acceptance_probability > random.random():
+                if random.random() > acceptance_probability:
                     current_configuration = new_protein_obj
                     current_score = new_score
                     # If the new configuration has a higher score, update the best configuration

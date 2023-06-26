@@ -67,20 +67,20 @@ if __name__ == "__main__":
     filename = argv[1]
     protein_file = f"data/input/{filename}.txt"
     
-def plot_hist(scores, filename, title, protein, iterations=100):
+def plot_hist(scores, filename, title, protein):
     """
     This function plots a histogram of all the achieved scores (x-axis)
     for a specified algorithm that is applied and their occurences (y-axis).
     """
     fig, ax = plt.subplots()
-    sns.histplot(scores, kde=True, bins=10, ax=ax)
+    sns.histplot(scores, ax=ax)
     ax.set_title(title, fontsize=20, weight='bold')
     ax.set_xlabel('Score')
-    ax.set_ylabel('Occurrences')
+    ax.set_ylabel('Iterations')
     ax.xaxis.set_major_locator(MaxNLocator(integer=True))
+    ax.yaxis.set_major_locator(MaxNLocator(integer=True))
     fig.savefig(f"{filename}.png", bbox_inches='tight')
     plt.show()
 
-run(protein_file, iterations=10, algorithm='sa', show_vis=True)
+run(protein_file, iterations=10, algorithm='random', show_vis=True)
 
-# run(protein_file, iterations=500, algorithm='random', show_vis=False)

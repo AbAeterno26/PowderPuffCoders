@@ -1,0 +1,238 @@
+5a0491c - suus-stack, 45 minutes ago : updat pivot
+be69a0b - suus-stack, 58 minutes ago : updated pivot function
+d398fe7 - suus-stack, 82 minutes ago : adding pivot function
+29e898b - isahio, 83 minutes ago : merge conflict
+6511f07 - isahio, 84 minutes ago : histo plot
+20a19c0 - AbAeterno26, 2 hours ago : merge
+3b2f5bb - AbAeterno26, 2 hours ago : update depth
+dcb8aaf - suus-stack, 4 hours ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+37bbd14 - suus-stack, 4 hours ago : self.best_configuration zodat aanroepen via main en alles lukt
+02f4153 - isahio, 4 hours ago : main
+2c84d67 - isahio, 4 hours ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+6cd6867 - AbAeterno26, 4 hours ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+22f3269 - AbAeterno26, 4 hours ago : update main sa
+6e20662 - isahio, 4 hours ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+b7b49d2 - suus-stack, 4 hours ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+231c635 - suus-stack, 4 hours ago : get_best_configuration, deleted get_best_score
+db55f23 - AbAeterno26, 4 hours ago : merge
+e94d057 - AbAeterno26, 4 hours ago : merge conflict
+c316cc3 - isahio, 4 hours ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+a85c3a8 - isahio, 4 hours ago : main merge
+93abb52 - suus-stack, 4 hours ago : get_best_score functie in sa, nodig voor visualize
+3c18e03 - AbAeterno26, 4 hours ago : update
+dea119e - suus-stack, 4 hours ago : Simulated Analing
+c47213a - suus-stack, 4 hours ago : Simulated Analing
+bf37bd3 - isahio, 4 hours ago : visualiseeeaahhh
+c7f800b - isahio, 26 hours ago : changes vis
+322136f - isahio, 26 hours ago : changes vis
+f2cf119 - AbAeterno26, 26 hours ago : merge conflict
+38e36ba - AbAeterno26, 26 hours ago : update depth first and code cleanup
+76d302a - isahio, 30 hours ago : main.py visualize fic
+5c87900 - isahio, 30 hours ago : visualize and main.py update
+5ae0ecf - isahio, 30 hours ago : visualize and main.py update
+bb57659 - suus-stack, 30 hours ago : sa.py
+deba7a0 - isahio, 30 hours ago : main
+529d5c1 - isahio, 2 days ago : fixed randomise indent error!
+d9e5d96 - AbAeterno26, 2 days ago : update
+c5ba14a - AbAeterno26, 2 days ago : code cleanup
+56770c4 - isahio, 2 days ago : code cleanup
+0bf09c7 - isahio, 2 days ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+8d16f22 - AbAeterno26, 2 days ago : code cleanup
+1e241cf - isahio, 2 days ago : merge conflict
+e50f76e - isahio, 2 days ago : merge conflict
+7d10748 - AbAeterno26, 2 days ago : removed duplicate code in main
+648618e - suus-stack, 2 days ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+2da6ea8 - isahio, 2 days ago : update vis
+2bc1b0d - isahio, 2 days ago : visualize update 1
+2b29990 - Marieke, 2 days ago : Update README.md
+3560a20 - suus-stack, 2 days ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+1279330 - suus-stack, 2 days ago : sa.py
+a613514 - AbAeterno26, 3 days ago : added functionality to output csv correctly, CREDITS TO MARIEKE MULDER AKA THE BAE <3
+1708528 - AbAeterno26, 4 days ago : added comment
+06bbccc - AbAeterno26, 4 days ago : code cleanup whitespace
+4a2f110 - AbAeterno26, 4 days ago : simulated annealing empty class made
+c10ec7a - AbAeterno26, 4 days ago : update randomise
+917f5de - suus-stack, 4 days ago : randomise now turned into class so SA can inherit
+203207a - suus-stack, 4 days ago : randomise now turned into class so SA can inherit
+da6451a - AbAeterno26, 4 days ago : updated main to work with different algorithms
+74d5b20 - AbAeterno26, 4 days ago : update
+d00ed95 - AbAeterno26, 4 days ago : update
+000b24e - AbAeterno26, 4 days ago : update
+aabfe04 - suus-stack, 4 days ago : line in graph
+fba2c5e - suus-stack, 4 days ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+9d48397 - suus-stack, 4 days ago : merge
+0de3f12 - AbAeterno26, 4 days ago : update gitignore
+3fe6d33 - AbAeterno26, 4 days ago : code cleanup
+967cecc - suus-stack, 4 days ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+dce3dbf - suus-stack, 4 days ago : merge
+212c22c - AbAeterno26, 4 days ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+5329ca7 - AbAeterno26, 4 days ago : Revert "improved plot histogram with titles"
+7be8bcb - suus-stack, 5 days ago : merge
+d466db0 - isahio, 6 days ago : merge conflict
+2821120 - isahio, 6 days ago : merge conflict
+649d730 - AbAeterno26, 6 days ago : improved plot histogram with titles
+69efc23 - AbAeterno26, 6 days ago : code cleanup
+eb398c8 - AbAeterno26, 6 days ago : code cleanup
+4d0a233 - AbAeterno26, 6 days ago : code cleanup
+0ebce6e - AbAeterno26, 6 days ago : code cleanup
+845305f - AbAeterno26, 6 days ago : improved version of plot_hist
+91d3048 - AbAeterno26, 6 days ago : plot development function finished to make histogram of baseline for random
+894aa56 - AbAeterno26, 6 days ago : compute score finished
+fb0c078 - AbAeterno26, 6 days ago : code cleanup
+d5f38b1 - suus-stack, 6 days ago : update main
+b0117e9 - suus-stack, 6 days ago : merge
+3bd7a04 - AbAeterno26, 6 days ago : update compute score
+915ba68 - AbAeterno26, 6 days ago : update compute score
+aaefce7 - suus-stack, 6 days ago : merge
+f72b733 - suus-stack, 6 days ago : merge
+6f84b3c - AbAeterno26, 7 days ago : code cleanup
+bb41c26 - AbAeterno26, 7 days ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+60cdddd - AbAeterno26, 7 days ago : update
+1ad2a9e - Sarah, 7 days ago : Delete .DS_Store
+0410233 - AbAeterno26, 7 days ago : gitignore final update hopefully
+85bff5d - AbAeterno26, 7 days ago : update gitignore
+cea869c - AbAeterno26, 7 days ago : update gitignore
+a8c8fdf - suus-stack, 7 days ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+24196ca - AbAeterno26, 7 days ago : gitignore updated
+e98b314 - AbAeterno26, 7 days ago : FIXED ALL THE CODE BITCHES
+9a0aa73 - AbAeterno26, 7 days ago : style
+4fa3996 - suus-stack, 7 days ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+91e25d4 - suus-stack, 7 days ago : merge
+2691c0e - AbAeterno26, 7 days ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+d9cbe28 - AbAeterno26, 7 days ago : merge
+b79155d - isahio, 7 days ago : grid update
+22c31f0 - AbAeterno26, 7 days ago : cleanup:
+c58c549 - suus-stack, 7 days ago : update randomise.py
+5b40fd5 - AbAeterno26, 7 days ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+7eb20cc - AbAeterno26, 7 days ago : code cleanup main
+f205969 - isahio, 7 days ago : merge conflict
+31c03ef - isahio, 7 days ago : changes
+780f6af - suus-stack, 7 days ago : bla
+1ed280d - AbAeterno26, 7 days ago : check neighbours
+06bf72d - AbAeterno26, 7 days ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+1043455 - AbAeterno26, 7 days ago : update file loading in main
+fbd855c - isahio, 7 days ago : merge conflict
+1aba5b6 - isahio, 7 days ago : merge conflict
+8d8d101 - suus-stack, 7 days ago : changed structure for amino storage
+b9c60bc - suus-stack, 7 days ago : just to pull
+3de52b2 - isahio, 7 days ago : merge conflict
+0539e6c - isahio, 7 days ago : merge conflict
+0887595 - AbAeterno26, 8 days ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+c293dc2 - AbAeterno26, 8 days ago : update
+44b74e8 - suus-stack, 8 days ago : test
+40233be - suus-stack, 8 days ago : bliblabloe
+8096f1f - isahio, 8 days ago : merge conflict
+c4dc67c - isahio, 8 days ago : merge conflict
+49d7703 - AbAeterno26, 8 days ago : update compute score func
+f7174ca - AbAeterno26, 8 days ago : run function to run algorithm multiple times
+74ecbc4 - suus-stack, 8 days ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+942f982 - suus-stack, 8 days ago : plot function
+5252398 - AbAeterno26, 8 days ago : merge
+e46a215 - AbAeterno26, 8 days ago : merge conflict
+55caf45 - isahio, 8 days ago : merge conflict
+5b06187 - isahio, 8 days ago : self.history fix
+7957177 - AbAeterno26, 8 days ago : code cleaup
+f64324d - AbAeterno26, 8 days ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+b443e1b - isahio, 8 days ago : grid update
+2d65534 - isahio, 8 days ago : update main
+2c172df - AbAeterno26, 8 days ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+72ede52 - AbAeterno26, 8 days ago : merge conflict
+fd22ac3 - isahio, 8 days ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+7f89846 - suus-stack, 8 days ago : bug
+ec84532 - isahio, 8 days ago : merge
+67fd9a2 - isahio, 8 days ago : idk
+8722d43 - AbAeterno26, 8 days ago : code cleanup
+cb0f1c4 - AbAeterno26, 8 days ago : code cleanup
+b0ce25a - Marieke, 8 days ago : Update grid.py
+4e3a0fa - AbAeterno26, 8 days ago : fuck
+843c566 - AbAeterno26, 8 days ago : merge conflict
+21bb9e6 - isahio, 8 days ago : compute score function class
+2cfc77f - AbAeterno26, 8 days ago : merge conflict
+f9180e0 - isahio, 8 days ago : compute score function class
+a28c9de - AbAeterno26, 8 days ago : compute score
+8bdf927 - suus-stack, 8 days ago : comments
+858a5e8 - suus-stack, 8 days ago : just to pull
+eef74d7 - AbAeterno26, 9 days ago : update location function inside grid and randomise also updated
+4e0ea56 - AbAeterno26, 9 days ago : removed comment
+7940ab9 - isahio, 9 days ago : randomise and amino_cat update :)
+b26d469 - isahio, 9 days ago : tryout
+490cf77 - AbAeterno26, 9 days ago : update loc function and amino class accepts one tuple as location instead of separate row and column attribute
+8047582 - AbAeterno26, 9 days ago : readded load input func
+ca66c11 - AbAeterno26, 9 days ago : merge
+cf6b93d - AbAeterno26, 9 days ago : update main, everything organized in functions, updated randomise to work with a whole protein and cleaned up grid, also merged the amino classes and made the output to csv function dynamic.
+5cf4250 - isahio, 9 days ago : slight change in random
+642acfb - Marieke, 11 days ago : Update README.md
+2e48db2 - isahio, 11 days ago : baseline update 1 random algorithm
+6102b44 - suus-stack, 11 days ago : output to csv function
+fcfe668 - suus-stack, 11 days ago : update randomise
+4f3f531 - isahio, 11 days ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+e0091fd - isahio, 11 days ago : tryout change
+c1b41ac - suus-stack, 11 days ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+5444fa5 - suus-stack, 11 days ago : rename variables
+d05e2f4 - isahio, 11 days ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+d55d6a3 - isahio, 11 days ago : merge
+6f51b04 - suus-stack, 11 days ago : Changed list structures to dict, random works now!
+ce5038b - isahio, 11 days ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+436bb81 - isahio, 11 days ago : update main
+6f0fa85 - suus-stack, 11 days ago : updated main.py
+6f7d6fa - isahio, 11 days ago : randomise update algorithm
+774f44e - isahio, 11 days ago : randomise update algorithm
+4463636 - suus-stack, 11 days ago : merge
+555933f - isahio, 11 days ago : updated randomise.py
+d250ff2 - suus-stack, 11 days ago : merge
+15b2e71 - suus-stack, 11 days ago : printing the grid
+50f3249 - AbAeterno26, 12 days ago : update readme spelling
+c09f562 - AbAeterno26, 12 days ago : added function call to plot function for grid in main.py and removed dead code from grid.py
+e9cf95e - AbAeterno26, 12 days ago : update grid, added aminoacids attribute
+f93e2ff - isahio, 12 days ago : updated randomise
+58a3898 - isahio, 12 days ago : amino files all added
+37671af - Marieke, 12 days ago : Update README.md
+1b53b36 - Marieke, 12 days ago : Update README.md
+d4546f6 - Marieke, 12 days ago : Update README.md
+d527e3a - suus-stack, 2 weeks ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+9a221e5 - suus-stack, 2 weeks ago : Updating main with grid plotting
+e4f3065 - AbAeterno26, 2 weeks ago : cleaned up main
+e9613c8 - suus-stack, 2 weeks ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+163e1ae - suus-stack, 2 weeks ago : Amino list added
+b5319d4 - AbAeterno26, 2 weeks ago : added plot protein function
+08a0ff4 - AbAeterno26, 2 weeks ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+23d67ab - AbAeterno26, 2 weeks ago : update main
+a536a6e - AbAeterno26, 2 weeks ago : update
+3f42351 - suus-stack, 2 weeks ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+7a7a2c1 - suus-stack, 2 weeks ago : update main
+5ffdc52 - AbAeterno26, 2 weeks ago : update main and grid
+ba9bb62 - AbAeterno26, 2 weeks ago : update main and grid
+d14f86c - suus-stack, 2 weeks ago : update randomise and main.py
+6961628 - suus-stack, 2 weeks ago : Updated the main.py
+dad96ff - isahio, 2 weeks ago : grid update
+16c66aa - isahio, 2 weeks ago : randomise update
+2047bd8 - AbAeterno26, 2 weeks ago : updated classes for each aminoacid and made the grid dynamic
+33458f9 - suus-stack, 2 weeks ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+124e96f - suus-stack, 2 weeks ago : Tryouts with visualizing the grid
+874d137 - AbAeterno26, 2 weeks ago : update grid.py and main.py
+8c6f4b2 - isahio, 2 weeks ago : updated grid
+4ee684f - AbAeterno26, 2 weeks ago : update grid.py
+2057893 - isahio, 2 weeks ago : added the init.py
+f1381e8 - isahio, 2 weeks ago : added the main.py
+916aa0b - isahio, 2 weeks ago : added the main.py
+861abc8 - isahio, 2 weeks ago : added the main.py
+cd45a38 - isahio, 2 weeks ago : added three amino textfiles
+cedfac2 - suus-stack, 2 weeks ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+4945860 - suus-stack, 2 weeks ago : add visualization folder
+8ad04ef - AbAeterno26, 2 weeks ago : Merge branch 'main' of https://github.com/AbAeterno26/PowderPuffCoders
+0ee0145 - AbAeterno26, 2 weeks ago : folders added
+b01d520 - Sarah, 2 weeks ago : Create .gitignore
+9038c1e - AbAeterno26, 2 weeks ago : data folder added
+b43dd62 - Sarah, 2 weeks ago : added folders
+6357cc8 - Sarah Blok, 2 weeks ago : update
+2cef1ac - Sarah Blok, 2 weeks ago : update
+1175c77 - Sarah, 2 weeks ago : Delete .gitignore
+eb20d48 - Sarah Blok, 2 weeks ago : update
+806a6fc - Marieke, 2 weeks ago : Update README.md
+a2e13e4 - Sarah, 2 weeks ago : Delete README_files
+29204bd - Sarah Blok, 2 weeks ago : added code, data, docs folder and randomise algorithm (not implemented) and grid class
+fadf437 - Sarah Blok, 2 weeks ago : added code, data, and docs folder. Randomise algorithm (not implemented) and grid for representation of protein
+0352cee - Suze Frikkee, 2 weeks ago : Update README.md
+7745784 - Marieke, 3 weeks ago : Create README_files
+27d10bd - Marieke, 3 weeks ago : Update README.md
+31efa9f - Sarah, 3 weeks ago : Initial commit
