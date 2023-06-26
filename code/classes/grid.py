@@ -45,10 +45,11 @@ class Grid():
                 for amino in self.amino_acids.values():
 
                     # Check if there is a next amino or previous amino
-                    if amino != next_amino and amino != prev_amino and self.check_location(current_amino._location, amino._location):
-                        self.score += self.calculate_bond_score(current_amino, amino)
+                    if prev_amino and next_amino:
+                        if amino.amino_id != next_amino.amino_id and amino.amino_id != prev_amino.amino_id and self.check_location(current_amino._location, amino._location):
+                            self.score += self.calculate_bond_score(current_amino, amino)
 
-        self.score = round(self.score / 2.0)
+        self.score = self.score
         return self.score
 
     def check_location(self, amino1: tuple, amino2: tuple) -> bool:
@@ -65,8 +66,10 @@ class Grid():
             return -1
         elif amino1.text == "C" and amino2.text == "C":
             return -5
+
         else:
             return 0
+
         
     def is_hydrogen_bond(self, amino1, amino2) -> bool:
         """ Checks if there is a hydrogen bond between two given amino acids """
