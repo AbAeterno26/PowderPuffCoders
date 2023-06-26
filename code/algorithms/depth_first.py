@@ -13,13 +13,12 @@ class DepthFirstSearch:
         """Folds an entire protein using depth-first search"""
 
         # Initialize the stack with the starting position (0, 0)
-        # stack = [(0, 0)]
         self.stack = [(1, copy.deepcopy(self.grid))]
 
         while self.stack:
-            
             current_amino_id, grid = self.stack.pop()
 
+            # Check if we are at the end of the protein
             if current_amino_id == len(grid.amino_acids):
                  score = grid.compute_score()
 
@@ -34,7 +33,10 @@ class DepthFirstSearch:
             
 
     def get_children(self, grid, current_amino_id):
-
+        """
+        This function iterates over the possible directions
+        and generates all the possible child states for the current amino acid
+        """
         for direction in self.directions:
                 current_pos = grid.amino_acids[current_amino_id - 1]._location
                 next_pos = current_pos[0] + direction[0], current_pos[1] + direction[1]
