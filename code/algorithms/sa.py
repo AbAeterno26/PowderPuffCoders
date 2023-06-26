@@ -34,7 +34,7 @@ class SA(randomise.Random):
         current_score = self.grid.compute_score()
 
         # Setting the best values equal to the current ones 
-        self.best_configuration = current_configuration
+        self.best_grid = current_configuration
         self.best_score = current_score
         
         while current_temp > self.final_temp:
@@ -67,7 +67,7 @@ class SA(randomise.Random):
                     # If the new configuration has a higher score, update the best configuration
                     if current_score < self.best_score:
                         self.best_score = current_score
-                        self.best_configuration = current_configuration
+                        self.best_grid = current_configuration
 
             # Updating the temperature according to the cooling schedule 
             if self.cooling == 'exponential':
@@ -79,11 +79,11 @@ class SA(randomise.Random):
             if self.cooling == 'adaptive':
                 pass 
 
-            print(f'best configuration is {self.best_configuration}')
+            print(f'best configuration is {self.best_grid}')
             print(f'best score is {self.best_score}')
         
     def get_best_configuration(self):
-        return self.best_configuration
+        return self.best_grid
     
     def pullMove(self, new_protein_dict):
         """Updates the dictionary location values of the new_protein (grid)object.
