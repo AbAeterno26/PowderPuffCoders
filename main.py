@@ -87,4 +87,4 @@ if __name__ == "__main__":
     algorithm = argv[2]
 
     # Run experiment for specified algorithm
-    run(protein_file, iterations=10, algorithm=algorithm, show_vis=True)
+    run(protein_file, iterations=1, algorithm=algorithm, show_vis=True)
