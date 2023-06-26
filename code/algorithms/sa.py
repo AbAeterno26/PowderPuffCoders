@@ -41,17 +41,11 @@ class SA(randomise.Random):
     
             # Generating a new configuration by swapping two amino_acids
             new_protein_obj = copy.deepcopy(current_configuration)
-<<<<<<< HEAD
-            new_protein_dict = new_protein_obj.amino_acids
-            i, j = random.sample(range(len(self.grid.amino_acids)), 2)
-            new_protein_dict[i], new_protein_dict[j] = new_protein_dict[j], new_protein_dict[i]
-=======
             self.new_protein_dict = new_protein_obj.amino_acids
             # i, j = random.sample(range(len(self.grid.amino_acids)), 2)
             # self.new_protein_dict[i] , self.new_protein_dict[j] = self.new_protein_dict[j], self.new_protein_dict[i]
            
             self.pivot()
->>>>>>> 5a0491ca850d999aab77127b7b6d086f2068a0bd
 
             # Calculate the score of the new ordered dictionary (protein)
             new_score = new_protein_obj.compute_score()

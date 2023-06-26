@@ -67,7 +67,7 @@ if __name__ == "__main__":
     filename = argv[1]
     protein_file = f"data/input/{filename}.txt"
     
-def plot_hist(scores, filename, title, protein):
+def plot_hist(scores, filename, title):
     """
     This function plots a histogram of all the achieved scores (x-axis)
     for a specified algorithm that is applied and their occurences (y-axis).
