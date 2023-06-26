@@ -11,7 +11,7 @@ class SA(randomise.Random):
         self.grid = grid
         self.initial_temp = initial_temp
         self.cooling = cooling
-        self.final_temper = final_temp
+        self.final_temp = final_temp
         self.alpha = alpha
         self.rate_of_decrease = rate_of_decrease
         self.x = 0
@@ -40,7 +40,6 @@ class SA(randomise.Random):
         while current_temp > self.final_temp:
             # Keeping track of iterations
             k += 1
-<<<<<<< HEAD
 
             # Making a copy of the grid object
             self.new_protein_obj = copy.deepcopy(current_configuration)
@@ -50,28 +49,14 @@ class SA(randomise.Random):
 
             # Executing the pullmove to create a different configuration 
             self.pullMove(new_protein_dict)
-=======
-    
-            # Generating a new configuration by swapping two amino_acids
-            new_protein_obj = copy.deepcopy(current_configuration)
-            self.new_protein_dict = new_protein_obj.amino_acids
-            # i, j = random.sample(range(len(self.grid.amino_acids)), 2)
-            # self.new_protein_dict[i] , self.new_protein_dict[j] = self.new_protein_dict[j], self.new_protein_dict[i]
-           
-            self.pivot()
->>>>>>> cfe9bb4c1640885dd79f2d7d98af4a6107c281a6
 
             # Calculate the score of the new ordered dictionary (protein)
             new_score = self.new_protein_obj.compute_score()
             score_diff = abs(new_score - current_score)
-<<<<<<< HEAD
-=======
-            # print(f'SCORE DIFFERENCE IS {score_diff}')
->>>>>>> cfe9bb4c1640885dd79f2d7d98af4a6107c281a6
 
             if score_diff > self.x:
                 # Calculate the acceptance probability based on the difference in score and current temperature
-                acceptance_probability = math.exp((-score_diff) / current_temperature)
+                acceptance_probability = math.exp((-score_diff) / current_temp)
                 acceptance_probability = round(acceptance_probability, 2)
 
                 # Also giving worse configuration a chance of acceptance 
@@ -86,11 +71,11 @@ class SA(randomise.Random):
 
             # Updating the temperature according to the cooling schedule 
             if self.cooling == 'exponential':
-                current_temperature = self.initial_temperature * self.alpha**k
+                current_temp = self.initial_temperature * self.alpha**k
             if self.cooling == 'logarithmic':
-                current_temperature = self.initial_temperature / math.log(k+1)
+                current_temp = self.initial_temperature / math.log(k+1)
             if self.cooling == 'linear':
-                current_temperature *= self.rate_of_decrease
+                current_temp *= self.rate_of_decrease
             if self.cooling == 'adaptive':
                 pass 
 
@@ -107,12 +92,12 @@ class SA(randomise.Random):
 
         amino = random.choice(new_protein_dict)
         current_co = amino._location 
-        coordinates = self.new_protein_obj.getDiagonals(amino)
+        coordinates = self.new_protein_obj.get_valid_diagonals(amino)
 
         while not coordinates:
             amino = random.choice(new_protein_dict)
             diagonals = self.new_protein_obj.get_valid_diagonals(amino)
-            new_location = random.choice(diagonals)
+            new_location = tuple(random.choice(diagonals))
             amino._location = new_location         
 
         return new_protein_dict

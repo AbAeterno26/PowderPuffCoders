@@ -172,21 +172,21 @@ class Grid():
         diagonals = []
 
         # Generate all possible diagonals
-        for i in range(len(amino)):
-            diagonal = tuple(amino)
+        for i in range(len(list(amino._location))):
+            diagonal = list(amino._location)
             diagonal[i] += 1
-            diagonals.append(diagonal)
+            diagonals.append(tuple(diagonal))
 
-            diagonal = tuple(amino)
+            diagonal = list(amino._location)
             diagonal[i] -= 1
-            diagonals.append(diagonal)
+            diagonals.append(tuple(diagonal))
 
         # Retrieving all neighbouring amino-acids
         neighbours = self.getNeighbours(amino)
         D = 0
         for neighbour in neighbours:
             for diagonal in diagonals:
-            # Checking if the diagonal is a valid considering the neighbouring coordinates
+                # Checking if the diagonal is a valid considering the neighbouring coordinates
                 D += abs(diagonal[0] - neighbour[0]) + abs(diagonal[1] - neighbour[1])
 
             # If D is not equal to 1 for each neighbour, it is not a valid option.
@@ -194,7 +194,7 @@ class Grid():
                 diagonals.remove(diagonal)
 
             # Removing diagonal coordinate if it is already occupied
-            if diagonal in self.locations:
+            elif diagonal in self.locations:
                 diagonals.remove(diagonal)
 
 
