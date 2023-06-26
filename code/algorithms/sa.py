@@ -45,20 +45,19 @@ class SA(randomise.Random):
             # i, j = random.sample(range(len(self.grid.amino_acids)), 2)
             # self.new_protein_dict[i] , self.new_protein_dict[j] = self.new_protein_dict[j], self.new_protein_dict[i]
            
-            self.pivot()
+            self.pullMove(self.new_protein_dict)
 
             # Calculate the score of the new ordered dictionary (protein)
             new_score = new_protein_obj.compute_score()
             # print(f'NEW SCORE IS {new_score}')
-            score_diff = new_score - current_score
-            # print(f'SCORE DIFFERENCE IS {score_diff}')
+            score_diff = abs(new_score - current_score)
 
             if score_diff > self.x:
                 # Calculate the acceptance probability based on the difference in score and current temperature
-                acceptance_probability = math.exp((new_score - current_score) / current_temperature)
+                acceptance_probability = math.exp(-score_diff / current_temperature)
                 acceptance_probability = round(acceptance_probability, 2)
                 # Also giving worse configuration a chance of acceptance 
-                if acceptance_probability > random.random():
+                if random.random() > acceptance_probability:
                     current_configuration = new_protein_obj
                     current_score = new_score
                     # If the new configuration has a higher score, update the best configuration
@@ -84,16 +83,18 @@ class SA(randomise.Random):
     def get_best_configuration(self):
         return self.best_configuration
     
-    def pivot(self):
-        """Updates the dictionary location values."""
+    def pullMove(self, new_protein_dict):
+        """Updates the dictionary location values of the new_protein (grid)object."""
 
         # Selecting a pivot point
         #MAG NIET DE LAATSTE ZIJN DUS VANDAAR - 2
-        random_key = random.randint(0, len(self.new_protein_dict) - 2)
-        pivot = self.new_protein_dict[random_key] #== amino object
+        random_key = random.randint(0, len(new_protein_dict) - 2)
+        pivot = new_protein_dict[random_key] #== amino object
+        pivot_location = pivot._location
+        print(pivot_location)
 
         # Determining the section to be rotated, by making a list of all the objects 
-        section = list(self.new_protein_dict.values())[random_key+1:] 
+        section = list(new_protein_dict.values())[random_key+1:] 
         k, l = pivot._location
         
         for amino_obj in section:
@@ -101,6 +102,7 @@ class SA(randomise.Random):
             i, j  = amino_obj._location
             new_location = (i+1, k)
             i, j = new_location
+            amino_obj._location = new_location
         
            #MISSCHIEN NOG NODIG OM OP TE SLAAN IN ORIGINAL DICT???!
 
