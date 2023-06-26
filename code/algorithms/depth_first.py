@@ -58,3 +58,6 @@ class DepthFirstSearch:
 
                     # Add the next position to the stack
                     self.stack.append((current_amino_id + 1, grid_child))
+
+    def get_best_configuration(self):
+        return self.best_grid

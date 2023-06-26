@@ -2,6 +2,7 @@ from code.classes import grid
 from code.algorithms import randomise
 from code.algorithms import sa
 from code.algorithms import depth_first
+from code.algorithms import breadth_first
 from code.visualizations import visualize
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
@@ -29,16 +30,18 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
             algorithm_obj = sa.SA(grid_obj)
         elif algorithm == "depth":
             algorithm_obj = depth_first.DepthFirstSearch(grid_obj)
+        elif algorithm == "breadth":
+            algorithm_obj = breadth_first.BreadthFirstSearch(grid_obj)
 
         algorithm_obj.execute()
-
-        # Get the modified grid object from simulated annealing
-        if algorithm == "sa":
+        
+        if algorithm == "random":
+            # Compute the score for the folding of the protein
+            grid_obj.compute_score()
+            scores.append(grid_obj.score)
+        else:
+            # Get the grid with the best score
             grid_obj = algorithm_obj.get_best_configuration()
-
-        # Compute the score for the folding of the protein
-        grid_obj.compute_score()
-        scores.append(grid_obj.score)
         
         # Visualize the protein folding
         if show_vis:
@@ -52,7 +55,7 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
     # Plot histogram of the scores for a specified protein
     path_to_file = f"data/output/{algorithm}/graphs/{input_file}"
     title = f"{algorithm} - {iterations} iterations"
-    plot_hist(scores, path_to_file, title)
+    # plot_hist(scores, path_to_file, title)
 
     # Display rules if requested
     if rules:
