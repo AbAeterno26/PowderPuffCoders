@@ -9,6 +9,7 @@ class Grid():
         self.amino_acids = {}
         self.locations = set()
         self.history = []
+        self.bonds = set()
         self.directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
     def compute_score(self):
@@ -42,13 +43,21 @@ class Grid():
 
                 # Check if it is not a covalent bond and if the amino acids are apart 1 step
                 for amino in self.amino_acids.values():
-
+                    
                     # Check if there is a next amino or previous amino
+<<<<<<< HEAD
                     if prev_amino and amino.amino_id != prev_amino.amino_id and self.check_location(current_amino._location, amino._location):
                         if current_amino.amino_id < amino.amino_id:
                             self.score += self.calculate_bond_score(current_amino, amino)
                     if next_amino and amino.amino_id != next_amino.amino_id and self.check_location(current_amino._location, amino._location):
                         if current_amino.amino_id < amino.amino_id:
+=======
+                    if prev_amino and next_amino:
+                       if (amino.amino_id != next_amino.amino_id and amino.amino_id != prev_amino.amino_id and self.check_location(current_amino._location, amino._location)):
+                        bond = tuple(sorted([current_amino.amino_id, amino.amino_id])) # sort the pair to ensure consistent representation
+                        if bond not in self.bonds:
+                            self.bonds.add(bond)
+>>>>>>> cfe9bb4c1640885dd79f2d7d98af4a6107c281a6
                             self.score += self.calculate_bond_score(current_amino, amino)
 
         self.score = self.score
