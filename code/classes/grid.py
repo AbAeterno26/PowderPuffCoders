@@ -1,11 +1,7 @@
 import csv
 from code.classes import amino_cat
-<<<<<<< HEAD
-import random 
+import random
 
-
-=======
->>>>>>> 6c6605f7e0de645b1ee6080497d5af1b6286f42d
 class Grid():
     # width equals the length of the protein string 
     def __init__(self):
