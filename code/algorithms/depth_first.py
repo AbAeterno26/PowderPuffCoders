@@ -13,7 +13,7 @@ class DepthFirstSearch:
     def execute(self):
         """Folds an entire protein using depth-first search"""
 
-        # initial_grid.amino_acids[0].update_loc((0,0))
+        # Initialize the grid with the first amino acid placed
         direction = random.choice(self.directions)
         self.grid.add_move(direction, 0)
         current_pos = self.grid.amino_acids[0]._location
