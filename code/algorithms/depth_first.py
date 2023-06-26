@@ -21,7 +21,8 @@ class DepthFirstSearch:
             # Check if we are at the end of the protein
             if current_amino_id == len(grid.amino_acids):
                  score = grid.compute_score()
-
+                
+                # Check if the current score is better than the current best
                  if score < self.best_score:
                       self.best_score = score
                       self.best_grid = grid
