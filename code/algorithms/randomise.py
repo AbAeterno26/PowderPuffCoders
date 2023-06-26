@@ -23,11 +23,13 @@ class Random:
                 if self.grid.is_valid(next_pos):
                     # Update the location of the amino acid
                     amino.update_loc(next_pos)
+                    
                     # Add position to used locations
                     self.grid.locations.add(next_pos)
                     break
                 
             location = next_pos
+
             # Check what the move was and add it to the history of moves
             if amino_id != self.grid.max_grid_size - 1:
                 self.grid.add_move(direction, amino_id)

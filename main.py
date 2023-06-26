@@ -54,21 +54,12 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
     # Plot histogram of the scores for a specified protein
     path_to_file = f"data/output/{algorithm}/graphs/{input_file}"
     title = f"{algorithm} - {iterations} iterations"
-    plot_hist(scores, path_to_file, title, grid_obj.protein)
+    plot_hist(scores, path_to_file, title)
 
     # Display rules if requested
     if rules:
         grid_obj.display_rules()
 
-if __name__ == "__main__":
-    # Check for the correct command line input
-    if len(argv) == 1:
-        print("Usage: python main.py [protein]")
-        exit(1)
-    
-    filename = argv[1]
-    protein_file = f"data/input/{filename}.txt"
-    
 def plot_hist(scores, filename, title):
     """
     This function plots a histogram of all the achieved scores (x-axis)
@@ -84,5 +75,15 @@ def plot_hist(scores, filename, title):
     fig.savefig(f"{filename}.png", bbox_inches='tight')
     plt.show()
 
-run(protein_file, iterations=10, algorithm='random', show_vis=True)
+if __name__ == "__main__":
+    # Check for the correct command line input
+    if len(argv) == 1:
+        print("Usage: python main.py [protein] (algorithm)")
+        exit(1)
+    
+    filename = argv[1]
+    protein_file = f"data/input/{filename}.txt"
+    algorithm = argv[2]
 
+    # Run experiment for specified algorithm
+    run(protein_file, iterations=1, algorithm=algorithm, show_vis=True)
