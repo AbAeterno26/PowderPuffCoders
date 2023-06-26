@@ -1,6 +1,5 @@
 import csv
 from code.classes import amino_cat
-import random 
 
 
 class Grid():
