@@ -83,5 +83,5 @@ if __name__ == "__main__":
     protein_file = f"data/input/{filename}.txt"
     algorithm = argv[2]
 
-    # Run experiment
+    # Run experiment for specified algorithm
     run(protein_file, iterations=1, algorithm=algorithm, show_vis=True)
