@@ -4,10 +4,16 @@ from plotly.offline import plot
 import plotly.express as px
 
 class Visualize():
+    """
+    This class is for the visualization of the protein. It accepts a grid, and two functions.
+    """
     def __init__(self, grid):
         self.grid = grid
 
     def fold_amino_scatter(self, x_values_amino, y_values_amino, text, color):
+        """ 
+        This function scatters one specific aminoacid, later on used in the big visualize funciton 
+        """
         fold_text = go.Scatter(
             x=x_values_amino,
             y=y_values_amino,
@@ -22,6 +28,13 @@ class Visualize():
         return fold_text
 
     def visualize_2D(self):
+        """ 
+        This is the 2D visualize function, placing points on the grid, and adding two different lines,
+        one showing the covalent bonds, and the blue dotted lines representing hydrogen bonds,
+        in the end showing the visualization, and adding it to a pdf
+        
+        """
+
         amino_acids = list(self.grid.amino_acids.values())
 
         x_values = []
@@ -33,6 +46,7 @@ class Visualize():
         x_values_C = []
         y_values_C = []
         
+        # Appending the different locations to the different lists for aminoacids.
         for amino in self.grid.amino_acids.values():
             x, y = amino._location
             x_values.append(x)
@@ -47,6 +61,7 @@ class Visualize():
                 x_values_C.append(x)
                 y_values_C.append(y)
 
+        # Call on scatter function for the different aminoacids.
         fold_H = self.fold_amino_scatter(x_values_H, y_values_H, 'H', 'red')
         fold_P = self.fold_amino_scatter(x_values_P, y_values_P, 'P', 'blue')
         fold_C = self.fold_amino_scatter(x_values_C, y_values_C, 'C', 'green')
@@ -71,7 +86,7 @@ class Visualize():
                                                      mode='lines', 
                                                      line=dict(color='blue', dash='dot', width=2), 
                                                      showlegend=False))
-
+        # Defining the layout for the grid
         layout = dict(
             title=f'Protein fold with a score of {self.grid.score}',
             xaxis=dict(
@@ -93,6 +108,7 @@ class Visualize():
             showlegend=True,
         )
 
+        # Plotting the figure
         fig = go.Figure(data=fold_lines+[fold_H, fold_P, fold_C], layout=layout)
         fig.update_xaxes(dtick=1)
         fig.update_yaxes(dtick=1)
@@ -106,4 +122,6 @@ class Visualize():
         )
 
         fig.show()
+
+        # Outputting gridscatterplot to a pdf file
         # plotly.io.write_image(fig, 'data/output/random/graphs/amino_plotly.pdf', format='pdf')
