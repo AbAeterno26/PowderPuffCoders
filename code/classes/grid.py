@@ -1,11 +1,8 @@
 import csv
 from code.classes import amino_cat
-<<<<<<< HEAD
 import random 
 
 
-=======
->>>>>>> 6c6605f7e0de645b1ee6080497d5af1b6286f42d
 class Grid():
     # width equals the length of the protein string 
     def __init__(self):
@@ -135,52 +132,64 @@ class Grid():
         print("-2 betekent een negatieve stap in de tweede dimensie (Y-as richting).")
 
 
-
-    def getDiagional(self, amino):
+    def getNeighbours(self, amino):
+        """Needed for the pullmove. The function returns a list of all possible diagonal coordinates"""
         
-        current_co = amino._location
+        neighbours = []
         index = amino.amino_id
-
-        # Searching for its neighbouring coordinates
 
         # Check if amino is the last 
         if (index + 1) == len(self.amino_acids):
-            prev_amino = self.amino_acids[index - 1]
-            coo_other = prev_amino._location
+            neighbour = self.amino_acids[index - 1]._location
+            # coo_other = prev_amino._location
+            neighbours.append(neighbour)
         # Check if amino is the first
         elif index == 0:
-            next_amino = self.amino_acids[index + 1]
-            coo_other = next_amino._location
+            neighbour = self.amino_acids[index + 1]._location
+            # coo_other = next_amino._location
+            neighbours.append(neighbour)
         else:
-            # Neither first or last amino
-            next_or_prev = [index + 1, index - 1]
-            # Random shuffle so that later on the pull move can be performed in either direction
-            random.shuffle(next_or_prev)
+            next_amino = self.amino_acids[index + 1]._location
+            previous_amino = self.amino_acids[index - 1]._location
+            # next_amino_coo = next_amino._location
+            # prev_amino_coo = previous_amino._location
 
-            # Retrieving the neighbouring amino's
-            next_amino = self.amino_acids[next_or_prev[0]]
-            coo_other = next_amino._location
+            neighbours.append(next_amino)
+            neighbours.append(previous_amino)
 
-            prev_amino = self.amino_acids[next_or_prev[1]]
-            coo_prev = prev_amino._location
+        return neighbours
 
-            # Getting the diagonals if the amino_acid is in the chain
+    def get_valid_diagonals(self, amino):
+        """Returns a valid list of diagonal coordinates for this specific amino-acid."""
 
-            # for previous amino 
-            
+        diagonals = []
+
+        # Generate all possible diagonals
+        for i in range(len(amino)):
+            diagonal = tuple(amino)
+            diagonal[i] += 1
+            diagonals.append(diagonal)
+
+            diagonal = tuple(amino)
+            diagonal[i] -= 1
+            diagonals.append(diagonal)
+
+        # Retrieving all neighbouring amino-acids
+        neighbours = self.getNeighbours(amino)
+        D = 0
+        for neighbour in neighbours:
+            for diagonal in diagonals:
+            # Checking if the diagonal is a valid considering the neighbouring coordinates
+                D += abs(diagonal[0] - neighbour[0]) + abs(diagonal[1] - neighbour[1])
+
+            # If D is not equal to 1 for each neighbour, it is not a valid option.
+            if not D == len(neighbours):
+                diagonals.remove(diagonal)
+
+            # Removing diagonal coordinate if it is already occupied
+            if diagonal in self.locations:
+                diagonals.remove(diagonal)
 
 
-
-
-
-
-
-    def is_diagonal(self, coord1, coord2):
-        x1, y1 = coord1
-        x2, y2 = coord2
-
-        dx = abs(x1 - x2)
-        dy = abs(y1 - y2)
-
-        return dx == 1 and dy == 1 
+        return diagonals
 
