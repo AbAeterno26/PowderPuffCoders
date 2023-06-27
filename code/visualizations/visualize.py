@@ -7,8 +7,10 @@ class Visualize():
     """
     This class is for the visualization of the protein. It accepts a grid, and two functions.
     """
-    def __init__(self, grid):
+    def __init__(self, grid, save, algorithm):
         self.grid = grid
+        self.save = save
+        self.algorithm_name = algorithm
 
     def fold_amino_scatter(self, x_values_amino, y_values_amino, text, color):
         """ 
@@ -124,4 +126,5 @@ class Visualize():
         fig.show()
 
         # Outputting gridscatterplot to a pdf file
-        # plotly.io.write_image(fig, 'data/output/random/graphs/amino_plotly.pdf', format='pdf')
+        if self.save:
+            plotly.io.write_image(fig, f'data/output/{self.algorithm_name}/graphs/amino_plotly.pdf', format='pdf')

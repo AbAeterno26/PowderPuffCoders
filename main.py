@@ -5,12 +5,18 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
 from sys import argv
 import seaborn as sns
+import time
 
 
-def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=False):
+def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=False, save=False):
     # The score of each folding of a protein
     scores = []
     input_file = protein_file.split('/')[2].strip('.txt')
+
+    print(f"{input_file} is running")
+
+    # Algorithm starts running
+    start = time.time()
 
     for i in range(iterations):
         # Create grid object
@@ -33,32 +39,38 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
             algorithm_obj = greedy.Greedy(grid_obj)
 
         algorithm_obj.execute()
-        
-        if algorithm == "random":
+
+        if algorithm == "random" or algorithm == "greedy":
             # Compute the score for the folding of the protein
             grid_obj.compute_score()
             scores.append(grid_obj.score)
         elif algorithm_obj.best_grid:
             # Get the grid with the best score
             grid_obj = algorithm_obj.get_best_configuration()
+            scores.append(grid_obj.score)
         
         # Visualize the protein folding
         if show_vis:
-            vis = visualize.Visualize(grid_obj)
+            vis = visualize.Visualize(grid_obj, save, algorithm)
             vis.visualize_2D()
 
         # Save output to a CSV file
         filename = f"data/output/{algorithm}/scores/{input_file}_{i}.csv"
         grid_obj.output_to_csv(filename)
-
+    
+    # Algorithm is done running
+    end = time.time()
+    duration = end - start
+    print(f"Duration running {iterations} iterations:\t{duration} s")
     # Plot histogram of the scores for a specified protein
     path_to_file = f"data/output/{algorithm}/graphs/{input_file}"
     title = f"{algorithm} - {iterations} iterations"
-    # plot_hist(scores, path_to_file, title)
+    plot_hist(scores, path_to_file, title)
 
     # Display rules if requested
     if rules:
         grid_obj.display_rules()
+    
 
 def plot_hist(scores, filename, title):
     """
@@ -75,6 +87,7 @@ def plot_hist(scores, filename, title):
     fig.savefig(f"{filename}.png", bbox_inches='tight')
     plt.show()
 
+
 if __name__ == "__main__":
     # Check for the correct command line input
     if len(argv) == 1:
@@ -86,4 +99,4 @@ if __name__ == "__main__":
     algorithm = argv[2]
 
     # Run experiment for specified algorithm
-    run(protein_file, iterations=1, algorithm=algorithm, show_vis=True)
+    run(protein_file, iterations=100, algorithm=algorithm)
