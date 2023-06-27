@@ -12,8 +12,15 @@ class DepthFirstSearch:
     def execute(self):
         """Folds an entire protein using depth-first search"""
 
+        # Initialize the grid with the first amino acid placed
+        self.grid.add_move((0, 0), 0)
+        self.grid.locations.add((0, 0))
+
         # Initialize the stack with the starting position (0, 0)
-        self.stack = [(0, copy.deepcopy(self.grid))]
+        initial_grid = copy.deepcopy(self.grid)
+
+        # self.stack = [(0, copy.deepcopy(initial_grid))] 
+        self.stack = [(1, initial_grid)]
 
         while self.stack:
             current_amino_id, grid = self.stack.pop()
@@ -39,7 +46,7 @@ class DepthFirstSearch:
         and generates all the possible child states for the current amino acid
         """
         for direction in self.directions:
-            current_pos = grid.amino_acids[current_amino_id]._location
+            current_pos = grid.amino_acids[current_amino_id - 1]._location
             next_pos = current_pos[0] + direction[0], current_pos[1] + direction[1]
 
             grid_child = copy.deepcopy(grid)

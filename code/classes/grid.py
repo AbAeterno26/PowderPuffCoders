@@ -1,6 +1,5 @@
 import csv
 from code.classes import amino_cat
-import random 
 
 
 class Grid():
@@ -11,6 +10,7 @@ class Grid():
         self.history = []
         self.bonds = set()
         self.directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+        self.score = 0
 
     def compute_score(self):
         """ 
