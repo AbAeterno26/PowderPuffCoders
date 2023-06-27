@@ -22,7 +22,7 @@ conda install --file requirements.txt
 Een voorbeeld kan gerund worden door het volgende aan te roepen: 
 
 ```
-python main.py data/input/amino1.txt
+python main.py amino1 sa
 ```
 Er zijn in totaal 9 amino textfiles die kunnen worden aangeroepen. Een voorbeeld boven is amino1, maar amino7 zou daarvoor ook in de plaats mogen. 
 
@@ -35,6 +35,17 @@ De hierop volgende lijst beschrijft de belangrijkste mappen en files in het proj
   - **/code/classes**: bevat de benodigde classes voor deze case
   - **/code/visualisation**: bevat de code voor visualisatie
 - **/data**: bevat de verschillende databestanden met daarin de eiwitstrings die kunnen worden aangeroepen om een van de 9 voorbeelden te runnen 
+
+### Algoritmes
+
+De volgende algoritmes kunnen geimplenteerd worden om een proteinstring te vouwen:
+
+
+- **random**
+- **greedy**
+- **depth first**
+- **breadth first**
+- **sa**: Simulated Annealing
 
 
 ## Auteurs

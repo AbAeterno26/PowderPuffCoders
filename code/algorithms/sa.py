@@ -18,9 +18,7 @@ class SA(randomise.Random):
 
    
     def execute(self): ## rename to execute 
-        """NOTE: ER IS NOG GEEN CHECK AANWEZIG DAT DE EERSTE EN/OF LAATSTE NIET VERWISSELD MOGEN WORDEN.
-        WEET NIET OF DAT NODIG IS, MAAR ANDERS NOG AANPASSEN. OOK NOG CHECKEN OF HET GOED GAAT ZO MET CURRENT
-        CONFIGURATION EN HET UPDATEN DAARVAN. The function returns the updated grid object, where the protein folding
+        """The function returns the updated grid object, where the protein folding
         configuration is saved within the amino_acids dictionary."""
         
         current_temp = self.initial_temp
@@ -32,10 +30,10 @@ class SA(randomise.Random):
         # The protein configuration is stored in de amino_acids dictionary in the grid object
         current_configuration = self.grid
         current_score = self.grid.compute_score()
-
+        
         # Setting the best values equal to the current ones 
         self.best_grid = current_configuration
-        self.best_score = current_score
+        best_score = current_score
         
         while current_temp > self.final_temp:
             # Keeping track of iterations
@@ -65,8 +63,8 @@ class SA(randomise.Random):
                     current_score = new_score
 
                     # If the new configuration has a higher score, update the best configuration
-                    if current_score < self.best_score:
-                        self.best_score = current_score
+                    if current_score < best_score:
+                        best_score = current_score
                         self.best_grid = current_configuration
 
             # Updating the temperature according to the cooling schedule 
@@ -75,12 +73,7 @@ class SA(randomise.Random):
             if self.cooling == 'logarithmic':
                 current_temp = self.initial_temperature / math.log(k+1)
             if self.cooling == 'linear':
-                current_temp *= self.rate_of_decrease
-            if self.cooling == 'adaptive':
-                pass 
-
-            print(f'best configuration is {self.best_grid}')
-            print(f'best score is {self.best_score}')
+                current_temp *= self.rate_of_decrease 
         
     def get_best_configuration(self):
         return self.best_grid

@@ -85,7 +85,11 @@ class Grid():
             return -5
         else:
             return 0
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> ac737cfb917fc266f983eea6e0b1333497610a3f
     def is_hydrogen_bond(self, amino1, amino2) -> bool:
         """ Checks if there is a hydrogen bond between two given amino acids """
         if self.calculate_bond_score(amino1, amino2) < 0:
@@ -193,8 +197,9 @@ class Grid():
             diagonals.append(tuple(diagonal))
 
         # Retrieving all neighbouring amino-acids
-        neighbours = self.getNeighbours(amino)
         D = 0
+        neighbours = self.getNeighbours(amino)
+        
         for neighbour in neighbours:
             for diagonal in diagonals:
                 # Checking if the diagonal is a valid considering the neighbouring coordinates
