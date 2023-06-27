@@ -1,5 +1,6 @@
 import random
 
+
 class Greedy:
     def __init__(self, grid):
         self.best_grid = grid
@@ -10,7 +11,7 @@ class Greedy:
         self.best_grid.amino_acids[0].update_loc(location)
         self.best_grid.locations.add(location)
 
-        for amino_id, amino in self.best_grid.amino_acids.items():
+        for amino_id, amino in list(self.best_grid.amino_acids.items())[1:]:
             # Initialize variables
             min_score = float('inf')
             best_direction = None
@@ -38,6 +39,7 @@ class Greedy:
 
             # If no direction was found that improves the score, take a random direction
             if best_direction is None:
+                print("????")
                 best_direction = random.choice(random_directions)
 
             next_pos = (location[0] + best_direction[0], location[1] + best_direction[1])
@@ -45,8 +47,7 @@ class Greedy:
             self.best_grid.locations.add(next_pos)
             location = next_pos
 
-            if amino_id != self.best_grid.max_grid_size - 1:
-                self.best_grid.add_move(best_direction, amino_id)
+            self.best_grid.add_move(best_direction, amino_id)
 
                 
     def get_best_configuration(self):

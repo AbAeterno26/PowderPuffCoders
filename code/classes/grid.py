@@ -29,7 +29,7 @@ class Grid():
 
             # Check if there is a chance for a hydrogen bond
             if current_amino.text == 'H' or current_amino.text == 'C':
-            # Find the next and previous amino acid object
+                # Find the next and previous amino acid object
                 if i == 0:
                     # Skip assigning a value to prev_amino for the first amino acid
                     prev_amino = None
@@ -114,7 +114,7 @@ class Grid():
             
             for protein in f:
                 # Save protein name
-                self.protein = protein
+                self.protein = protein.strip()
                 self.max_grid_size = len(protein)
 
                 for i, aminoacid in enumerate(protein):
