@@ -15,18 +15,20 @@ class DepthFirstSearch:
         # Initialize the grid with the first amino acid placed
         self.grid.add_move((0, 0), 0)
         self.grid.locations.add((0, 0))
+        self.grid.amino_acids[0].update_loc((0, 0))
 
         # Initialize the stack with the starting position (0, 0)
         initial_grid = copy.deepcopy(self.grid)
-
+        
         # self.stack = [(0, copy.deepcopy(initial_grid))] 
-        self.stack = [(1, initial_grid)]
+        self.stack = [(1, copy.deepcopy(initial_grid))]
 
         while self.stack:
             current_amino_id, grid = self.stack.pop()
 
             # Check if we are at the end of the protein
-            if current_amino_id == len(grid.amino_acids) - 1:
+            if current_amino_id == len(grid.amino_acids):
+                self.best_grid = grid
                 score = grid.compute_score()
                 
                 # Check if the current score is better than the current best
@@ -67,4 +69,5 @@ class DepthFirstSearch:
                 self.stack.append((current_amino_id + 1, grid_child))
 
     def get_best_configuration(self):
+        print(self.best_grid.locations)
         return self.best_grid

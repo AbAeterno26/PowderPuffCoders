@@ -85,7 +85,6 @@ class Grid():
             return -5
         else:
             return 0
-
         
     def is_hydrogen_bond(self, amino1, amino2) -> bool:
         """ Checks if there is a hydrogen bond between two given amino acids """
