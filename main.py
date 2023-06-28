@@ -40,9 +40,6 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
         
         algorithm_obj.execute()
 
-
-        algorithm_obj.execute()
-
         if algorithm_obj.flag:
             if algorithm == "random" or algorithm == "greedy":
             # Compute the score for the folding of the protein
@@ -53,7 +50,7 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
                 grid_obj = algorithm_obj.get_best_configuration()
                 scores.append(grid_obj.score)
         
-            # Visualize the protein folding
+    # Visualize the protein folding
     if show_vis:
         vis = visualize.Visualize(grid_obj, save, algorithm)
         vis.visualize_2D()
@@ -69,9 +66,9 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
     duration = end - start
     print(f"Duration running {iterations} iterations:\t{duration} s")
     # Plot histogram of the scores for a specified protein
-    path_to_file = f"data/output/{algorithm}/graphs/{input_file}"
-    title = f"{algorithm} - {iterations} iterations"
-    plot_hist(scores, path_to_file, title)
+    # path_to_file = f"data/output/{algorithm}/graphs/{input_file}"
+    # title = f"{algorithm} - {iterations} iterations"
+    # plot_hist(scores, path_to_file, title)
 
     # Display rules if requested
     if rules:
@@ -106,4 +103,4 @@ if __name__ == "__main__":
         protein_file = f"data/input/{filename}.txt"
         
         # Run experiment for specified algorithm
-        run(protein_file, iterations=1, show_vis=True)
+        run(protein_file, iterations=100000, show_vis=True)
