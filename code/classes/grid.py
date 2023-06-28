@@ -19,6 +19,7 @@ class Grid():
         """
         # Set score to 0 to start count properly
         self.score = 0
+        self.bonds = set()
 
         # Loop over each amino acid
         for i in range(len(self.amino_acids)):
@@ -28,32 +29,44 @@ class Grid():
 
             # Check if there is a chance for a hydrogen bond
             if current_amino.text == 'H' or current_amino.text == 'C':
-              
-                # Find the next and previous amino acid object
-                if i == len(self.amino_acids) - 1:
-                    
-                    # Skip assigning a value to next_amino for the last amino acid
-                    continue
-                next_amino = self.amino_acids[i + 1]
-
-                # Initialize prev_amino as None
-                prev_amino = None
-                if i > 0:
-                    # Skip assiging a value to prev_amino for the first amino acid
+            # Find the next and previous amino acid object
+                if i == 0:
+                    # Skip assigning a value to prev_amino for the first amino acid
+                    prev_amino = None
+                else:
                     prev_amino = self.amino_acids[i - 1]
+
+                if i == len(self.amino_acids) - 1:
+                    # Skip assigning a value to next_amino for the last amino acid
+                    next_amino = None
+                else:
+                    next_amino = self.amino_acids[i + 1]
 
                 # Check if it is not a covalent bond and if the amino acids are apart 1 step
                 for amino in self.amino_acids.values():
-                    
                     # Check if there is a next amino or previous amino
                     if prev_amino and next_amino:
-                       if (amino.amino_id != next_amino.amino_id and amino.amino_id != prev_amino.amino_id and self.check_location(current_amino._location, amino._location)):
-                        bond = tuple(sorted([current_amino.amino_id, amino.amino_id])) # sort the pair to ensure consistent representation
-                        if bond not in self.bonds:
-                            self.bonds.add(bond)
-                            self.score += self.calculate_bond_score(current_amino, amino)
+                        if (amino.amino_id != next_amino.amino_id and amino.amino_id != prev_amino.amino_id and self.check_location(current_amino._location, amino._location)):
+                            # Sort the pair to ensure consistent representation
+                            bond = tuple(sorted([current_amino.amino_id, amino.amino_id]))
+                            if bond not in self.bonds:
+                                self.bonds.add(bond)
+                                self.score += self.calculate_bond_score(current_amino, amino)
+                    elif prev_amino:
+                        if (amino.amino_id != prev_amino.amino_id and self.check_location(current_amino._location, amino._location)):
+                            # Sort the pair to ensure consistent representation
+                            bond = tuple(sorted([current_amino.amino_id, amino.amino_id]))
+                            if bond not in self.bonds:
+                                self.bonds.add(bond)
+                                self.score += self.calculate_bond_score(current_amino, amino)
+                    elif next_amino:
+                        if (amino.amino_id != next_amino.amino_id and self.check_location(current_amino._location, amino._location)):
+                            # Sort the pair to ensure consistent representation
+                            bond = tuple(sorted([current_amino.amino_id, amino.amino_id]))
+                            if bond not in self.bonds:
+                                self.bonds.add(bond)
+                                self.score += self.calculate_bond_score(current_amino, amino)
 
-        self.score = self.score
         return self.score
 
     def check_location(self, amino1: tuple, amino2: tuple) -> bool:
@@ -130,12 +143,6 @@ class Grid():
                 writer.writerows([[amino_text, move]])
             writer.writerows([["score", self.score]])
     
-    def output_scores_csv(self, filename, proteinstring, scores):
-        with open(filename, 'w', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow([f"{proteinstring} score"])
-            for score in scores:
-                writer.writerow([score])
 
     def display_rules(self):
         print("1 betekent een positieve stap in de eerste dimensie (X-as richting).")
