@@ -1,6 +1,5 @@
 import random
 
-
 class Random:
     def __init__(self, grid):
         self.grid = grid
@@ -11,7 +10,7 @@ class Random:
         # Right, left, down, up
         directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
         location = (0, 0)
-
+        
         # Keep connecting amino acids until the whole protein is folded
         for amino_id, amino in self.grid.amino_acids.items():
             # Check that the location of the amino acid is not already in use
