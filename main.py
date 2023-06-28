@@ -56,6 +56,7 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
                 vis.visualize_2D()
         else:
             continue
+        
         # Save output to a CSV file
         # filename = f"data/output/{algorithm}/scores/{input_file}_{i}.csv"
         # grid_obj.output_to_csv(filename)
