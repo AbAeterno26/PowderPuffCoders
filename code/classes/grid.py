@@ -151,7 +151,7 @@ class Grid():
 
 
     def getNeighbours(self, amino):
-        """Needed for the pullmove. The function returns a list of all possible diagonal coordinates"""
+        """Needed for the pullmove. The function returns a list of neighbouring coordinates"""
         
         neighbours = []
         index = amino.amino_id
@@ -159,18 +159,14 @@ class Grid():
         # Check if amino is the last 
         if (index + 1) == len(self.amino_acids):
             neighbour = self.amino_acids[index - 1]._location
-            # coo_other = prev_amino._location
             neighbours.append(neighbour)
         # Check if amino is the first
         elif index == 0:
             neighbour = self.amino_acids[index + 1]._location
-            # coo_other = next_amino._location
             neighbours.append(neighbour)
         else:
             next_amino = self.amino_acids[index + 1]._location
             previous_amino = self.amino_acids[index - 1]._location
-            # next_amino_coo = next_amino._location
-            # prev_amino_coo = previous_amino._location
 
             neighbours.append(next_amino)
             neighbours.append(previous_amino)
@@ -178,7 +174,9 @@ class Grid():
         return neighbours
 
     def get_valid_diagonals(self, amino):
-        """Returns a valid list of diagonal coordinates for this specific amino-acid."""
+        """Returns a list of diagonal coordinates for this specific amino-acid.
+        Only valid diagonals are added to the list, since not just any diagonal is valid for both the
+        current amino-acid as well as for the neighbouring amino-acids. """
 
         diagonals = []
 
