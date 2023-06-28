@@ -89,15 +89,30 @@ def plot_hist(scores, filename, title):
     plt.show()
 
 
-if __name__ == "__main__":
-    # Check for the correct command line input
-    if len(argv) == 1:
-        print("Usage: python main.py [protein] (algorithm)")
-        exit(1)
+# if __name__ == "__main__":
+#     # Check for the correct command line input
+#     if len(argv) == 1:
+#         print("Usage: python main.py [protein] (algorithm)")
+#         exit(1)
     
-    filename = argv[1]
-    protein_file = f"data/input/{filename}.txt"
-    algorithm = argv[2]
+#     filename = argv[1]
+#     protein_file = f"data/input/{filename}.txt"
+#     algorithm = argv[2]
 
-    # Run experiment for specified algorithm
-    run(protein_file, iterations=10, algorithm=algorithm, show_vis=True)
+#     # Run experiment for specified algorithm
+#     run(protein_file, iterations=10, algorithm=algorithm, show_vis=True)
+
+if __name__ == "__main__":
+    # List of protein files
+    protein_files = ['amino1', 'amino2', 'amino3', 'amino4', 'amino5', 'amino6', 'amino7', 'amino8', 'amino9']
+        
+    # Check if command line arguments are present
+    if len(argv) > 1:
+        algorithm = argv[1]
+
+
+    for filename in protein_files:
+        protein_file = f"data/input/{filename}.txt"
+        
+        # Run experiment for specified algorithm
+        run(protein_file, iterations=100000, algorithm='random')
