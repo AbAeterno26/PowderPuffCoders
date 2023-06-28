@@ -55,8 +55,8 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
 
         # Save output to a CSV file
         filename = f"data/output/{algorithm}/scores/{input_file}_{i}.csv"
-        filename_exp = f"data/output/{algorithm}/scores/{input_file}.csv"
         # grid_obj.output_to_csv(filename)
+        filename_exp = f"data/output/{algorithm}/scores/{input_file}.csv"
     grid_obj.output_scores_csv(filename_exp, input_file, scores)
     
     # Algorithm is done running

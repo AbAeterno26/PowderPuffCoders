@@ -1,9 +1,8 @@
 import csv
 from code.classes import amino_cat
 
-
 class Grid():
-    # width equals the length of the protein string 
+    # Width equals the length of the protein string 
     def __init__(self):
         self.amino_acids = {}
         self.locations = set()
@@ -15,16 +14,14 @@ class Grid():
     def compute_score(self):
         """ 
         Computes the total stability score for the entire protein 
-        by looping over the amino acids their bonds
+        by looping over the amino acids bonds.
         """
-        # Set score to 0 to start count properly
+        # Set score to 0 to start counting properly
         self.score = 0
-        self.bonds = set()
 
-        # Loop over each amino acid
+        # Loop over each amino acid in the dictionary
         for i in range(len(self.amino_acids)):
     
-            # The index of this location is the key in the dictionary with amino acids
             current_amino = self.amino_acids[i]
 
             # Check if there is a chance for a hydrogen bond
@@ -33,16 +30,16 @@ class Grid():
                 if i == 0:
                     # Skip assigning a value to prev_amino for the first amino acid
                     prev_amino = None
-                else:
-                    prev_amino = self.amino_acids[i - 1]
-
-                if i == len(self.amino_acids) - 1:
+                    next_amino = self.amino_acids[i + 1]
+                elif i == len(self.amino_acids) - 1:
                     # Skip assigning a value to next_amino for the last amino acid
                     next_amino = None
+                    prev_amino = self.amino_acids[i - 1]
                 else:
+                    prev_amino = self.amino_acids[i - 1]
                     next_amino = self.amino_acids[i + 1]
 
-                # Check if it is not a covalent bond and if the amino acids are apart 1 step
+                # Check if it is not a covalent bond and if the amino acids are 1 step apart
                 for amino in self.amino_acids.values():
                     # Check if there is a next amino or previous amino
                     if prev_amino and next_amino:
@@ -150,9 +147,6 @@ class Grid():
             for score in scores:
                 writer.writerow([score])
 
-
-
-
     def display_rules(self):
         print("1 betekent een positieve stap in de eerste dimensie (X-as richting).")
         print("-1 betekent een negatieve stap in de eerste dimensie (X-as richting).")
@@ -161,7 +155,7 @@ class Grid():
 
 
     def getNeighbours(self, amino):
-        """Needed for the pullmove. The function returns a list of all possible diagonal coordinates"""
+        """Needed for the pullmove. The function returns a list of neighbouring coordinates"""
         
         neighbours = []
         index = amino.amino_id
@@ -169,18 +163,14 @@ class Grid():
         # Check if amino is the last 
         if (index + 1) == len(self.amino_acids):
             neighbour = self.amino_acids[index - 1]._location
-            # coo_other = prev_amino._location
             neighbours.append(neighbour)
         # Check if amino is the first
         elif index == 0:
             neighbour = self.amino_acids[index + 1]._location
-            # coo_other = next_amino._location
             neighbours.append(neighbour)
         else:
             next_amino = self.amino_acids[index + 1]._location
             previous_amino = self.amino_acids[index - 1]._location
-            # next_amino_coo = next_amino._location
-            # prev_amino_coo = previous_amino._location
 
             neighbours.append(next_amino)
             neighbours.append(previous_amino)
@@ -188,7 +178,9 @@ class Grid():
         return neighbours
 
     def get_valid_diagonals(self, amino):
-        """Returns a valid list of diagonal coordinates for this specific amino-acid."""
+        """Returns a list of diagonal coordinates for this specific amino-acid.
+        Only valid diagonals are added to the list, since not just any diagonal is valid for both the
+        current amino-acid as well as for the neighbouring amino-acids. """
 
         diagonals = []
 
@@ -218,7 +210,6 @@ class Grid():
             # Removing diagonal coordinate if it is already occupied
             elif diagonal in self.locations:
                 diagonals.remove(diagonal)
-
 
         return diagonals
 
