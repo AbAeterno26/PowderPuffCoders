@@ -5,7 +5,7 @@ import copy
 
 
 class SA(randomise.Random):
-    def __init__(self, grid, cooling='linear', alpha=0.4, rate_of_decrease=0.95, initial_temp=90, final_temp=.1):
+    def __init__(self, grid, cooling='logarithmic', alpha=0.4, rate_of_decrease=0.95, initial_temp=90, final_temp=.1):
         self.grid = grid
         self.initial_temp = initial_temp
         self.cooling = cooling
@@ -13,11 +13,14 @@ class SA(randomise.Random):
         self.alpha = alpha
         self.rate_of_decrease = rate_of_decrease
         self.x = 0
+        
 
     def execute(self): 
         """Executes the Simulated Annealing algorithm for the given protein. Returns the updated grid object, where 
         the protein folding configuration is saved within the amino_acids dictionary."""
 
+        stagnation_threshold = 100 
+        stagnation_counter = 0
         k = 0
         current_temp = self.initial_temp
         
@@ -52,24 +55,32 @@ class SA(randomise.Random):
                 # Calculate the acceptance probability based on the difference in score and current temperature
                 acceptance_probability = math.exp((-score_diff) / current_temp)
                 acceptance_probability = round(acceptance_probability, 2)
+                stagnation_counter = 0
 
                 # Also giving worse configuration a chance of acceptance 
                 if random.random() > acceptance_probability:
                     current_configuration = self.new_protein_obj
                     current_score = new_score
+                    stagnation_counter = 0
 
                     # If the new configuration has a higher score, update the best configuration
                     if current_score < best_score:
                         best_score = current_score
                         self.best_grid = current_configuration
+                    else:
+                        stagnation_counter += 1
 
             # Updating the temperature according to the cooling schedule 
             if self.cooling == 'exponential':
-                current_temp = self.initial_temperature * self.alpha**k
+                current_temp = self.initial_temp * self.alpha**k
             if self.cooling == 'logarithmic':
-                current_temp = self.initial_temperature / math.log(k+1)
+                current_temp = self.initial_temp / math.log(k+1)
             if self.cooling == 'linear':
                 current_temp *= self.rate_of_decrease 
+            
+            # Termination message
+            if stagnation_counter >= stagnation_threshold:
+                break
         
     def get_best_configuration(self):
         return self.best_grid

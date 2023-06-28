@@ -86,7 +86,7 @@ def plot_hist(scores, filename, title):
     ax.xaxis.set_major_locator(MaxNLocator(integer=True))
     ax.yaxis.set_major_locator(MaxNLocator(integer=True))
     fig.savefig(f"{filename}.png", bbox_inches='tight')
-    plt.show()
+    # plt.show()
 
 
 # if __name__ == "__main__":
@@ -110,9 +110,8 @@ if __name__ == "__main__":
     if len(argv) > 1:
         algorithm = argv[1]
 
-
     for filename in protein_files:
         protein_file = f"data/input/{filename}.txt"
         
         # Run experiment for specified algorithm
-        run(protein_file, iterations=100000, algorithm='random')
+        run(protein_file, iterations=5000, algorithm='sa')
