@@ -3,6 +3,7 @@ import random
 class Greedy:
     def __init__(self, grid):
         self.grid = grid
+        self.flag = True
         self.directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
     def execute(self):

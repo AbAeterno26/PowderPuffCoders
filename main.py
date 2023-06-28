@@ -1,4 +1,3 @@
-#Import
 from code.classes import grid
 from code.algorithms import randomise, sa, depth_first, breadth_first, greedy
 from code.visualizations import visualize
@@ -8,7 +7,8 @@ from sys import argv
 import seaborn as sns
 import time
 
-def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=True, save=False):
+
+def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=False, save=False):
     # The score of each folding of a protein
     scores = []
     input_file = protein_file.split('/')[2].strip('.txt')
@@ -19,9 +19,9 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
     start = time.time()
 
     for i in range(iterations):
-        
         # Create grid object
         grid_obj = grid.Grid()
+        
         # Load in the nodes (AKA aminoacids)
         grid_obj.load_input(protein_file)
     
@@ -38,26 +38,28 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
         elif algorithm == "greedy":
             algorithm_obj = greedy.Greedy(grid_obj)
 
+
         algorithm_obj.execute()
 
-        if algorithm == "random" or algorithm == "greedy":
+        if algorithm_obj.flag:
+            if algorithm == "random" or algorithm == "greedy":
             # Compute the score for the folding of the protein
-            grid_obj.compute_score()
-            scores.append(grid_obj.score)
-        elif algorithm_obj.best_grid:
-            # Get the grid with the best score
-            grid_obj = algorithm_obj.get_best_configuration()
-            scores.append(grid_obj.score)
+                grid_obj.compute_score()
+                scores.append(grid_obj.score)
+            elif algorithm_obj.best_grid:
+                # Get the grid with the best score
+                grid_obj = algorithm_obj.get_best_configuration()
+                scores.append(grid_obj.score)
         
-        # Visualize the protein folding
-        if show_vis:
-            vis = visualize.Visualize(grid_obj, save, algorithm)
-            vis.visualize_2D()
-
+            # Visualize the protein folding
+    if show_vis:
+        vis = visualize.Visualize(grid_obj, save, algorithm)
+        vis.visualize_2D()
+    
         # Save output to a CSV file
-        filename = f"data/output/{algorithm}/scores/{input_file}_{i}.csv"
-        # grid_obj.output_to_csv(filename)
-        filename_exp = f"data/output/{algorithm}/scores/{input_file}.csv"
+        # filename = f"data/output/{algorithm}/scores/{input_file}_{i}.csv"
+    #     # grid_obj.output_to_csv(filename)
+    filename_exp = f"data/output/{algorithm}/scores/{input_file}.csv"
     grid_obj.output_scores_csv(filename_exp, input_file, scores)
     
     # Algorithm is done running
@@ -107,12 +109,5 @@ if __name__ == "__main__":
 #     # List of protein files
 #     protein_files = ['amino1', 'amino2', 'amino3', 'amino4', 'amino5', 'amino6', 'amino7', 'amino8', 'amino9']
         
-#     # Check if command line arguments are present
-#     if len(argv) > 1:
-#         algorithm = argv[1]
-
-#     for filename in protein_files:
-#         protein_file = f"data/input/{filename}.txt"
-        
-#         # Run experiment for specified algorithm
-#         run(protein_file, iterations=1, algorithm='sa')
+# Run experiment for specified algorithm
+run(protein_file, iterations=100000, algorithm = 'greedy', show_vis=True)
