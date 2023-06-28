@@ -19,6 +19,7 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
     start = time.time()
 
     for i in range(iterations):
+        
         # Create grid object
         grid_obj = grid.Grid()
         # Load in the nodes (AKA aminoacids)
@@ -86,7 +87,8 @@ def plot_hist(scores, filename, title):
     ax.xaxis.set_major_locator(MaxNLocator(integer=True))
     ax.yaxis.set_major_locator(MaxNLocator(integer=True))
     fig.savefig(f"{filename}.png", bbox_inches='tight')
-    plt.show()
+    # plt.show()
+
 
 
 # if __name__ == "__main__":
@@ -100,7 +102,7 @@ def plot_hist(scores, filename, title):
 #     algorithm = argv[2]
 
 #     # Run experiment for specified algorithm
-#     run(protein_file, iterations=10, algorithm=algorithm, show_vis=True)
+#     run(protein_file, iterations=100000, algorithm=algorithm)
 
 if __name__ == "__main__":
     # List of protein files
