@@ -4,6 +4,7 @@ from code.classes import grid
 class Random:
     def __init__(self, grid):
         self.grid = grid
+        self.flag = True
 
     def execute(self):
         """ Folds an entire protein by generating random directions """
@@ -36,7 +37,7 @@ class Random:
                     continue
                     
             if attempts == max_attempts:
-                return False
+                self.flag = False
                 
             location = next_pos
 

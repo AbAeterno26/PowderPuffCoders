@@ -37,10 +37,10 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
             algorithm_obj = breadth_first.BreadthFirstSearch(grid_obj)
         elif algorithm == "greedy":
             algorithm_obj = greedy.Greedy(grid_obj)
+        
+        algorithm_obj.execute()
 
-        if algorithm_obj.execute():
-            algorithm_obj.execute()
-
+        if algorithm_obj.flag:
             if algorithm == "random" or algorithm == "greedy":
                 # Compute the score for the folding of the protein
                 grid_obj.compute_score()

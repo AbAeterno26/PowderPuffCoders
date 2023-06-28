@@ -13,7 +13,7 @@ class Grid():
         self.score = 0
 
     def compute_score(self):
-        """ 
+        """
         Computes the total stability score for the entire protein 
         by looping over the amino acids their bonds
         """
