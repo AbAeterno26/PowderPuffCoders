@@ -12,14 +12,14 @@ class Random:
         directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
         location = (0, 0)
         attempts = 0
-        max_attempts = 1000
+        max_attempts = 10000
 
         # Keep connecting amino acids until the whole protein is folded
         for amino_id, amino in self.grid.amino_acids.items():
             attempts = 0
             
             # Check that the location of the amino acid is not already in use
-            while attempts < max_attempts:
+            while True:
                 direction = random.choice(directions)
                 next_pos = location[0] + direction[0], location[1] + direction[1]
                 
@@ -37,8 +37,7 @@ class Random:
                     continue
                     
             if attempts == max_attempts:
-                self.grid.score = 0
-                break
+                return False
                 
             location = next_pos
 

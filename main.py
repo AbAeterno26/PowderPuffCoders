@@ -19,7 +19,6 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
     start = time.time()
 
     for i in range(iterations):
-        
         # Create grid object
         grid_obj = grid.Grid()
         # Load in the nodes (AKA aminoacids)
@@ -38,26 +37,28 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
         elif algorithm == "greedy":
             algorithm_obj = greedy.Greedy(grid_obj)
 
-        algorithm_obj.execute()
+        if algorithm_obj.execute():
+            algorithm_obj.execute()
 
-        if algorithm == "random" or algorithm == "greedy":
-            # Compute the score for the folding of the protein
-            grid_obj.compute_score()
-            scores.append(grid_obj.score)
-        elif algorithm_obj.best_grid:
-            # Get the grid with the best score
-            grid_obj = algorithm_obj.get_best_configuration()
-            scores.append(grid_obj.score)
-        
-        # Visualize the protein folding
-        if show_vis:
-            vis = visualize.Visualize(grid_obj, save, algorithm)
-            vis.visualize_2D()
-
+            if algorithm == "random" or algorithm == "greedy":
+                # Compute the score for the folding of the protein
+                grid_obj.compute_score()
+                scores.append(grid_obj.score)
+            elif algorithm_obj.best_grid:
+                # Get the grid with the best score
+                grid_obj = algorithm_obj.get_best_configuration()
+                scores.append(grid_obj.score)
+            
+            # Visualize the protein folding
+            if show_vis:
+                vis = visualize.Visualize(grid_obj, save, algorithm)
+                vis.visualize_2D()
+        else:
+            continue
         # Save output to a CSV file
-        filename = f"data/output/{algorithm}/scores/{input_file}_{i}.csv"
+        # filename = f"data/output/{algorithm}/scores/{input_file}_{i}.csv"
         # grid_obj.output_to_csv(filename)
-        filename_exp = f"data/output/{algorithm}/scores/{input_file}.csv"
+    filename_exp = f"data/output/{algorithm}/scores/{input_file}.csv"
     grid_obj.output_scores_csv(filename_exp, input_file, scores)
     
     # Algorithm is done running
@@ -101,7 +102,7 @@ def plot_hist(scores, filename, title):
 #     algorithm = argv[2]
 
 #     # Run experiment for specified algorithm
-#     run(protein_file, iterations=100000, algorithm=algorithm)
+#     run(protein_file, iterations=10, algorithm=algorithm, show_vis=True)
 
 if __name__ == "__main__":
     # List of protein files
@@ -115,4 +116,4 @@ if __name__ == "__main__":
         protein_file = f"data/input/{filename}.txt"
         
         # Run experiment for specified algorithm
-        run(protein_file, iterations=5000, algorithm='sa')
+        run(protein_file, iterations=5, algorithm='random', show_vis=True)
