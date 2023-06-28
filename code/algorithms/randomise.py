@@ -31,7 +31,6 @@ class Random:
                     # Add position to used locations
                     self.grid.locations.add(next_pos)
                     break
-                
                 else:
                     attempts += 1
                     continue

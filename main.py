@@ -1,4 +1,3 @@
-#Import
 from code.classes import grid
 from code.algorithms import randomise, sa, depth_first, breadth_first, greedy
 from code.visualizations import visualize
@@ -7,6 +6,7 @@ from matplotlib.ticker import MaxNLocator
 from sys import argv
 import seaborn as sns
 import time
+
 
 def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=False, save=False):
     # The score of each folding of a protein
@@ -21,6 +21,7 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
     for i in range(iterations):
         # Create grid object
         grid_obj = grid.Grid()
+        
         # Load in the nodes (AKA aminoacids)
         grid_obj.load_input(protein_file)
     
@@ -91,19 +92,6 @@ def plot_hist(scores, filename, title):
     # plt.show()
 
 
-# if __name__ == "__main__":
-#     # Check for the correct command line input
-#     if len(argv) == 1:
-#         print("Usage: python main.py [protein] (algorithm)")
-#         exit(1)
-    
-#     filename = argv[1]
-#     protein_file = f"data/input/{filename}.txt"
-#     algorithm = argv[2]
-
-#     # Run experiment for specified algorithm
-#     run(protein_file, iterations=10, algorithm=algorithm, show_vis=True)
-
 if __name__ == "__main__":
     # List of protein files
     protein_files = ['amino1', 'amino2', 'amino3', 'amino4', 'amino5', 'amino6', 'amino7', 'amino8', 'amino9']
@@ -116,4 +104,4 @@ if __name__ == "__main__":
         protein_file = f"data/input/{filename}.txt"
         
         # Run experiment for specified algorithm
-        run(protein_file, iterations=5, algorithm='random', show_vis=True)
+        run(protein_file, iterations=1, show_vis=True)
