@@ -40,23 +40,24 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
         
         algorithm_obj.execute()
 
+
+        algorithm_obj.execute()
+
         if algorithm_obj.flag:
             if algorithm == "random" or algorithm == "greedy":
-                # Compute the score for the folding of the protein
+            # Compute the score for the folding of the protein
                 grid_obj.compute_score()
                 scores.append(grid_obj.score)
             elif algorithm_obj.best_grid:
                 # Get the grid with the best score
                 grid_obj = algorithm_obj.get_best_configuration()
                 scores.append(grid_obj.score)
-            
-            # Visualize the protein folding
-            if show_vis:
-                vis = visualize.Visualize(grid_obj, save, algorithm)
-                vis.visualize_2D()
-        else:
-            continue
         
+            # Visualize the protein folding
+    if show_vis:
+        vis = visualize.Visualize(grid_obj, save, algorithm)
+        vis.visualize_2D()
+    
         # Save output to a CSV file
         # filename = f"data/output/{algorithm}/scores/{input_file}_{i}.csv"
         # grid_obj.output_to_csv(filename)
