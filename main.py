@@ -1,3 +1,4 @@
+#Import
 from code.classes import grid
 from code.algorithms import randomise, sa, depth_first, breadth_first, greedy
 from code.visualizations import visualize
@@ -6,7 +7,6 @@ from matplotlib.ticker import MaxNLocator
 from sys import argv
 import seaborn as sns
 import time
-
 
 def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=False, save=False):
     # The score of each folding of a protein
@@ -100,4 +100,4 @@ if __name__ == "__main__":
     algorithm = argv[2]
 
     # Run experiment for specified algorithm
-    run(protein_file, iterations=1, algorithm=algorithm)
+    run(protein_file, iterations=10, algorithm=algorithm, show_vis=True)
