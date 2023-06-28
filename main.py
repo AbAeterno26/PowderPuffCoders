@@ -57,7 +57,7 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
     
         # Save output to a CSV file
         # filename = f"data/output/{algorithm}/scores/{input_file}_{i}.csv"
-        # grid_obj.output_to_csv(filename)
+    #     # grid_obj.output_to_csv(filename)
     filename_exp = f"data/output/{algorithm}/scores/{input_file}.csv"
     grid_obj.output_scores_csv(filename_exp, input_file, scores)
     
@@ -92,15 +92,21 @@ def plot_hist(scores, filename, title):
 
 
 if __name__ == "__main__":
-    # List of protein files
-    protein_files = ['amino1', 'amino2', 'amino3', 'amino4', 'amino5', 'amino6', 'amino7', 'amino8', 'amino9']
-        
-    # Check if command line arguments are present
-    if len(argv) > 1:
-        algorithm = argv[1]
+    # Check for the correct command line input
+    if len(argv) == 1:
+        print("Usage: python main.py [protein] (algorithm)")
+        exit(1)
+    
+    filename = argv[1]
+    protein_file = f"data/input/{filename}.txt"
+    algorithm = argv[2]
 
-    for filename in protein_files:
-        protein_file = f"data/input/{filename}.txt"
-        
-        # Run experiment for specified algorithm
-        run(protein_file, iterations=100000, show_vis=True)
+    # Run experiment for specified algorithm
+    run(protein_file, iterations=10, algorithm=algorithm)
+
+# if __name__ == "__main__":
+#     # List of protein files
+#     protein_files = ['amino1', 'amino2', 'amino3', 'amino4', 'amino5', 'amino6', 'amino7', 'amino8', 'amino9']
+    
+    # Run experiment for specified algorithm
+    run(protein_file, iterations=100000)

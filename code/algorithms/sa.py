@@ -19,10 +19,11 @@ class SA(randomise.Random):
         """Executes the Simulated Annealing algorithm for the given protein. Returns the updated grid object, where 
         the protein folding configuration is saved within the amino_acids dictionary."""
 
-        stagnation_threshold = 100 
+        stagnation_threshold = 50
         stagnation_counter = 0
         k = 0
         current_temp = self.initial_temp
+        is_first_iteration = True
         
         # Creating an initial state using the randomise algorithm 
         super().execute()
@@ -56,20 +57,19 @@ class SA(randomise.Random):
                 acceptance_probability = math.exp((-score_diff) / current_temp)
                 acceptance_probability = round(acceptance_probability, 2)
                 stagnation_counter = 0
-
+           
                 # Also giving worse configuration a chance of acceptance 
                 if random.random() > acceptance_probability:
                     current_configuration = self.new_protein_obj
                     current_score = new_score
-                    stagnation_counter = 0
+            else:
+                stagnation_counter += 1
 
-                    # If the new configuration has a higher score, update the best configuration
-                    if current_score < best_score:
-                        best_score = current_score
-                        self.best_grid = current_configuration
-                    else:
-                        stagnation_counter += 1
-
+            # If the new configuration has a higher score, update the best configuration
+            if current_score < best_score:
+                best_score = current_score
+                self.best_grid = current_configuration
+           
             # Updating the temperature according to the cooling schedule 
             if self.cooling == 'exponential':
                 current_temp = self.initial_temp * self.alpha**k
@@ -78,9 +78,12 @@ class SA(randomise.Random):
             if self.cooling == 'linear':
                 current_temp *= self.rate_of_decrease 
             
-            # Termination message
+        
+            # Termination condition
             if stagnation_counter >= stagnation_threshold:
                 break
+            
+            print(best_score)
         
     def get_best_configuration(self):
         return self.best_grid
