@@ -5,7 +5,7 @@ class BreadthFirstSearch:
     def __init__(self, grid):
         self.grid = grid
         self.directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
-
+        self.flag = True
         self.best_score = float('inf')
         self.best_grid = None
     

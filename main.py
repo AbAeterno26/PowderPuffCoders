@@ -111,9 +111,12 @@ if __name__ == "__main__":
     # Check if command line arguments are present
     if len(argv) > 1:
         algorithm = argv[1]
-
+        print(f" algo is {algorithm}")
     for filename in protein_files:
         protein_file = f"data/input/{filename}.txt"
         
         # Run experiment for specified algorithm
-        run(protein_file, iterations=1, show_vis=True)
+        
+        run(protein_file, iterations=1, algorithm = 'depth')
+        run(protein_file, iterations=1, algorithm = 'breadth')
+    
