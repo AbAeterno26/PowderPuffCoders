@@ -21,7 +21,6 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
     for i in range(iterations):
         # Create grid object
         grid_obj = grid.Grid()
-
         # Load in the nodes (AKA aminoacids)
         grid_obj.load_input(protein_file)
     
@@ -57,6 +56,8 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
         # Save output to a CSV file
         filename = f"data/output/{algorithm}/scores/{input_file}_{i}.csv"
         # grid_obj.output_to_csv(filename)
+        filename_exp = f"data/output/{algorithm}/scores/{input_file}.csv"
+    grid_obj.output_scores_csv(filename_exp, input_file, scores)
     
     # Algorithm is done running
     end = time.time()
@@ -99,4 +100,4 @@ if __name__ == "__main__":
     algorithm = argv[2]
 
     # Run experiment for specified algorithm
-    run(protein_file, iterations=100, algorithm=algorithm)
+    run(protein_file, iterations=1, algorithm=algorithm)
