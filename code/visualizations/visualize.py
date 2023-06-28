@@ -1,11 +1,10 @@
+# Imports
 import plotly
 import plotly.graph_objs as go
-from plotly.offline import plot
-import plotly.express as px
 
 class Visualize():
     """
-    This class is for the visualization of the protein. It accepts a grid, and two functions.
+    This class is for the visualization of the protein. It accepts a grid, and has two functions.
     """
     def __init__(self, grid, save, algorithm):
         self.grid = grid
@@ -13,9 +12,8 @@ class Visualize():
         self.algorithm_name = algorithm
 
     def fold_amino_scatter(self, x_values_amino, y_values_amino, text, color):
-        """ 
-        This function scatters one specific aminoacid, later on used in the big visualize funciton 
-        """
+        """ This function scatters one specific aminoacid, later on used in the big visualize funciton """
+        
         fold_text = go.Scatter(
             x=x_values_amino,
             y=y_values_amino,
@@ -36,9 +34,6 @@ class Visualize():
         in the end showing the visualization, and adding it to a pdf
         
         """
-
-        amino_acids = list(self.grid.amino_acids.values())
-
         x_values = []
         y_values = []
         x_values_H = []
@@ -69,6 +64,7 @@ class Visualize():
         fold_C = self.fold_amino_scatter(x_values_C, y_values_C, 'C', 'green')
 
         fold_lines = []
+        amino_acids = list(self.grid.amino_acids.values())
 
         # Draw covalent bonds
         for i in range(len(amino_acids)-1):
@@ -124,7 +120,7 @@ class Visualize():
         )
 
         fig.show()
-
+        
         # Outputting gridscatterplot to a pdf file
         if self.save:
             plotly.io.write_image(fig, f'data/output/{self.algorithm_name}/graphs/amino_plotly.pdf', format='pdf')
