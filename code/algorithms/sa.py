@@ -5,8 +5,6 @@ import copy
 
 
 class SA(randomise.Random):
-    # eventueel alpha ook nog meegeven als parameter
-    # ook variabelen initial temp and final temp mogelijk meegeven om meer dynamiek te creeeren 
     def __init__(self, grid, cooling='linear', alpha=0.4, rate_of_decrease=0.95, initial_temp=90, final_temp=.1):
         self.grid = grid
         self.initial_temp = initial_temp
@@ -16,18 +14,16 @@ class SA(randomise.Random):
         self.rate_of_decrease = rate_of_decrease
         self.x = 0
 
-   
-    def execute(self): ## rename to execute 
-        """The function returns the updated grid object, where the protein folding
-        configuration is saved within the amino_acids dictionary."""
-        
-        current_temp = self.initial_temp
+    def execute(self): 
+        """Executes the Simulated Annealing algorithm for the given protein. Returns the updated grid object, where 
+        the protein folding configuration is saved within the amino_acids dictionary."""
+
         k = 0
+        current_temp = self.initial_temp
         
         # Creating an initial state using the randomise algorithm 
         super().execute()
         
-        # The protein configuration is stored in de amino_acids dictionary in the grid object
         current_configuration = self.grid
         current_score = self.grid.compute_score()
         
@@ -84,7 +80,6 @@ class SA(randomise.Random):
         diagonal position."""
 
         amino = random.choice(new_protein_dict)
-        current_co = amino._location 
         coordinates = self.new_protein_obj.get_valid_diagonals(amino)
 
         while not coordinates:
