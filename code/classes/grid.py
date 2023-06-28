@@ -1,8 +1,9 @@
 import csv
 from code.classes import amino_cat
 
+
 class Grid():
-    # Width equals the length of the protein string 
+    # width equals the length of the protein string 
     def __init__(self):
         self.amino_acids = {}
         self.locations = set()
@@ -14,32 +15,34 @@ class Grid():
     def compute_score(self):
         """ 
         Computes the total stability score for the entire protein 
-        by looping over the amino acids bonds.
+        by looping over the amino acids their bonds
         """
-        # Set score to 0 to start counting properly
+        # Set score to 0 to start count properly
         self.score = 0
+        self.bonds = set()
 
-        # Loop over each amino acid in the dictionary
+        # Loop over each amino acid
         for i in range(len(self.amino_acids)):
     
+            # The index of this location is the key in the dictionary with amino acids
             current_amino = self.amino_acids[i]
 
             # Check if there is a chance for a hydrogen bond
             if current_amino.text == 'H' or current_amino.text == 'C':
-                # Find the next and previous amino acid object
+            # Find the next and previous amino acid object
                 if i == 0:
                     # Skip assigning a value to prev_amino for the first amino acid
                     prev_amino = None
-                    next_amino = self.amino_acids[i + 1]
-                elif i == len(self.amino_acids) - 1:
-                    # Skip assigning a value to next_amino for the last amino acid
-                    next_amino = None
-                    prev_amino = self.amino_acids[i - 1]
                 else:
                     prev_amino = self.amino_acids[i - 1]
+
+                if i == len(self.amino_acids) - 1:
+                    # Skip assigning a value to next_amino for the last amino acid
+                    next_amino = None
+                else:
                     next_amino = self.amino_acids[i + 1]
 
-                # Check if it is not a covalent bond and if the amino acids are 1 step apart
+                # Check if it is not a covalent bond and if the amino acids are apart 1 step
                 for amino in self.amino_acids.values():
                     # Check if there is a next amino or previous amino
                     if prev_amino and next_amino:
@@ -97,7 +100,6 @@ class Grid():
 
     def add_move(self, direction, index):
         """ This function checks what direction an amino acid was folded """
-
         # Check if it's the last amino acid in the protein
         if direction[0] != 0:
             self.history[index] = (direction[0])
@@ -107,14 +109,14 @@ class Grid():
             self.history[index] = -2
         
     def load_input(self, protein_file):
-        """ This function loads in a file with a protein and saves it as a string."""
-
+        """ This function loads in a file with a protein and saves it as a string """
         with open(protein_file, 'r') as f:
+            
             for protein in f:
                 # Save protein name
-                self.protein = protein.strip()
+                self.protein = protein
                 self.max_grid_size = len(protein)
-                
+
                 for i, aminoacid in enumerate(protein):
                     # Create class object from amino acid, which is the key in the dict
                     if aminoacid == 'P':
@@ -129,8 +131,7 @@ class Grid():
                     self.history.append(0)
 
     def output_to_csv(self, filename):
-        """ Creates a csv file with the folding score and all the moves made."""
-
+        """ Creates a csv file with the folding score and all the moves made """
         with open(filename, 'w', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(['amino', 'fold'])
@@ -140,56 +141,39 @@ class Grid():
                 amino_text = amino.text
                 move = self.history[i]
                 writer.writerows([[amino_text, move]])
-
             writer.writerows([["score", self.score]])
 
-    def output_scores_csv(self, filename, proteinstring, scores):
-        """This function places all scores in a csv file, is specificly meant for the experimenting phase, 
-        so that the overarching results can be visualized properly."""
-
-        with open(filename, 'w', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow([f"{proteinstring} score"])
-            for score in scores:
-                writer.writerow([score])
-
     def display_rules(self):
-        """Prints all the rules of the HP-folding problem that result in a specific score."""
-
         print("1 betekent een positieve stap in de eerste dimensie (X-as richting).")
         print("-1 betekent een negatieve stap in de eerste dimensie (X-as richting).")
         print("2 betekent een positieve stap in de tweede dimensie (Y-as richting).")
         print("-2 betekent een negatieve stap in de tweede dimensie (Y-as richting).")
 
-
     def getNeighbours(self, amino):
-        """This function is part of the Simulated Annealing algorithm
-        and specifically needed for the pullmove function. This function returns a list of the 
-        neighbouring coordinates."""
+        """Needed for the pullmove. The function returns a list of all possible diagonal coordinates"""
         
         neighbours = []
         index = amino.amino_id
 
-        # Check if the current amino is the last 
+        # Check if amino is the last 
         if (index + 1) == len(self.amino_acids):
             neighbour = self.amino_acids[index - 1]._location
             neighbours.append(neighbour)
-        # Check if the current amino is the first
+        # Check if amino is the first
         elif index == 0:
             neighbour = self.amino_acids[index + 1]._location
             neighbours.append(neighbour)
         else:
             next_amino = self.amino_acids[index + 1]._location
             previous_amino = self.amino_acids[index - 1]._location
+
             neighbours.append(next_amino)
             neighbours.append(previous_amino)
 
         return neighbours
 
     def get_valid_diagonals(self, amino):
-        """Returns a list of diagonal coordinates for this specific amino-acid.
-        Only valid diagonals are added to the list, since not just any diagonal is valid for both the
-        current amino-acid as well as for the neighbouring amino-acids. """
+        """Returns a valid list of diagonal coordinates for this specific amino-acid."""
 
         diagonals = []
 
@@ -203,11 +187,9 @@ class Grid():
             diagonal[i] -= 1
             diagonals.append(tuple(diagonal))
 
-        # Difference in distance 
-        D = 0
         # Retrieving all neighbouring amino-acids
         neighbours = self.getNeighbours(amino)
-        
+        D = 0
         for neighbour in neighbours:
             for diagonal in diagonals:
                 # Checking if the diagonal is a valid considering the neighbouring coordinates
@@ -222,4 +204,3 @@ class Grid():
                 diagonals.remove(diagonal)
 
         return diagonals
-

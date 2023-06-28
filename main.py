@@ -1,4 +1,3 @@
-#Import
 from code.classes import grid
 from code.algorithms import randomise, sa, depth_first, breadth_first, greedy
 from code.visualizations import visualize
@@ -7,6 +6,7 @@ from matplotlib.ticker import MaxNLocator
 from sys import argv
 import seaborn as sns
 import time
+
 
 def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=False, save=False):
     # The score of each folding of a protein
@@ -22,6 +22,7 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
         
         # Create grid object
         grid_obj = grid.Grid()
+        
         # Load in the nodes (AKA aminoacids)
         grid_obj.load_input(protein_file)
     
@@ -55,7 +56,7 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
             vis.visualize_2D()
 
         # Save output to a CSV file
-        filename = f"data/output/{algorithm}/scores/{input_file}_{i}.csv"
+        # filename = f"data/output/{algorithm}/scores/{input_file}_{i}.csv"
         # grid_obj.output_to_csv(filename)
         filename_exp = f"data/output/{algorithm}/scores/{input_file}.csv"
     grid_obj.output_scores_csv(filename_exp, input_file, scores)
@@ -90,19 +91,6 @@ def plot_hist(scores, filename, title):
     # plt.show()
 
 
-# if __name__ == "__main__":
-#     # Check for the correct command line input
-#     if len(argv) == 1:
-#         print("Usage: python main.py [protein] (algorithm)")
-#         exit(1)
-    
-#     filename = argv[1]
-#     protein_file = f"data/input/{filename}.txt"
-#     algorithm = argv[2]
-
-#     # Run experiment for specified algorithm
-#     run(protein_file, iterations=100000, algorithm=algorithm)
-
 if __name__ == "__main__":
     # List of protein files
     protein_files = ['amino1', 'amino2', 'amino3', 'amino4', 'amino5', 'amino6', 'amino7', 'amino8', 'amino9']
@@ -115,4 +103,4 @@ if __name__ == "__main__":
         protein_file = f"data/input/{filename}.txt"
         
         # Run experiment for specified algorithm
-        run(protein_file, iterations=5000, algorithm='sa')
+        run(protein_file, iterations=1, show_vis=True)

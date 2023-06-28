@@ -15,12 +15,8 @@ class DepthFirstSearch:
         # Initialize the grid with the first amino acid placed
         self.grid.add_move((0, 0), 0)
         self.grid.locations.add((0, 0))
-
-        # Initialize the stack with the starting position (0, 0)
-        initial_grid = copy.deepcopy(self.grid)
         
-        # self.stack = [(0, copy.deepcopy(initial_grid))] 
-        self.stack = [(1, initial_grid)]
+        self.stack = [(1, copy.deepcopy(self.grid))]
 
         while self.stack:
             current_amino_id, grid = self.stack.pop()
