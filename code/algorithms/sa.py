@@ -83,7 +83,6 @@ class SA(randomise.Random):
             if stagnation_counter >= stagnation_threshold:
                 break
             
-            print(best_score)
         
     def get_best_configuration(self):
         return self.best_grid
