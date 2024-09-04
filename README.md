@@ -22,9 +22,11 @@ conda install --file requirements.txt
 Een voorbeeld kan gerund worden door het volgende aan te roepen: 
 
 ```
-python main.py amino1 sa
+python main.py
 ```
-Er zijn in totaal 9 amino textfiles die kunnen worden aangeroepen. Een voorbeeld boven is amino1, maar amino7 zou daarvoor ook in de plaats mogen. 
+Nu worden alle proteinstrings gerund. Het aantal iteraties kan worden aangepast in de code, dit om het makkelijker te maken het experiment te runnen.
+Dit geldt ook voor het algoritme.
+Er zijn in totaal 9 amino textfiles die kunnen worden aangeroepen.
 
 ### Structuur
 

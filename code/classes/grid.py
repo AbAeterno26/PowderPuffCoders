@@ -13,7 +13,7 @@ class Grid():
         self.score = 0
 
     def compute_score(self):
-        """ 
+        """
         Computes the total stability score for the entire protein 
         by looping over the amino acids their bonds
         """
@@ -143,6 +143,12 @@ class Grid():
                 writer.writerows([[amino_text, move]])
             writer.writerows([["score", self.score]])
     
+    def output_scores_csv(self, filename, proteinstring, scores):
+        with open(filename, 'w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow([f"{proteinstring} score"])
+            for score in scores:
+                writer.writerow([score])
 
     def display_rules(self):
         print("1 betekent een positieve stap in de eerste dimensie (X-as richting).")

@@ -37,8 +37,7 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
             algorithm_obj = breadth_first.BreadthFirstSearch(grid_obj)
         elif algorithm == "greedy":
             algorithm_obj = greedy.Greedy(grid_obj)
-
-
+        
         algorithm_obj.execute()
 
         if algorithm_obj.flag:
@@ -51,7 +50,7 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
                 grid_obj = algorithm_obj.get_best_configuration()
                 scores.append(grid_obj.score)
         
-            # Visualize the protein folding
+    # Visualize the protein folding
     if show_vis:
         vis = visualize.Visualize(grid_obj, save, algorithm)
         vis.visualize_2D()
@@ -67,9 +66,9 @@ def run(protein_file, iterations=100, algorithm="random", rules=False, show_vis=
     duration = end - start
     print(f"Duration running {iterations} iterations:\t{duration} s")
     # Plot histogram of the scores for a specified protein
-    path_to_file = f"data/output/{algorithm}/graphs/{input_file}"
-    title = f"{algorithm} - {iterations} iterations"
-    plot_hist(scores, path_to_file, title)
+    # path_to_file = f"data/output/{algorithm}/graphs/{input_file}"
+    # title = f"{algorithm} - {iterations} iterations"
+    # plot_hist(scores, path_to_file, title)
 
     # Display rules if requested
     if rules:
@@ -92,22 +91,32 @@ def plot_hist(scores, filename, title):
     # plt.show()
 
 
-if __name__ == "__main__":
-    # Check for the correct command line input
-    if len(argv) == 1:
-        print("Usage: python main.py [protein] (algorithm)")
-        exit(1)
-    
-    filename = argv[1]
-    protein_file = f"data/input/{filename}.txt"
-    algorithm = argv[2]
-
-    # Run experiment for specified algorithm
-    run(protein_file, iterations=10, algorithm=algorithm)
-
 # if __name__ == "__main__":
-#     # List of protein files
-#     protein_files = ['amino1', 'amino2', 'amino3', 'amino4', 'amino5', 'amino6', 'amino7', 'amino8', 'amino9']
+#     # Check for the correct command line input
+#     if len(argv) == 1:
+#         print("Usage: python main.py [protein] (algorithm)")
+#         exit(1)
+    
+#     filename = argv[1]
+#     protein_file = f"data/input/{filename}.txt"
+#     algorithm = argv[2]
+
+#     # Run experiment for specified algorithm
+#     run(protein_file, iterations=10, algorithm=algorithm)
+
+if __name__ == "__main__":
+    # List of protein files
+    protein_files = ['amino1', 'amino2', 'amino3', 'amino4', 'amino5', 'amino6', 'amino7', 'amino8', 'amino9']
         
-# Run experiment for specified algorithm
-run(protein_file, iterations=100000, algorithm = 'greedy', show_vis=True)
+    # Check if command line arguments are present
+    if len(argv) > 1:
+        algorithm = argv[1]
+        print(f" algo is {algorithm}")
+    for filename in protein_files:
+        protein_file = f"data/input/{filename}.txt"
+        
+        # Run experiment for specified algorithm
+        
+        run(protein_file, iterations=1, algorithm = 'depth')
+        run(protein_file, iterations=1, algorithm = 'breadth')
+    
